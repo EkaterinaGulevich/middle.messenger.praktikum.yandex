@@ -2,13 +2,17 @@
   "name": "messenger",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel index.hbs",
+    "build": "parcel build index.hbs"
   },
   "author": "meteorgul@gmail.com",
   "license": "ISC",
+  "engines": {
+    "node": ">=14"
+  },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "parcel": "^2.4.1"
   }
 }
