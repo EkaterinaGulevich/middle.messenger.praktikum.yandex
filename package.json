@@ -3,20 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "parcel index.hbs",
-    "build": "parcel build index.hbs",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
     "start": "node ./server.js"
   },
   "author": "meteorgul@gmail.com",
   "license": "ISC",
-  "engines": {
-    "node": ">=14"
-  },
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "@parcel/transformer-sass": "^2.4.1",
-    "express": "^4.17.3",
     "parcel": "^2.4.1",
-    "sass": "^1.50.0"
+    "sass": "^1.50.0",
+    "parcel-transformer-hbs": "^1.0.4",
+    "@parcel/transformer-sass": "^2.4.1",
+    "express": "^4.17.3"
   }
 }

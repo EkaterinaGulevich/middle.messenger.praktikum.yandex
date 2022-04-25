@@ -1,6 +1,15 @@
-import {sayHello} from './modules/sayHello';
+import NotFoundPage from './pages/not-found/not-found.js'
+import './style.scss'
 
-import './style.scss';
+const currentPathname = window.location.pathname
 
-const root = document.querySelector('#root');
-root.textContent = sayHello('World');
+switch (currentPathname) {
+  case '/':
+    break
+  default:
+    document.getElementById('root').innerHTML = NotFoundPage
+    document.getElementById('not-found-back_btn').onclick = function () {
+      window.location.pathname = '/'
+    }
+    break
+}
