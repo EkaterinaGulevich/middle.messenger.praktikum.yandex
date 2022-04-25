@@ -1,3 +1,11 @@
-<div class="{{CG_auth elem='wrapper'}}">
-    Страница авторизации
+<div class="{{CG_auth elem='page'}}">
+    <div class="{{CG_auth elem='wrapper'}}">
+        <div class="{{CG_auth elem='title'}}">Вход</div>
+        <div class="{{CG_auth elem='inputs-wrapper'}}">
+            {{> input id='input-login' placeholder='Логин' type='text' modifiers='full-width' }}
+            {{> input id='input-password' type='password' placeholder='Пароль' modifiers='full-width'}}
+        </div>
+        {{> button id='btn-auth' value='Авторизоваться' modifiers='full-width'}}
+        <div id='link-to-registration' class="{{CG_auth elem='link'}}">Нет аккаунта?</div>
+    </div>
 </div>

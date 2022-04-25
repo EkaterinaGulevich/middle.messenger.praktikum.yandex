@@ -1,3 +1,16 @@
-<div class="{{CG_registration elem='wrapper'}}">
-    Страница регистрации
+<div class="{{CG_registration elem='page'}}">
+    <div class="{{CG_registration elem='wrapper'}}">
+        <div class="{{CG_registration elem='title'}}">Регистрация</div>
+        <div class="{{CG_registration elem='inputs-wrapper'}}">
+            {{> input id='input-mail' placeholder='Почта' type='text' modifiers='full-width'}}
+            {{> input id='input-login' placeholder='Логин' type='text' modifiers='full-width'}}
+            {{> input id='input-name' placeholder='Имя'type='text' modifiers='full-width' }}
+            {{> input id='input-family' placeholder='Фамилия'type='text' modifiers='full-width' }}
+            {{> input id='input-phone' placeholder='Телефон' type='text' modifiers='full-width'}}
+            {{> input id='input-password' placeholder='Пароль'type='password' modifiers='full-width'}}
+            {{> input id='input-repeat-password' placeholder='Пароль (еще раз)' type='password' modifiers='full-width'}}
+        </div>
+        {{> button id='btn-registration' value='Зарегистрироваться' modifiers='full-width'}}
+        <div id='link-to-auth' class="{{CG_registration elem='link'}}">Есть аккаунт?</div>
+    </div>
 </div>

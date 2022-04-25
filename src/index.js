@@ -5,6 +5,7 @@ import Registration from './pages/registration/registration.js'
 import ProfileView from './pages/profile-view/profile-view.js'
 import ProfileEdit from './pages/profile-edit/profile-edit.js'
 import './style.scss'
+import './components/index.js'
 
 const currentPathname = window.location.pathname
 
