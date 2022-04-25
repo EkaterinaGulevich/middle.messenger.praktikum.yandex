@@ -5,10 +5,11 @@ import './not-found.scss'
 
 import { TCG } from '../../utils/CG.js'
 
-Handlebars.registerHelper('CG', options => TCG(options, 'not_found_page'))
+Handlebars.registerHelper('CG_not_found_page', options => TCG(options, 'not_found_page'))
 
-Handlebars.registerPartial('not-found', tpl)
-
-const template = tpl()
-
-export default template
+export default function () {
+  document.getElementById('root').innerHTML = tpl()
+  document.getElementById('not-found-back_btn').onclick = function () {
+    window.location.pathname = '/'
+  }
+}

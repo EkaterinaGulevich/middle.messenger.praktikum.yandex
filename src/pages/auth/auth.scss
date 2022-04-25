@@ -1,0 +1,10 @@
+.auth {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 30vh auto;
+        align-items: center;
+    }
+
+}
