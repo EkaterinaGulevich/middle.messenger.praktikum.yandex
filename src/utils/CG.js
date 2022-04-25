@@ -8,10 +8,15 @@ export function CG (block, elem, modifiers = []) {
   if (elem) {
       className+= ` ${block}__${elem}`
   }
-  
+
   if (modifiers.length) {
      modifiers.forEach(modifier => {
-         className+=` ${block}__${elem}--${modifier}`
+         if (elem) {
+             className += ` ${block}__${elem}--${modifier}`
+         }
+         else {
+             className += ` ${block}--${modifier}`
+         }
      });
   }
 
@@ -25,4 +30,4 @@ export function CG (block, elem, modifiers = []) {
     return CG(block, elem, modifiers ? modifiers.split(' ') : [])
   }
 
-  
+
