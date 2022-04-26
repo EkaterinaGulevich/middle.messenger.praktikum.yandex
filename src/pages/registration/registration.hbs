@@ -1,16 +1,16 @@
-<div class="{{CG_registration elem='page'}}">
+<main class="{{CG_registration }}">
     <div class="{{CG_registration elem='wrapper'}}">
-        <div class="{{CG_registration elem='title'}}">Регистрация</div>
+        <h1 class="{{CG_registration elem='title'}}">Регистрация</h1>
         <div class="{{CG_registration elem='inputs-wrapper'}}">
-            {{> input id='input-mail' placeholder='Почта' type='text' modifiers='full-width'}}
-            {{> input id='input-login' placeholder='Логин' type='text' modifiers='full-width'}}
-            {{> input id='input-name' placeholder='Имя'type='text' modifiers='full-width' }}
-            {{> input id='input-family' placeholder='Фамилия'type='text' modifiers='full-width' }}
-            {{> input id='input-phone' placeholder='Телефон' type='text' modifiers='full-width'}}
-            {{> input id='input-password' placeholder='Пароль'type='password' modifiers='full-width'}}
-            {{> input id='input-repeat-password' placeholder='Пароль (еще раз)' type='password' modifiers='full-width'}}
+            {{> input name='email' id='input-mail' placeholder='Почта' type='text' modifiers='full-width'}}
+            {{> input name='login' id='input-login' placeholder='Логин' type='text' modifiers='full-width'}}
+            {{> input name='first_name' id='input-first_name' placeholder='Имя'type='text' modifiers='full-width' }}
+            {{> input name='second_name' id='input-second_name' placeholder='Фамилия'type='text' modifiers='full-width' }}
+            {{> input name='phone' id='input-phone' placeholder='Телефон' type='text' modifiers='full-width'}}
+            {{> input name='password' id='input-password' placeholder='Пароль'type='password' modifiers='full-width'}}
+            {{> input name='repeat_password' id='input-repeat_password' placeholder='Пароль (еще раз)' type='password' modifiers='full-width'}}
         </div>
         {{> button id='btn-registration' value='Зарегистрироваться' modifiers='full-width'}}
-        <div id='link-to-auth' class="{{CG_registration elem='link'}}">Есть аккаунт?</div>
+        <a id='link-to-auth' class="{{CG_registration elem='link'}}">Есть аккаунт?</a>
     </div>
-</div>
+</main>

@@ -5,8 +5,12 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html",
-    "start": "node ./server.js"
+    "start": "npm run build && node ./server.js"
   },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "meteorgul@gmail.com",
   "license": "ISC",
   "devDependencies": {

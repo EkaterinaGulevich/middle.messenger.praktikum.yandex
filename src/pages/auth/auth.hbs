@@ -1,11 +1,11 @@
-<div class="{{CG_auth elem='page'}}">
+<main class="{{CG_auth}}">
     <div class="{{CG_auth elem='wrapper'}}">
-        <div class="{{CG_auth elem='title'}}">Вход</div>
+        <h1 class="{{CG_auth elem='title'}}">Вход</h1>
         <div class="{{CG_auth elem='inputs-wrapper'}}">
-            {{> input id='input-login' placeholder='Логин' type='text' modifiers='full-width' }}
-            {{> input id='input-password' type='password' placeholder='Пароль' modifiers='full-width'}}
+            {{> input name='login' id='input-login' placeholder='Логин' type='text' modifiers='full-width' }}
+            {{> input name='password' id='input-password' type='password' placeholder='Пароль' modifiers='full-width'}}
         </div>
         {{> button id='btn-auth' value='Авторизоваться' modifiers='full-width'}}
-        <div id='link-to-registration' class="{{CG_auth elem='link'}}">Нет аккаунта?</div>
+        <a id='link-to-registration' class="{{CG_auth elem='link'}}">Нет аккаунта?</a>
     </div>
-</div>
+</main>

@@ -1,6 +1,8 @@
 import Handlebars from 'handlebars'
-import tpl from './avatar.hbs'
+
 import {TCG} from '../../utils/CG';
+
+import tpl from './avatar.hbs'
 import './avatar.scss'
 
 Handlebars.registerPartial('avatar', tpl)

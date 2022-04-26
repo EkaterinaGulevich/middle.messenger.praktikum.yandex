@@ -1,28 +1,26 @@
 .not_found_page {
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-        margin: 30vh auto;
-        align-items: center;
-    }
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 30vh auto;
+  align-items: center;
 
-    &__title {
-        font-size: 40px;
-        margin-bottom: 10px;
-    }
+  &__title {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
 
-    &__subtitle {
-        font-size: 20px;
-        margin-bottom: 40px;
-    }
+  &__subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
 
-    &__link {
-        font-size: 12px;
-        cursor: pointer;
+  &__link {
+    font-size: 12px;
+    cursor: pointer;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }

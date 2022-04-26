@@ -1,38 +1,37 @@
 .registration {
-    &__page {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    &__wrapper {
-        display: flex;
-        width: 280px;
-        flex-direction: column;
-        align-items: center;
-    }
+  &__wrapper {
+    display: flex;
+    width: 280px;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    &__inputs-wrapper {
-        width: 100%;
-        margin-bottom: 60px;
-        .input-wrapper:not(:last-child) {
-            margin-bottom: 20px;
-        }
-    }
+  &__inputs-wrapper {
+    width: 100%;
+    margin-bottom: 60px;
 
-    &__title {
-        font-size: 20px;
-        margin-bottom: 30px;
+    .input-wrapper:not(:last-child) {
+      margin-bottom: 20px;
     }
+  }
 
-    &__link {
-        margin-top: 10px;
-        font-size: 12px;
-        cursor: pointer;
+  &__title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
 
-        &:hover {
-            text-decoration: underline;
-        }
+  &__link {
+    margin-top: 10px;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }

@@ -1,8 +1,9 @@
 import Handlebars from 'handlebars'
-import tpl from './button.hbs'
 
-import './button.scss'
 import {TCG} from '../../utils/CG';
+
+import tpl from './button.hbs'
+import './button.scss'
 
 Handlebars.registerPartial('button', tpl)
 
