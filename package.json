@@ -10,10 +10,15 @@
   "author": "meteorgul@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.4.1",
-    "sass": "^1.50.0",
-    "parcel-transformer-hbs": "^1.0.4",
     "@parcel/transformer-sass": "^2.4.1",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "parcel": "^2.4.1",
+    "parcel-reporter-static-files-copy": "^1.3.4",
+    "parcel-transformer-hbs": "^1.0.4",
+    "sass": "^1.50.0"
+  },
+  "staticFiles": {
+    "staticPath": "static",
+    "staticOutPath": "static"
   }
 }

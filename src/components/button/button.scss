@@ -12,18 +12,26 @@
     outline: 1px dashed #fff;
   }
 
-  &:hover {
+  &:hover, &:disabled {
     background: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
   }
 
   &--secondary  {
     color: #FF9595;
     border-color: #FF9595;
 
-    &:hover {
+    &:hover, &:disabled {
       background: rgba(255, 149, 149, 0.3);
     }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &--full-width {

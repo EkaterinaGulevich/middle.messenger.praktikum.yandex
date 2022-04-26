@@ -22,14 +22,10 @@
 
   &__inputs-wrapper {
     width: 100%;
-
+    margin-bottom: 60px;
     .input-wrapper:not(:last-child) {
       margin-bottom: 20px;
     }
-  }
-
-  button {
-    margin-top: 60px;
   }
 
   &__link {

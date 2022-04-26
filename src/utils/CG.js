@@ -6,7 +6,7 @@ export function CG (block, elem, modifiers = []) {
   }
 
   if (elem) {
-      className+= ` ${block}__${elem}`
+      className+= `__${elem}`
   }
 
   if (modifiers.length) {
