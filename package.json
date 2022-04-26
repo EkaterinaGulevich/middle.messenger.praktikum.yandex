@@ -9,7 +9,7 @@
     "start": "npm run build && npm run serve"
   },
   "engines": {
-    "node": ">=14.0"
+    "node": ">=12.0"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "author": "meteorgul@gmail.com",
