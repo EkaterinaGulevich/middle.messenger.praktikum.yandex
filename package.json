@@ -26,5 +26,8 @@
   "staticFiles": {
     "staticPath": "static",
     "staticOutPath": "static"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7"
   }
 }
