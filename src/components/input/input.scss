@@ -40,8 +40,10 @@
     pointer-events: none;
   }
 
+ 
   .input:focus + label,
-  .input:not(:placeholder-shown) + label {
+  .input:not(:placeholder-shown) + label,
+  .input:-webkit-autofill + label {
     transform: translateY(-18px);
     font-size: 12px;
     padding: 0;
