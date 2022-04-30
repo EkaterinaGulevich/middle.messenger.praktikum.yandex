@@ -43,9 +43,9 @@
   }
 
 
-  .input:focus + label,
-  .input:not(:placeholder-shown) + label,
-  .input:-webkit-autofill + label {
+  .input:focus + .input-label,
+  .input:not(:placeholder-shown) + .input-label,
+  .input:-webkit-autofill + .input-label {
     transform: translateY(-18px);
     font-size: 12px;
     padding: 0;
