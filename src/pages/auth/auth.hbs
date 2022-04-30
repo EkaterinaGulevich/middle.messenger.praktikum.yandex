@@ -6,6 +6,6 @@
             {{> input name='password' id='input-password' type='password' placeholder='Пароль' modifiers='full-width'}}
         </div>
         {{> button id='btn-auth' value='Авторизоваться' modifiers='full-width'}}
-        <a id='link-to-registration' class="{{CG_auth elem='link'}}">Нет аккаунта?</a>
+        {{> link href='/registration' value='Нет аккаунта?' className=(CG_auth elem='link') }}
     </div>
 </main>

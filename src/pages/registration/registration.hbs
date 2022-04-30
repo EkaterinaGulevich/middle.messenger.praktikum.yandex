@@ -11,6 +11,6 @@
             {{> input name='repeat_password' id='input-repeat_password' placeholder='Пароль (еще раз)' type='password' modifiers='full-width'}}
         </div>
         {{> button id='btn-registration' value='Зарегистрироваться' modifiers='full-width'}}
-        <a id='link-to-auth' class="{{CG_registration elem='link'}}">Есть аккаунт?</a>
+        {{> link href='/auth' value='Есть аккаунт?' className=(CG_registration elem='link') }}
     </div>
 </main>

@@ -54,8 +54,4 @@ export default function () {
         console.log(state)
         window.location.pathname = '/auth'
     }
-
-    document.getElementById('link-to-auth').onclick = function () {
-        window.location.pathname = '/auth'
-    }
 }

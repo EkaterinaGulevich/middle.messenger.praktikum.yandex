@@ -9,6 +9,6 @@ Handlebars.registerPartial('input', tpl)
 
 Handlebars.registerHelper('CG_input', options => TCG(options, 'input'))
 
-export default ({id, placeholder, modifiers, type = 'text'}) => {
-    return tpl({id, placeholder, modifiers, type})
+export default ({id, placeholder, modifiers, type = 'text', className}) => {
+    return tpl({id, placeholder, modifiers, type, className})
 }

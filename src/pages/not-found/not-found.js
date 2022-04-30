@@ -9,7 +9,4 @@ Handlebars.registerHelper('CG_not_found_page', options => TCG(options, 'not_foun
 
 export default function () {
     document.getElementById('root').innerHTML = tpl()
-    document.getElementById('not-found-back_btn').onclick = function () {
-        window.location.pathname = '/'
-    }
 }

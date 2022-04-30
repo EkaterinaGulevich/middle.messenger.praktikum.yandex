@@ -9,6 +9,6 @@ Handlebars.registerPartial('static-input', tpl)
 
 Handlebars.registerHelper('CG_static-input', options => TCG(options, 'static-input'))
 
-export default ({label, value}) => {
-    return tpl({label, value})
+export default ({label, value, className}) => {
+    return tpl({label, value, className})
 }

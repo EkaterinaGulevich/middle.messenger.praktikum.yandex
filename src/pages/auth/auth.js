@@ -27,9 +27,4 @@ export default function () {
         console.log(state)
         window.location.pathname = '/chats'
     }
-
-    document.getElementById('link-to-registration').onclick = function () {
-        window.location.pathname = '/registration'
-    }
-
 }

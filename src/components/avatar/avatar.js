@@ -9,6 +9,6 @@ Handlebars.registerPartial('avatar', tpl)
 
 Handlebars.registerHelper('CG_avatar', options => TCG(options, 'avatar'))
 
-export default ({label, value}) => {
-    return tpl({label, value})
+export default ({label, value, className}) => {
+    return tpl({label, value, className})
 }
