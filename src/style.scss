@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import './styles/colors';
 
 body {
   margin: 0;
   box-sizing: border-box;
-  background: linear-gradient(to right, #44384E, #2D3655);
+  background: linear-gradient(to right, $grayishPurple, $nightBlue);
   font-family: 'Inter', sans-serif;
-  color: #fff;
+  color: $white;
 }

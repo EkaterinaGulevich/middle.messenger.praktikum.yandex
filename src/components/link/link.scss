@@ -1,8 +1,10 @@
+@import '../../styles/colors';
+
 .link {
   font-size: 12px;
   cursor: pointer;
   text-decoration: none;
-  color: #fff;
+  color: $white;
 
   &:hover {
     text-decoration: underline;

@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .input-wrapper {
   height: 40px;
   width: 100%;
@@ -7,8 +9,8 @@
   .input {
     background: transparent;
     border: none;
-    border-bottom: 1px solid #999;
-    color: #fff;
+    border-bottom: 1px solid $grey;
+    color: $white;
     font-size: 16px;
     padding: 14px 0 0 0;
     height: 40px;
@@ -21,7 +23,7 @@
     &:focus-visible {
       border: none;
       outline: none;
-      border-bottom: 1px solid #FFFFFF;
+      border-bottom: 1px solid $white;
     }
 
     &--full-width {
@@ -35,19 +37,19 @@
     width: 100%;
     font-size: 16px;
     margin: -22px 0 0 0;
-    color: #999;
+    color: $grey;
     transition: 0.5s;
     pointer-events: none;
   }
 
- 
+
   .input:focus + label,
   .input:not(:placeholder-shown) + label,
   .input:-webkit-autofill + label {
     transform: translateY(-18px);
     font-size: 12px;
     padding: 0;
-    color: #999;
+    color: $grey;
   }
 }
 

@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars'
 
-import {TCG} from '../../utils/CG';
+import {TCG} from '../../utils/CG'
 
 import tpl from './avatar.hbs'
 import './avatar.scss'
