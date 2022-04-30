@@ -2,7 +2,6 @@ import Handlebars from 'handlebars'
 
 import {TCG} from '../../utils/CG.js'
 
-import tpl from './registration.hbs'
 import './registration.scss'
 
 Handlebars.registerHelper('CG_registration', options =>
@@ -10,8 +9,6 @@ Handlebars.registerHelper('CG_registration', options =>
 )
 
 export default function () {
-    document.getElementById('root').innerHTML = tpl()
-
     const state = {
         mail: '',
         login: '',
@@ -51,7 +48,8 @@ export default function () {
     }
 
     document.getElementById('btn-registration').onclick = function () {
-        console.log(state)
         window.location.pathname = '/auth'
     }
 }
+
+export tpl from './registration.hbs'

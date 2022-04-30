@@ -1,32 +1,35 @@
-import NotFoundPage from './pages/not-found/not-found.js'
-import Chats from './pages/chats/chats.js'
-import Auth from './pages/auth/auth.js'
-import Registration from './pages/registration/registration.js'
-import ProfileView from './pages/profile-view/profile-view.js'
-import ProfileEdit from './pages/profile-edit/profile-edit.js'
+import {tpl as NotFoundPageTpl} from './pages/not-found/not-found.js'
+import {tpl as ChatsTpl} from './pages/chats/chats.js'
+import Auth, {tpl as AuthTpl} from './pages/auth/auth.js'
+import Registration, {tpl as RegistrationTpl} from './pages/registration/registration.js'
+import {tpl as ProfileViewTpl} from './pages/profile-view/profile-view.js'
+import {tpl as ProfileEditTpl} from './pages/profile-edit/profile-edit.js'
 import './components/index.js'
 import './style.scss'
 
 const currentPathname = window.location.pathname
+const root = document.getElementById('root');
 
 switch (currentPathname) {
     case '/':
     case '/chats':
-        Chats()
+        root.innerHTML = ChatsTpl()
         break
     case '/auth':
+        root.innerHTML = AuthTpl()
         Auth()
         break
     case '/registration':
+        root.innerHTML = RegistrationTpl()
         Registration()
         break
     case '/profile':
-        ProfileView()
+        root.innerHTML = ProfileViewTpl()
         break
     case '/edit-profile':
-        ProfileEdit()
+        root.innerHTML = ProfileEditTpl()
         break
     default:
-        NotFoundPage()
+        root.innerHTML = NotFoundPageTpl()
         break
 }
