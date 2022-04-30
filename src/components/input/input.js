@@ -9,6 +9,11 @@ Handlebars.registerPartial('input', tpl)
 
 Handlebars.registerHelper('CG_input', options => TCG(options, 'input'))
 
-export default ({id, placeholder, modifiers, type = 'text', className}) => {
-    return tpl({id, placeholder, modifiers, type, className})
+Handlebars.registerHelper('CG_input-modifiers', (params) => {
+    const {fullWidth} = params.hash
+    return `${fullWidth ? ' full-width' : ''}`
+})
+
+export default ({id, placeholder, type = 'text', className, fullWidth}) => {
+    return tpl({id, placeholder, type, className, fullWidth})
 }

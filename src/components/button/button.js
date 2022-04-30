@@ -9,7 +9,11 @@ Handlebars.registerPartial('button', tpl)
 
 Handlebars.registerHelper('CG_button', options => TCG(options, 'button'))
 
-export default ({id, value, variant = 'primary', fullWidth = false, disabled , className}) => {
-    const modifiers = `${variant}${fullWidth ? ' full-width' : ''}`
-    return tpl({id, value, modifiers, disabled, className})
+Handlebars.registerHelper('CG_button-modifiers', (params) => {
+    const {variant, fullWidth} = params.hash
+    return `${variant ? variant : 'primary'}${fullWidth ? ' full-width' : ''}`
+})
+
+export default ({id, value, variant = 'primary', fullWidth = false, disabled, className}) => {
+    return tpl({id, value, variant, fullWidth, disabled, className})
 }
