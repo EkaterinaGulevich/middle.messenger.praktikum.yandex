@@ -1,5 +1,5 @@
 export interface StaticInputProps {
-    label: string;
-    value: string;
-    className?: string;
+  label: string;
+  value: string;
+  className?: string;
 }

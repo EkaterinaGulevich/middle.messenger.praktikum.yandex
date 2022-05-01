@@ -1,11 +1,10 @@
-import {registerHelper} from 'handlebars'
+import { registerHelper } from 'handlebars';
 
-import {TCG} from 'src/utils/CG'
+import { TCG } from 'src/utils/CG';
 
-import template from './chats.hbs'
-import './chats.scss'
+import template from './chats.hbs';
+import './chats.scss';
 
-registerHelper('CG_chats', options => TCG(options, 'chats'))
+registerHelper('CG_chats', (options) => TCG(options, 'chats'));
 
-export const ChatsTpl = template
-
+export const ChatsTpl = template;

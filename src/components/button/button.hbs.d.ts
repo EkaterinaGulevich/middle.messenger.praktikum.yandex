@@ -1,5 +1,5 @@
-import {ButtonProps} from "./button.types";
+import { ButtonProps } from './button.types';
 
-declare function template(props: ButtonProps): string;
+declare function template(_props: ButtonProps): string;
 
 export default template;

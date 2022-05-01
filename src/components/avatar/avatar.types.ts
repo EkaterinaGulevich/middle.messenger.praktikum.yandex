@@ -1,4 +1,4 @@
 export interface AvatarProps {
-    src: string;
-    className?: string;
+  src: string;
+  className?: string;
 }

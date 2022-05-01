@@ -14,7 +14,8 @@
     outline: 1px dashed $white;
   }
 
-  &:hover, &:disabled {
+  &:hover,
+  &:disabled {
     background: rgba($white, 0.2);
   }
 
@@ -22,7 +23,8 @@
     color: $lightRed;
     border-color: $lightRed;
 
-    &:hover, &:disabled {
+    &:hover,
+    &:disabled {
       background: rgba($lightRed, 0.3);
     }
   }

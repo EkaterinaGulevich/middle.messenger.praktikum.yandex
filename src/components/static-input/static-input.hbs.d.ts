@@ -1,5 +1,5 @@
-import {StaticInputProps} from "./static-input.types";
+import { StaticInputProps } from './static-input.types';
 
-declare function template(props: StaticInputProps): string;
+declare function template(_props: StaticInputProps): string;
 
 export default template;

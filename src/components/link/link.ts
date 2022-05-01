@@ -1,13 +1,12 @@
-import {registerPartial, registerHelper} from 'handlebars'
+import { registerPartial, registerHelper } from 'handlebars';
 
-import {TCG} from 'src/utils/CG';
+import { TCG } from 'src/utils/CG';
 
-import template from './link.hbs'
-import './link.scss'
+import template from './link.hbs';
+import './link.scss';
 
-registerPartial('link', template)
+registerPartial('link', template);
 
-registerHelper('CG_link', options => TCG(options, 'link'))
+registerHelper('CG_link', (options) => TCG(options, 'link'));
 
-export const LinkTpl = template
-
+export const LinkTpl = template;

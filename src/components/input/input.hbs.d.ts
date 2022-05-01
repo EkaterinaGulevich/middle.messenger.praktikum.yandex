@@ -1,5 +1,5 @@
-import {InputProps} from "./input.types";
+import { InputProps } from './input.types';
 
-declare function template(props: InputProps): string;
+declare function template(_props: InputProps): string;
 
 export default template;

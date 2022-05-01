@@ -42,7 +42,6 @@
     pointer-events: none;
   }
 
-
   .input:focus + .input-label,
   .input:not(:placeholder-shown) + .input-label,
   .input:-webkit-autofill + .input-label {
@@ -52,4 +51,3 @@
     color: $grey;
   }
 }
-
