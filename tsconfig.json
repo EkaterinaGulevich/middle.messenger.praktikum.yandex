@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2016",
+    "declaration": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    }
+  }
+}

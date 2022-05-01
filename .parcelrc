@@ -1,7 +1,13 @@
 {
   "extends": ["@parcel/config-default"],
-    "transformers": {
-      "*.hbs": ["parcel-transformer-hbs"]
-    },
+  "validators": {
+    "*.ts": [
+      "@parcel/validator-typescript"
+    ]
+  },
+  "transformers": {
+    "*.hbs": ["parcel-transformer-hbs"],
+    "*.{ts}": ["@parcel/transformer-typescript-tsc"]
+  },
   "reporters":  ["...", "parcel-reporter-static-files-copy"]
 }

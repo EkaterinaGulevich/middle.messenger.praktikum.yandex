@@ -6,12 +6,8 @@
  * CG("block", "", ["modifier1", "modifier2"]) => "block--modifier1 block--modifier2"
  * CG("block", "elem", []) => "block__elem"
  * */
-export function CG(block, elem, modifiers = []) {
+export function CG(block: string, elem?: string, modifiers: string[] = []): string {
     let className = ''
-
-    if (!block) {
-        throw Error('В CG() не получен 1-ый обязательный аргумент')
-    }
 
     className += block
 
@@ -36,8 +32,8 @@ export function CG(block, elem, modifiers = []) {
 /**
  * Модифицированный хэлпер, упрощающий использование CG для шаблонов
  * */
-export function TCG(options, blockName) {
-    let {block = blockName, elem, modifiers} = options.hash
+export function TCG({hash}: { hash: { block: string; elem: string; modifiers: string } }, blockName: string): string {
+    let {block = blockName, elem, modifiers} = hash;
     return CG(block, elem, modifiers ? modifiers.split(' ') : [])
 }
 
