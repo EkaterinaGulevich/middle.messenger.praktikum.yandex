@@ -1,4 +1,5 @@
 {
+  "exclude": ["server.js"],
   "compilerOptions": {
     "outDir": "dist",
     "target": "ES2016",

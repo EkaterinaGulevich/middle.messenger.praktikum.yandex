@@ -7,5 +7,5 @@
     "*.hbs": ["parcel-transformer-hbs"],
     "*.{ts}": ["@parcel/transformer-typescript-tsc"]
   },
-  "reporters":  ["...", "parcel-reporter-static-files-copy"]
+  "reporters":  ["parcel-reporter-static-files-copy"]
 }
