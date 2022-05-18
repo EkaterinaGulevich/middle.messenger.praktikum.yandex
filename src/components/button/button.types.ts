@@ -1,8 +1,8 @@
-export interface ButtonProps {
+export type ButtonProps = {
   id: string;
   value: string;
   variant?: 'primary' | 'secondary';
   className?: string;
   fullWidth?: boolean;
   disabled?: boolean;
-}
+};

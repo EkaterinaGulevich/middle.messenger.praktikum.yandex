@@ -1,7 +1,18 @@
+@import '../../styles/colors';
+
 .chats {
   display: flex;
-  flex-direction: column;
-  width: fit-content;
-  margin: 30vh auto;
-  align-items: center;
+  height: 100%;
+
+  &__chat-list {
+    width: 280px;
+    min-width: 280px;
+    border-right: 1px solid $smokyWhite;
+    height: 100%;
+    background: $grayBlue;
+  }
+
+  &__messages {
+    width: 100%;
+  }
 }

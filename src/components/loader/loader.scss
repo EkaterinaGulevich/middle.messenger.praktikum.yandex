@@ -1,0 +1,25 @@
+@import '../../styles/colors';
+
+.loader-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .loader {
+    height: 0;
+    width: 0;
+    padding: 15px;
+    border: 6px solid $white;
+    border-right-color: $grey;
+    border-radius: 22px;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

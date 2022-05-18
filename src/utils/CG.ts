@@ -7,11 +7,7 @@
  * CG("block", "", ["modifier1", "modifier2"]) => "block--modifier1 block--modifier2"
  * CG("block", "elem", []) => "block__elem"
  * */
-export function CG(
-  block: string,
-  elem?: string,
-  modifiers: string[] = []
-): string {
+export function CG(block: string, elem?: string, modifiers: string[] = []): string {
   let className = '';
 
   className += block;
@@ -30,16 +26,17 @@ export function CG(
     });
   }
 
-  return className;
+  return className.replace(/\s+/, ' ');
 }
 
 /**
  * Модифицированный хэлпер, упрощающий использование CG для шаблонов
  * */
 export function TCG(
-  { hash }: { hash: { block: string; elem: string; modifiers: string } },
+  { hash }: { hash: { block: string; elem: string; modifiers: string; className?: string } },
   blockName: string
 ): string {
-  const { block = blockName, elem, modifiers } = hash;
-  return CG(block, elem, modifiers ? modifiers.split(' ') : []);
+  const { block = blockName, elem, modifiers, className } = hash;
+
+  return CG(block, elem, modifiers ? modifiers.split(' ') : []) + `${className ? ' ' + className : ''}`;
 }

@@ -1,14 +1,12 @@
 import { NotFoundPageTpl } from './pages/not-found/not-found';
-import { ChatsTpl } from './pages/chats/chats';
+import { chatsPage } from './pages/chats/chats';
 import { runAuthPage, AuthTpl } from './pages/auth/auth';
-import {
-  runRegistrationPage,
-  RegistrationTpl,
-} from './pages/registration/registration';
+import { runRegistrationPage, RegistrationTpl } from './pages/registration/registration';
 import { ProfileViewTpl } from './pages/profile-view/profile-view';
 import { ProfileEditTpl } from './pages/profile-edit/profile-edit';
 import './components';
 import './style.scss';
+import { RenderComponentDOM } from './utils/renderComponentDOM';
 
 const currentPathname = window.location.pathname;
 const root = document.getElementById('root');
@@ -20,7 +18,7 @@ if (!root) {
 switch (currentPathname) {
   case '/':
   case '/chats':
-    root.innerHTML = ChatsTpl();
+    RenderComponentDOM(chatsPage('#root'));
     break;
   case '/auth':
     root.innerHTML = AuthTpl();

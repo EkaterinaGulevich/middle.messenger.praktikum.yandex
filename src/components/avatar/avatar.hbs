@@ -1,3 +1,5 @@
-<div class='{{CG_avatar}} {{className}}'>
-  <img class='{{CG_avatar elem='img'}}' src='{{src}}' />
+<div
+  class='{{CG_avatar modifiers=(CG_avatar-modifiers size=size) className=className}}'
+>
+  <img class='{{CG_avatar elem='img'}}' src='{{src}}' onerror="this.style.visibility='hidden'"/>
 </div>
