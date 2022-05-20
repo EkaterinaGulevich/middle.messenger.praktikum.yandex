@@ -1,30 +1,27 @@
-import { registerHelper, registerPartial } from 'handlebars';
+import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
+import { createTmpClassName } from 'src/utils';
+import { Component } from 'src/modules';
 
 import template from './chat-list-item.hbs';
-import { ChatListItemProps } from './chat-list-item.types';
+import {
+  TChatListItemComponentCallbacks,
+  TChatListItemComponentProps,
+  TChatListItemTmpProps,
+} from './chat-list-item.types';
 import './chat-list-item.scss';
-import { Component } from '../../../../modules/component';
 
-registerPartial('chat-list-item', template);
-
-registerHelper('CG_chat-list-item', (options) => TCG(options, 'chat-list-item'));
-
-registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<ChatListItemProps, 'isActive'> }) => {
+registerHelper('CG_chat-list-item', (options) => createTmpClassName(options, 'chat-list-item'));
+registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<TChatListItemTmpProps, 'isActive'> }) => {
   const { isActive } = params.hash;
   return `${isActive ? 'is-active' : ''}`;
 });
 
-type TCallbacks = {
-  onclick: (_event: Event, _component: Component<ChatListItemProps>) => void;
-};
+export class ChatListItemComponent extends Component<TChatListItemComponentProps['initialState']> {
+  callbacks: TChatListItemComponentCallbacks;
 
-export class ChatListItem extends Component<ChatListItemProps> {
-  callbacks: TCallbacks;
-
-  constructor(props: ChatListItemProps, parentElem: string, callbacks: TCallbacks) {
-    super(props, parentElem);
+  constructor({ initialState, callbacks }: TChatListItemComponentProps, parentElem: string) {
+    super(initialState, parentElem);
 
     this.callbacks = callbacks;
 
@@ -54,6 +51,6 @@ export class ChatListItem extends Component<ChatListItemProps> {
   }
 
   render() {
-    return template(this.props);
+    return template(this.state);
   }
 }

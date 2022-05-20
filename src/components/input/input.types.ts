@@ -1,4 +1,4 @@
-export type InputProps = {
+export type TInputTmpProps = {
   id: string;
   placeholder?: string;
   type?: 'text';

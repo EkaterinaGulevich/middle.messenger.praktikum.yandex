@@ -1,13 +1,12 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
-import { getFormData } from 'src/utils/getFormData';
+import { createTmpClassName, getFormData } from 'src/utils';
 
 import template from './auth.hbs';
-import { AuthFormData } from './auth.types';
+import { TAuthFormData } from './auth.types';
 import './auth.scss';
 
-registerHelper('CG_auth', (options) => TCG(options, 'auth'));
+registerHelper('CG_auth', (options) => createTmpClassName(options, 'auth'));
 
 export function runAuthPage() {
   const btnAuth = document.getElementById('btn-auth');
@@ -15,7 +14,7 @@ export function runAuthPage() {
     throw Error('Not found HTMLElement with id="btn-auth" in DOM');
   }
   btnAuth.onclick = () => {
-    const formData: AuthFormData = {
+    const formData: TAuthFormData = {
       login: '',
       password: '',
       ...getFormData('auth'),

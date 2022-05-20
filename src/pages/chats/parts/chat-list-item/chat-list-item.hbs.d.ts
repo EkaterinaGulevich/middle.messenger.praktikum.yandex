@@ -1,5 +1,5 @@
-import { ChatListItemProps } from './chat-list-item.types';
+import { TChatListItemTmpProps } from './chat-list-item.types';
 
-declare function template(_props: ChatListItemProps): string;
+declare function template(_props: TChatListItemTmpProps): string;
 
 export default template;

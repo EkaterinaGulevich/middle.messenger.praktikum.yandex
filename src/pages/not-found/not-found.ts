@@ -1,12 +1,10 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from '../../utils/CG';
+import { createTmpClassName } from 'src/utils';
 
 import template from './not-found.hbs';
 import './not-found.scss';
 
-registerHelper('CG_not_found_page', (options) =>
-  TCG(options, 'not_found_page')
-);
+registerHelper('CG_not_found_page', (options) => createTmpClassName(options, 'not_found_page'));
 
 export const NotFoundPageTpl = template;

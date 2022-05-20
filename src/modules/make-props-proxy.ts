@@ -1,5 +1,5 @@
-import { cloneDeepJsonObject } from '../utils/clone-deep-json-object';
-import { TJsonValue, TJsonObject } from '../common-types';
+import { cloneDeepJsonObject } from 'src/utils';
+import { TJsonValue, TJsonObject } from 'src/common-types';
 
 const isPrivateProp = (prop: string) => prop.startsWith('_');
 
@@ -27,9 +27,10 @@ export const makePropsProxy = <T extends TJsonObject>({
       }
 
       /** TODO:
-       * Когда будут нужны функции и будет cloneDeep еще и для функций
-       * (а не только для объектов типа {@link TJsonObject}),
-       * переопределить тип props и поправить возвращаемое значение на:
+       * Если будет нужно обрабатывать {@see props}, которые могут иметь функции,
+       * то необходимо изменить тип с {@link TJsonObject} на новый,
+       * использовать другой cloneDeep (а не {@link cloneDeepJsonObject})
+       * и поправить возвращаемое значение на:
        *
        * const value = target[prop];
        * return typeof value === 'function' ? value.bind(target) : value;
@@ -44,7 +45,6 @@ export const makePropsProxy = <T extends TJsonObject>({
       }
       const oldTarget = cloneDeepJsonObject(_target);
 
-      // TODO: понять как избавиться от "as"
       (_target as TJsonObject)[prop] = value;
       callbackOnSet(oldTarget, _target);
 

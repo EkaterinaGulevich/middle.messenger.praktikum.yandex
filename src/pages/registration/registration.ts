@@ -1,12 +1,12 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
-import { getFormData } from 'src/utils/getFormData';
+import { createTmpClassName, getFormData } from 'src/utils';
+
 import template from './registration.hbs';
-import { RegistrationFormData } from './registration.types';
+import { TRegistrationFormData } from './registration.types';
 import './registration.scss';
 
-registerHelper('CG_registration', (options) => TCG(options, 'registration'));
+registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
 
 export function runRegistrationPage() {
   const btnRegistration = document.getElementById('btn-registration');
@@ -15,7 +15,7 @@ export function runRegistrationPage() {
   }
 
   btnRegistration.onclick = () => {
-    const formData: RegistrationFormData = {
+    const formData: TRegistrationFormData = {
       email: '',
       login: '',
       first_name: '',

@@ -1,6 +1,6 @@
-import { ChatListItemProps } from '../pages/chats/parts/chat-list-item/chat-list-item.types';
+import { TChatListItemTmpProps } from 'src/pages/chats/parts/chat-list-item/chat-list-item.types';
 
-export const MOCK_CHAT_LIST: ChatListItemProps[] = [
+export const MOCK_CHAT_LIST: TChatListItemTmpProps[] = [
   {
     id: 'id-chat-1',
     companion: {

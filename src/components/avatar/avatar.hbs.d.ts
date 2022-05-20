@@ -1,5 +1,5 @@
-import { AvatarProps } from './avatar.types';
+import { TAvatarTmpProps } from './avatar.types';
 
-declare function template(_props: AvatarProps): string;
+declare function template(_props: TAvatarTmpProps): string;
 
 export default template;

@@ -1,4 +1,6 @@
-export type ChatListItemProps = {
+import { Component } from 'src/modules';
+
+export type TChatListItemTmpProps = {
   id: string;
   companion: {
     avatarSrc: string;
@@ -12,4 +14,13 @@ export type ChatListItemProps = {
   unreadMessagesCount?: number;
   isActive?: boolean;
   className?: string;
+};
+
+export type TChatListItemComponentCallbacks = {
+  onclick: (_event: Event, _component: Component<TChatListItemTmpProps>) => void;
+};
+
+export type TChatListItemComponentProps = {
+  initialState: TChatListItemTmpProps;
+  callbacks: TChatListItemComponentCallbacks;
 };

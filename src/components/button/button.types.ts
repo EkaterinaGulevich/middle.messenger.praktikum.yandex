@@ -1,4 +1,4 @@
-export type ButtonProps = {
+export type TButtonTmpProps = {
   id: string;
   value: string;
   variant?: 'primary' | 'secondary';

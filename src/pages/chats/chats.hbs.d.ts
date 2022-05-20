@@ -1,5 +1,5 @@
-import { ChatsProps } from './chats.types';
+import { TChatsTmpProps } from './chats.types';
 
-declare function template(_props: ChatsProps): string;
+declare function template(_props: TChatsTmpProps): string;
 
 export default template;

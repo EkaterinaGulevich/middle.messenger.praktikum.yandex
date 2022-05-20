@@ -1,5 +1,5 @@
-import { LinkProps } from './link.types';
+import { TLinkTmpProps } from './link.types';
 
-declare function template(_props: LinkProps): string;
+declare function template(_props: TLinkTmpProps): string;
 
 export default template;

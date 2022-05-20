@@ -1,10 +1,10 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
+import { createTmpClassName } from 'src/utils';
 
 import template from './profile-edit.hbs';
 import './profile-edit.scss';
 
-registerHelper('CG_profile-edit', (options) => TCG(options, 'profile-edit'));
+registerHelper('CG_profile-edit', (options) => createTmpClassName(options, 'profile-edit'));
 
 export const ProfileEditTpl = template;

@@ -1,10 +1,10 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
+import { createTmpClassName } from 'src/utils';
 
 import template from './profile-view.hbs';
 import './profile-view.scss';
 
-registerHelper('CG_profile-view', (options) => TCG(options, 'profile-view'));
+registerHelper('CG_profile-view', (options) => createTmpClassName(options, 'profile-view'));
 
 export const ProfileViewTpl = template;

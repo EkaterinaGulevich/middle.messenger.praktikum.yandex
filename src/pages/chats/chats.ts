@@ -1,90 +1,106 @@
 import { registerHelper } from 'handlebars';
 
-import { TCG } from 'src/utils/CG';
-import 'src/components';
+import { createTmpClassName, renderArrayOfComponentsDOM } from 'src/utils';
+import { MOCK_CHAT_LIST } from 'src/mocks';
+import { Component } from 'src/modules';
 
-import './parts';
 import template from './chats.hbs';
+import { ChatListItemComponent, TChatListItemTmpProps } from './parts';
+import { TChatsComponentProps } from './chats.types';
+import './parts';
 import './chats.scss';
-import { ChatListItem } from './parts';
-import { MOCK_CHAT_LIST } from '../../mocks';
-import { RenderComponentDOM } from '../../utils/renderComponentDOM';
-import { Component } from '../../modules/component';
-import { ChatListItemProps } from './parts/chat-list-item/chat-list-item.types';
 
-registerHelper('CG_chats', (options) => TCG(options, 'chats'));
+registerHelper('CG_chats', (options) => createTmpClassName(options, 'chats'));
 
-export const ChatsTpl = template;
-
-type ChatsPageProps = {
-  isLoading: boolean;
-  list: ChatListItemProps[];
-};
-
-export class ChatsPage extends Component<ChatsPageProps> {
+export class ChatsComponent extends Component<TChatsComponentProps['initialState']> {
   readonly chatListId: string;
   readonly messagesId: string;
-  private state: {
-    chatComponents: ChatListItem[];
+
+  private _meta: {
+    chatComponents: ChatListItemComponent[];
     activeChatComponentId: null | string;
   };
-  constructor(props: ChatsPageProps, parentElemSelector: string) {
-    super(props, parentElemSelector);
 
-    this.chatListId = 'ChatsPage-List';
-    this.messagesId = 'ChatsPage-Messages';
+  constructor({ initialState }: TChatsComponentProps, parentElemSelector: string) {
+    super(initialState, parentElemSelector);
+
+    this.chatListId = 'CHATS_LIST';
+    this.messagesId = 'CHATS_MESSAGES';
 
     this.onChatClick = this.onChatClick.bind(this);
-    this.showChatList = this.showChatList.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.render = this.render.bind(this);
 
-    this.state = {
+    this._meta = {
       chatComponents: [],
       activeChatComponentId: null,
     };
   }
 
-  componentDidMount() {
+  getChats() {
     // симуляция запроса
     setTimeout(() => {
-      this.setProps({ list: MOCK_CHAT_LIST, isLoading: false });
+      this.setState({ list: MOCK_CHAT_LIST, isLoading: false });
     }, 3000);
   }
 
-  componentDidUpdate() {
-    this.showChatList(this.props.list);
+  componentDidMount() {
+    this.getChats();
   }
 
-  onChatClick(_event: Event, chatComponent: Component<ChatListItemProps>) {
-    if (chatComponent.id === this.state.activeChatComponentId) {
+  componentDidUpdate() {
+    this.showChatList(this.state.list);
+  }
+
+  onChatClick(_event: Event, chatComponent: Component<TChatListItemTmpProps>) {
+    if (chatComponent.id === this._meta.activeChatComponentId) {
       return;
     }
 
-    if (this.state.activeChatComponentId) {
-      const prevActiveComponent = this.state.chatComponents.find(
-        (chat) => chat.id === this.state.activeChatComponentId
+    if (this._meta.activeChatComponentId) {
+      const prevActiveComponent = this._meta.chatComponents.find(
+        (chat) => chat.id === this._meta.activeChatComponentId
       );
       if (prevActiveComponent) {
-        prevActiveComponent.setProps({ ...prevActiveComponent.props, isActive: false });
+        prevActiveComponent.setState({ isActive: false });
       }
     }
 
-    this.state.activeChatComponentId = chatComponent.id;
-    chatComponent.setProps({ ...chatComponent.props, isActive: true });
+    this._meta.activeChatComponentId = chatComponent.id;
+    chatComponent.setState({ isActive: true });
   }
 
-  showChatList(list: ChatListItemProps[]) {
+  showChatList(list: TChatListItemTmpProps[]) {
+    const listParentElemSelector = `#${this.chatListId}`;
     list.forEach((chat) => {
-      const chatItemComponent = new ChatListItem(chat, `#${this.chatListId}`, { onclick: this.onChatClick });
-      this.state.chatComponents.push(chatItemComponent);
-      RenderComponentDOM(chatItemComponent);
+      const ChatListItem = new ChatListItemComponent(
+        {
+          initialState: chat,
+          callbacks: {
+            onclick: this.onChatClick,
+          },
+        },
+        listParentElemSelector
+      );
+      this._meta.chatComponents.push(ChatListItem);
     });
+    renderArrayOfComponentsDOM(this._meta.chatComponents, listParentElemSelector);
   }
 
   render() {
-    return template({ listId: this.chatListId, messagesId: this.messagesId, isLoading: this.props.isLoading });
+    return template({
+      listId: this.chatListId,
+      messagesId: this.messagesId,
+      isLoading: this.state.isLoading,
+    });
   }
 }
 
-export const chatsPage = (parentSelector: string) => new ChatsPage({ isLoading: true, list: [] }, parentSelector);
+export const createChats = (parentSelector: string) =>
+  new ChatsComponent(
+    {
+      initialState: {
+        isLoading: true,
+        list: [],
+      },
+    },
+    parentSelector
+  );
