@@ -1,0 +1,21 @@
+<div class='{{CG_messages}}'>
+
+  {{#if isNotSelectedChat}}
+    <div class='{{CG_messages elem='no-selected-chat'}}'>
+      Выберите чат, чтобы начать общение
+    </div>
+  {{else}}
+    {{#if isLoading}}
+      {{> loader }}
+    {{/if}}
+    <div id={{messageGroupsId}} class='{{CG_messages elem='message-list'}}'>
+        <!-- блок для массива компонентов "группа сообщений по дате" -->
+    </div>
+    <div class='{{CG_messages elem='new-message-wrapper'}}'>
+      {{> button id='btn-edit-profile' value='' withIcon='clip' variant='pseudo' className=(CG_messages elem='btn-clip') disabled=true }}
+      {{> textarea placeholder='Сообщение' name='message'}}
+      {{> button id='btn-edit-profile' value='' withIcon='send' variant='pseudo' className=(CG_messages elem='btn-send') disabled=true }}
+    </div>
+  {{/if}}
+
+</div>

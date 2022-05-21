@@ -41,4 +41,82 @@ export const MOCK_CHAT_LIST: TChatListItemTmpProps[] = [
     },
     unreadMessagesCount: 0,
   },
+  {
+    id: 'id-chat-4',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-5',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 2',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-6',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 3',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-7',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 4',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-8',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 5',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-9',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 6',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+  {
+    id: 'id-chat-10',
+    companion: {
+      avatarSrc: 'avatarSrc',
+      name: 'Somebody 7',
+    },
+    lastMessage: {
+      text: '',
+      time: '',
+    },
+  },
+
 ];

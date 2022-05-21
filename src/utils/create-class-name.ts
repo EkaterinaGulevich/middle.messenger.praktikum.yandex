@@ -16,8 +16,10 @@ export function createClassName(block: string, elem?: string, modifiers: string[
     className += `__${elem}`;
   }
 
-  if (modifiers.length) {
-    modifiers.forEach((modifier) => {
+  const filteredModifiers = modifiers.filter((mod) => !!mod);
+
+  if (filteredModifiers.length) {
+    filteredModifiers.forEach((modifier) => {
       if (elem) {
         className += ` ${block}__${elem}--${modifier}`;
       } else {
@@ -37,7 +39,7 @@ export function createTmpClassName(
   blockName: string
 ): string {
   const { block = blockName, elem, modifiers, className } = hash;
-  const customClass = `${className ? ' ' + className : ''}`
+  const customClass = `${className ? ' ' + className : ''}`;
 
   return createClassName(block, elem, modifiers ? modifiers.split(' ') : []) + customClass;
 }

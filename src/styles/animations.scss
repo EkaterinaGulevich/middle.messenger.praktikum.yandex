@@ -1,0 +1,13 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin animationAppear($duration: 1s) {
+  opacity: 0;
+  animation: appear $duration forwards;
+}

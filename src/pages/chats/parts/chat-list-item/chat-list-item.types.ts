@@ -20,7 +20,4 @@ export type TChatListItemComponentCallbacks = {
   onclick: (_event: Event, _component: Component<TChatListItemTmpProps>) => void;
 };
 
-export type TChatListItemComponentProps = {
-  initialState: TChatListItemTmpProps;
-  callbacks: TChatListItemComponentCallbacks;
-};
+export type TChatListItemComponentState = TChatListItemTmpProps;

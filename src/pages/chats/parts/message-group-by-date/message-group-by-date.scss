@@ -1,0 +1,11 @@
+@import 'src/styles/colors';
+
+.message-group-by-date {
+  padding-top: 20px;
+  &__date {
+    color: $grey;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+}

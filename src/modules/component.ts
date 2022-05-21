@@ -79,13 +79,13 @@ export abstract class Component<T extends TJsonObject> {
   }
 
   private _componentDidUpdate() {
-    this.componentDidUpdate();
+    this.componentDidUpdate(this.lastState);
   }
 
   /**
    * Вызывается после обновления компонента в DOM-е
    * (но не при первоначальном монтировании) */
-  componentDidUpdate(): void {
+  componentDidUpdate(_prevState: T): void {
     // Переопределяется наследником класса
   }
 

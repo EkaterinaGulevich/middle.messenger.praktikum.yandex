@@ -6,7 +6,7 @@ import { Component } from 'src/modules';
 import template from './chat-list-item.hbs';
 import {
   TChatListItemComponentCallbacks,
-  TChatListItemComponentProps,
+  TChatListItemComponentState,
   TChatListItemTmpProps,
 } from './chat-list-item.types';
 import './chat-list-item.scss';
@@ -17,15 +17,17 @@ registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<TChatListIte
   return `${isActive ? 'is-active' : ''}`;
 });
 
-export class ChatListItemComponent extends Component<TChatListItemComponentProps['initialState']> {
+export class ChatListItemComponent extends Component<TChatListItemComponentState> {
   callbacks: TChatListItemComponentCallbacks;
 
-  constructor({ initialState, callbacks }: TChatListItemComponentProps, parentElem: string) {
+  constructor(
+    parentElem: string,
+    initialState: TChatListItemComponentState,
+    callbacks: TChatListItemComponentCallbacks
+  ) {
     super(initialState, parentElem);
 
     this.callbacks = callbacks;
-
-    this.componentDidMount = this.componentDidMount.bind(this);
 
     this.onClick = this.onClick.bind(this);
   }
