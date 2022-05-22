@@ -1,0 +1,16 @@
+<main class="{{CG_profile-view}}">
+    <div class="{{CG_profile-view elem='avatar-wrapper'}}">
+        {{> avatar src='' alt='avatar' }}
+    </div>
+    <div class="{{CG_profile-view elem='rows'}}">
+        {{> static-input label='Почта' value='meteorgul@gmail.com' }}
+        {{> static-input label='Логин' value='meteor' }}
+        {{> static-input label='Имя' value='Екатерина' }}
+        {{> static-input label='Фамилия' value='Гулевич' }}
+        {{> static-input label='Телефон' value='+7 (901) 203 40 39' }}
+    </div>
+    <div class="{{CG_profile-view elem='buttons'}}">
+        {{> button id='btn-edit-profile' value='Изменить данные' disabled='disabled'}}
+        {{> button id='btn-edit-password' value='Изменить пароль' disabled='disabled'}}
+    </div>
+</main>

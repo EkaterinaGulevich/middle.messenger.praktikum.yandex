@@ -1,0 +1,40 @@
+.button {
+  height: 40px;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 10px;
+  color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+
+  &:focus-visible {
+    outline: 1px dashed #fff;
+  }
+
+  &:hover, &:disabled {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &--secondary {
+    color: #FF9595;
+    border-color: #FF9595;
+
+    &:hover, &:disabled {
+      background: rgba(255, 149, 149, 0.3);
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}

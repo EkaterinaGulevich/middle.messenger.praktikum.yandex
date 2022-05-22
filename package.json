@@ -1,0 +1,33 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "serve": "node ./server.js",
+    "start": "npm run build && npm run serve"
+  },
+  "engines": {
+    "node": ">=12.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "author": "meteorgul@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/config-default": "^2.5.0",
+    "@parcel/transformer-sass": "^2.4.1",
+    "express": "^4.17.3",
+    "parcel": "^2.5.0",
+    "parcel-reporter-static-files-copy": "^1.3.4",
+    "parcel-transformer-hbs": "^1.0.4",
+    "sass": "^1.50.0"
+  },
+  "staticFiles": {
+    "staticPath": "static",
+    "staticOutPath": "static"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  }
+}
