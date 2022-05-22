@@ -7,7 +7,8 @@
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
-    "format": "npm run prettier:fix && npm run lint:fix",
+    "stylelint": "stylelint \"**/*.css\"",
+    "format": "npm run prettier:fix && npm run lint:fix && npm run stylelint",
     "dev": "parcel --no-cache index.html",
     "build": "parcel build index.html",
     "serve": "node ./server.js",
@@ -16,11 +17,15 @@
   "engines": {
     "node": ">=12.0"
   },
-  "browserslist": [
-    "> 0.5%",
-    "last 2 versions",
-    "not dead"
-  ],
+  "targets": {
+    "browserModern": {
+      "engines": {
+        "browsers": [
+          "last 1 Chrome version"
+        ]
+      }
+    }
+  },
   "author": "meteorgul@gmail.com",
   "license": "ISC",
   "devDependencies": {
@@ -41,6 +46,9 @@
     "parcel-transformer-hbs": "^1.0.4",
     "prettier": "^2.6.2",
     "sass": "^1.50.0",
+    "stylelint": "^14.8.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^25.0.0",
     "typescript": "^4.6.4"
   },
   "staticFiles": {
