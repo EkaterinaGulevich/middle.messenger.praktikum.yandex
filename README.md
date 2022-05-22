@@ -37,4 +37,4 @@ $ npm run dev
 * [Демо](https://messenger-gulevich.netlify.app/auth)
 * [Чеклист](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1%20sprint/index1spr.html)
 * [Задание](https://code.s3.yandex.net/frontend-developer/middleFrontend/roadmaps/sprint1/print_map_sprint1.pdf)
-* [Ссылка на pull request Sprint 1](https://github.com/EkaterinaGulevich/middle.messenger.praktikum.yandex/pull/1)
+* [Ссылка на pull request Sprint 2](https://github.com/EkaterinaGulevich/middle.messenger.praktikum.yandex/pull/4)
