@@ -14,11 +14,15 @@ export function createFormElements(ctx: RegistrationComponent): InputComponent[]
     blur: ctx.onBlur,
   };
 
-  const emailInput = new InputComponent(PARENT_SELECTOR, {
-    ...commonInputProps,
-    name: 'email',
-    placeholder: 'Почта',
-  }, callbacks);
+  const emailInput = new InputComponent(
+    PARENT_SELECTOR,
+    {
+      ...commonInputProps,
+      name: 'email',
+      placeholder: 'Почта',
+    },
+    callbacks
+  );
 
   const loginInput = new InputComponent(
     PARENT_SELECTOR,

@@ -118,5 +118,4 @@ export const MOCK_CHAT_LIST: TChatListItemTmpProps[] = [
       time: '',
     },
   },
-
 ];
