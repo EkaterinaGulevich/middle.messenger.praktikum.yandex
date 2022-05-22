@@ -9,7 +9,7 @@ export const validateFormField = (fieldName: string, value: string): null | stri
       }
       break;
     case 'password': {
-      if (!/^(.){4,40}$/.test(value) || !/[A-ZА-Я]/.test(value) || !/[\d]/.test(value)) {
+      if (!/^(.){8,40}$/.test(value) || !/[A-ZА-Я]/.test(value) || !/[\d]/.test(value)) {
         // от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра
         error = 'Некорректный пароль';
       }
