@@ -46,7 +46,10 @@ export const makePropsProxy = <T extends TJsonObject>({
       const oldTarget = cloneDeepJsonObject(_target);
 
       (_target as TJsonObject)[prop] = value;
-      callbackOnSet(oldTarget, _target);
+
+      if (oldTarget[prop] !== value) {
+        callbackOnSet(oldTarget, _target);
+      }
 
       return true;
     },

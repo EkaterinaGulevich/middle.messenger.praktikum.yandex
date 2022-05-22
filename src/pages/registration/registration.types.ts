@@ -1,4 +1,9 @@
-export type TRegistrationFormData = {
+export type TRegistrationTmpProps = {
+  formId: string;
+  registrationBtnId: string;
+};
+
+export type TRegistrationComponentState = {
   email: string;
   login: string;
   first_name: string;

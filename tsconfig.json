@@ -2,7 +2,7 @@
   "exclude": ["server.js"],
   "compilerOptions": {
     "outDir": "dist",
-    "target": "ES2016",
+    "target": "ES2021",
     "declaration": false,
     "module": "CommonJS",
     "moduleResolution": "Node",

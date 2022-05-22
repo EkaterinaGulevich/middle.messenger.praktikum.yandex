@@ -1,10 +1,12 @@
-import { NotFoundPageTpl } from './pages/not-found/not-found';
+import { renderComponentDOM } from 'src/utils';
+
 import { createChats } from './pages/chats/chats';
-import { runAuthPage, AuthTpl } from './pages/auth/auth';
-import { runRegistrationPage, RegistrationTpl } from './pages/registration/registration';
-import { ProfileViewTpl } from './pages/profile-view/profile-view';
-import { ProfileEditTpl } from './pages/profile-edit/profile-edit';
-import { renderComponentDOM } from './utils/render-сomponent-dom';
+import { createAuth } from './pages/auth/auth';
+import { createRegistration } from './pages/registration/registration';
+import { createProfileView } from './pages/profile-view/profile-view';
+import { createProfileEdit } from './pages/profile-edit/profile-edit';
+
+import { NotFoundPageTpl } from './pages/not-found/not-found';
 import './components';
 import './style.scss';
 
@@ -22,18 +24,16 @@ switch (currentPathname) {
     renderComponentDOM(createChats(ROOT_SELECTOR));
     break;
   case '/auth':
-    root.innerHTML = AuthTpl();
-    runAuthPage();
+    renderComponentDOM(createAuth(ROOT_SELECTOR));
     break;
   case '/registration':
-    root.innerHTML = RegistrationTpl();
-    runRegistrationPage();
+    renderComponentDOM(createRegistration(ROOT_SELECTOR));
     break;
   case '/profile':
-    root.innerHTML = ProfileViewTpl();
+    renderComponentDOM(createProfileView(ROOT_SELECTOR));
     break;
   case '/edit-profile':
-    root.innerHTML = ProfileEditTpl();
+    renderComponentDOM(createProfileEdit(ROOT_SELECTOR));
     break;
   default:
     root.innerHTML = NotFoundPageTpl();
