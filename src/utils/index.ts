@@ -5,5 +5,5 @@ export { debounce } from './debounce';
 export { getFormData } from './get-form-data';
 export { parseTmp } from './parse-tmp';
 export { renderArrayOfComponentsDOM } from './render-array-component-dom';
-export { renderComponentDOM } from './render-сomponent-dom';
+export { renderComponentDOM } from './render-component-dom';
 export { validateFormField } from './validate-form-field';
