@@ -1,0 +1,41 @@
+@import 'src/styles/colors';
+@import 'src/styles/animations';
+
+.messages {
+  width: 100%;
+  height: 100%;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  &__no-selected-chat {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: $grey;
+  }
+
+  &__message-list {
+    @include animationAppear(0.5s);
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  &__new-message-wrapper {
+    display: flex;
+    align-items: end;
+    padding: 16px 0 0;
+    border-top: 1px solid $white;
+    margin-top: 40px;
+  }
+
+  &__btn-clip {
+    margin-right: 10px;
+  }
+
+  &__btn-send {
+    margin-left: 10px;
+  }
+}

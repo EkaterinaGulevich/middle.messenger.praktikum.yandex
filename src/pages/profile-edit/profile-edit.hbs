@@ -1,3 +1,12 @@
-<main class="{{CG_profile-edit }}">
-    Страница редактирования профиля
+<main class='{{CG_profile-edit}}'>
+  <div class="{{CG_profile-edit elem='avatar-wrapper'}}">
+    {{> avatar src='' alt='avatar' }}
+  </div>
+  <form id={{formId}} class="{{CG_profile-edit elem='form'}}">
+        <!--   inputs     -->
+  </form>
+  <div class="{{CG_profile-edit elem='buttons'}}">
+    {{> button id=saveBtnId value='Сохранить' disabled=true className=(CG_profile-view elem='button') }}
+    {{> button id=cancelBtnId value='Отмена' variant='secondary' className=(CG_profile-view elem='button') }}
+  </div>
 </main>

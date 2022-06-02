@@ -1,7 +1,18 @@
-<div class="{{CG_input block='input-wrapper'}}">
-    <input id={{id}} name="{{name}}" type={{type}} class="{{CG_input modifiers=modifiers}}" placeholder=' ' onfocus='this.removeAttribute("readonly")' readonly }>
-    <label for="{{id}}" class="{{CG_input block='input-label'}}">{{placeholder}}</label>
+<div class='{{className}}'>
+  <div class='{{CG_input block='input-wrapper' className=className}}'>
+    <input
+      id='{{id}}'
+      name='{{name}}'
+      type='{{type}}'
+      class='{{CG_input modifiers=(CG_input-modifiers fullWidth=fullWidth)}}'
+      placeholder=' '
+      onfocus='this.removeAttribute("readonly")'
+      value='{{value}}'
+      readonly
+    />
+    <label for='{{id}}' class='{{CG_input block='input-label'}}'>{{placeholder}}</label>
+  </div>
+  {{#if error}}
+    <div class='{{CG_input block='input-error'}}'>{{error}}</div>
+  {{/if}}
 </div>
-
-
-

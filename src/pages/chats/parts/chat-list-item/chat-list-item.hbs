@@ -1,0 +1,29 @@
+<div
+  id={{id}}
+  class='{{CG_chat-list-item
+    className=className
+    modifiers=(CG_chat-list-item-modifiers isActive=isActive)
+  }}'
+>
+  <div class='{{CG_chat-list-item elem='avatar'}}'>
+    {{> avatar src=companion.avatarSrc alt='avatar' size='small' }}
+  </div>
+  <div class='{{CG_chat-list-item elem='block'}}'>
+    <div class='{{CG_chat-list-item elem='title'}}'>
+      <div class='{{CG_chat-list-item elem='name'}}'>{{companion.name}}</div>
+      <div class='{{CG_chat-list-item elem='time'}}'>{{lastMessage.time}}</div>
+    </div>
+    <div class='{{CG_chat-list-item elem='subtitle'}}'>
+      <div
+        class='{{CG_chat-list-item elem='message'}}'
+      >
+        {{#if lastMessage.fromMe}}
+          <span class='{{CG_chat-list-item elem='from-me'}}'>Вы: </span>
+        {{/if}}
+        {{lastMessage.text}}</div>
+      <div
+        class='{{CG_chat-list-item elem='count'}}'
+      >{{unreadMessagesCount}}</div>
+    </div>
+  </div>
+</div>

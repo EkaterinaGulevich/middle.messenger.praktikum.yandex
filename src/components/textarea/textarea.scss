@@ -1,0 +1,21 @@
+@import 'src/styles/colors';
+
+.textarea {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  color: $black;
+  width: 100%;
+  border: 1px solid $grayBlue;
+  background: $white;
+  resize: none;
+  min-height: 40px;
+  max-height: 342px;
+
+  &::placeholder {
+    color: $grey;
+  }
+}

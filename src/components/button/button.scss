@@ -1,28 +1,40 @@
+@import 'src/styles/colors';
+
 .button {
   height: 40px;
   background: transparent;
-  border: 1px solid #fff;
+  border: 1px solid $white;
   padding: 10px;
-  color: #fff;
+  color: $white;
   border-radius: 2px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba($black, 0.25);
   font-size: 16px;
+  min-width: 40px;
 
   &:focus-visible {
-    outline: 1px dashed #fff;
+    outline: 1px dashed $white;
   }
 
-  &:hover, &:disabled {
-    background: rgba(255, 255, 255, 0.2);
+  &:hover,
+  &:disabled {
+    background-color: rgba($white, 0.2);
   }
 
   &--secondary {
-    color: #FF9595;
-    border-color: #FF9595;
+    color: $lightRed;
+    border-color: $lightRed;
 
-    &:hover, &:disabled {
-      background: rgba(255, 149, 149, 0.3);
+    &:hover,
+    &:disabled {
+      background-color: rgba($lightRed, 0.3);
     }
+  }
+
+  &--pseudo,
+  &--pseudo:disabled {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
   }
 
   &:hover {
@@ -36,5 +48,19 @@
 
   &--full-width {
     width: 100%;
+  }
+
+  &--icon {
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &-clip {
+      background-image: url('../../../static/icons/clip.svg');
+    }
+
+    &-send {
+      background-image: url('../../../static/icons/send.svg');
+      background-size: 26px;
+    }
   }
 }

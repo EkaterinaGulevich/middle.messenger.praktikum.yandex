@@ -1,0 +1,17 @@
+@import 'src/styles/colors';
+
+.link {
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: $white;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+}

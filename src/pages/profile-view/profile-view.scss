@@ -24,10 +24,9 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-
-    button {
-      width: calc(50% - 10px);
-    }
   }
 
+  &__button {
+    width: calc(50% - 10px);
+  }
 }
