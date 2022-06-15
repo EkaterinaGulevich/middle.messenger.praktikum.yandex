@@ -4,7 +4,7 @@ import { createTmpClassName } from 'src/utils';
 
 import template from './profile-view.hbs';
 import './profile-view.scss';
-import { Component } from '../../modules';
+import { browserRouter, Component } from '../../modules';
 import { TJsonObject } from '../../common-types';
 
 registerHelper('CG_profile-view', (options) => createTmpClassName(options, 'profile-view'));
@@ -33,7 +33,7 @@ export class ProfileViewComponent extends Component<TJsonObject> {
   }
 
   onEditProfileClick() {
-    window.location.pathname = '/edit-profile';
+    browserRouter.go('/edit-profile');
   }
 
   render() {
@@ -43,5 +43,3 @@ export class ProfileViewComponent extends Component<TJsonObject> {
     });
   }
 }
-
-export const createProfileView = (parentSelector: string) => new ProfileViewComponent(parentSelector);

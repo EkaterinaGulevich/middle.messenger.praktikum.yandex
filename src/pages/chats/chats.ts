@@ -102,6 +102,12 @@ export class ChatsComponent extends Component<TChatsComponentState> {
     renderComponentDOM(Messages);
   }
 
+  componentUnmount() {
+    this._meta.chatComponents = [];
+    this._meta.messagesData = [];
+    this._meta.messagesComponent = null;
+  }
+
   render() {
     return template({
       listId: this.chatListId,
@@ -110,5 +116,3 @@ export class ChatsComponent extends Component<TChatsComponentState> {
     });
   }
 }
-
-export const createChats = (parentSelector: string) => new ChatsComponent(parentSelector);

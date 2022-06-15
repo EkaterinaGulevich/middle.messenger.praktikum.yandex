@@ -1,41 +1,20 @@
-import { renderComponentDOM } from 'src/utils';
+import { browserRouter } from 'src/modules';
+import { NotFoundPageComponent } from 'src/pages/not-found/not-found';
+import { routes } from 'src/consts/routes';
+import { ROOT_SELECTOR } from 'src/consts/common';
 
-import { createChats } from './pages/chats/chats';
-import { createAuth } from './pages/auth/auth';
-import { createRegistration } from './pages/registration/registration';
-import { createProfileView } from './pages/profile-view/profile-view';
-import { createProfileEdit } from './pages/profile-edit/profile-edit';
+import 'src/components';
 
-import { NotFoundPageTpl } from './pages/not-found/not-found';
-import './components';
 import './style.scss';
 
-const currentPathname = window.location.pathname;
-const ROOT_SELECTOR = '#root';
-const root = document.getElementById('root');
+const root = document.querySelector(ROOT_SELECTOR);
 
 if (!root) {
-  throw Error('Not found HTMLElement with id="root" in DOM');
+  throw Error(`Not found HTMLElement with id=${ROOT_SELECTOR} in DOM`);
 }
 
-switch (currentPathname) {
-  case '/':
-  case '/chats':
-    renderComponentDOM(createChats(ROOT_SELECTOR));
-    break;
-  case '/auth':
-    renderComponentDOM(createAuth(ROOT_SELECTOR));
-    break;
-  case '/registration':
-    renderComponentDOM(createRegistration(ROOT_SELECTOR));
-    break;
-  case '/profile':
-    renderComponentDOM(createProfileView(ROOT_SELECTOR));
-    break;
-  case '/edit-profile':
-    renderComponentDOM(createProfileEdit(ROOT_SELECTOR));
-    break;
-  default:
-    root.innerHTML = NotFoundPageTpl();
-    break;
-}
+routes.forEach(({ pathname, component }) => {
+  browserRouter.use(pathname, component);
+});
+
+browserRouter.useDefault(new NotFoundPageComponent(ROOT_SELECTOR)).start();

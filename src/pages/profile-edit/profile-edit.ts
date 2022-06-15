@@ -1,7 +1,7 @@
 import { registerHelper } from 'handlebars';
 
 import { createTmpClassName, renderArrayOfComponentsDOM, validateFormField } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component, browserRouter } from 'src/modules';
 import { InputComponent } from 'src/components/input/input';
 
 import template from './profile-edit.hbs';
@@ -50,7 +50,7 @@ export class ProfileEditComponent extends Component<TProfileEditComponentState> 
   }
 
   onCancel() {
-    window.location.pathname = '/chats';
+    browserRouter.back();
   }
 
   onBlur(event: Event, component: InputComponent) {
@@ -67,5 +67,3 @@ export class ProfileEditComponent extends Component<TProfileEditComponentState> 
     });
   }
 }
-
-export const createProfileEdit = (parentSelector: string) => new ProfileEditComponent(parentSelector);

@@ -17,6 +17,7 @@ export abstract class Component<T extends TJsonObject> {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CWU: 'flow:component-will-update',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CU: 'flow:component-unmount',
     FLOW_RENDER: 'flow:render',
   };
 
@@ -47,6 +48,7 @@ export abstract class Component<T extends TJsonObject> {
     this._componentDidMount = this._componentDidMount.bind(this);
     this._componentDidUpdate = this._componentDidUpdate.bind(this);
     this._componentWillUpdate = this._componentWillUpdate.bind(this);
+    this._componentUnmount = this._componentUnmount.bind(this);
     this._render = this._render.bind(this);
     this.createElement = this.createElement.bind(this);
 
@@ -57,6 +59,7 @@ export abstract class Component<T extends TJsonObject> {
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount);
     eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate);
     eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUpdate);
+    eventBus.on(Component.EVENTS.FLOW_CU, this._componentUnmount);
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render);
   }
 
@@ -86,6 +89,30 @@ export abstract class Component<T extends TJsonObject> {
    * Вызывается после обновления компонента в DOM-е
    * (но не при первоначальном монтировании) */
   componentDidUpdate(_prevState: T): void {
+    // Переопределяется наследником класса
+  }
+
+  /**
+   * Для удаления компонента из DOM */
+  private _componentUnmount(): void {
+    if (this.mounted) {
+      this.componentUnmount();
+
+      const root = document.querySelector(this.parentElemSelector);
+
+      if (!root) {
+        throw new Error(`Component: Not found ${this.parentElemSelector} in DOM`);
+      }
+      const existingComponent = root.querySelector(this.selector);
+      existingComponent?.replaceWith('');
+      this.mounted = false;
+    }
+  }
+
+  /**
+   * Вызывается при удалении компонента из DOM
+   */
+  componentUnmount(): void {
     // Переопределяется наследником класса
   }
 

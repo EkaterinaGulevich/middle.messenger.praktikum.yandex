@@ -7,3 +7,4 @@ export { parseTmp } from './parse-tmp';
 export { renderArrayOfComponentsDOM } from './render-array-component-dom';
 export { renderComponentDOM } from './render-component-dom';
 export { validateFormField } from './validate-form-field';
+export { unmountComponentDOM } from './unmount-component-dom';

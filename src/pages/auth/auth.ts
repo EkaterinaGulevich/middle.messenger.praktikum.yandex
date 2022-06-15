@@ -1,7 +1,7 @@
 import { registerHelper } from 'handlebars';
 
 import { createTmpClassName, validateFormField, renderArrayOfComponentsDOM, getFormData } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component, browserRouter } from 'src/modules';
 import { InputComponent } from 'src/components/input/input';
 
 import template from './auth.hbs';
@@ -57,7 +57,7 @@ export class AuthComponent extends Component<TAuthComponentState> {
     });
 
     if (!isError) {
-      window.location.pathname = '/chats';
+      browserRouter.go('/chats')
     }
   }
 
@@ -74,5 +74,3 @@ export class AuthComponent extends Component<TAuthComponentState> {
     });
   }
 }
-
-export const createAuth = (parentSelector: string) => new AuthComponent(parentSelector);

@@ -1,13 +1,12 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName, getFormData } from 'src/utils';
+import { createTmpClassName, getFormData, renderArrayOfComponentsDOM, validateFormField  } from 'src/utils';
+import { browserRouter, Component } from 'src/modules';
+import { InputComponent } from 'src/components/input/input';
 
 import template from './registration.hbs';
 import { TRegistrationComponentState } from './registration.types';
 import './registration.scss';
-import { Component } from '../../modules';
-import { InputComponent } from '../../components/input/input';
-import { renderArrayOfComponentsDOM, validateFormField } from '../../utils';
 import { createFormElements } from './helpers/create-form-elements';
 
 registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
@@ -63,7 +62,7 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
     });
 
     if (!isError) {
-      window.location.pathname = '/auth';
+      browserRouter.go('/auth');
     }
   }
 
@@ -80,5 +79,3 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
     });
   }
 }
-
-export const createRegistration = (parentSelector: string) => new RegistrationComponent(parentSelector);
