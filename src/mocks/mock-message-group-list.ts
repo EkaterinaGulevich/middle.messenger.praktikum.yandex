@@ -1,6 +1,4 @@
-import { TMessageGroupByDateTmpProps } from '../pages/chats/parts/message-group-by-date/message-group-by-date.types';
-
-export const MOCK_MESSAGE_GROUP_LIST: { [id: string]: TMessageGroupByDateTmpProps[] } = {
+export const MOCK_MESSAGE_GROUP_LIST:any = {
   'id-chat-1': [
     {
       date: '20 мая',

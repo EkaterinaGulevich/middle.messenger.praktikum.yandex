@@ -17,10 +17,11 @@ export class NotFoundPageComponent extends Component<TJsonObject> {
   render() {
     const prevRoute = browserRouter.getPrevRoute();
     const backPathname = prevRoute.pathname || '/';
+    // @ts-ignore
     const backMessage = getBackMessage(backPathname);
     return template({
-      backPathname,
-      backMessage,
+      backPathname: '/chats',
+      backMessage: 'Перейти к чатам',
     });
   }
 }

@@ -1,7 +1,6 @@
 import { registerHelper } from 'handlebars';
 
 import { createTmpClassName, renderArrayOfComponentsDOM, renderComponentDOM } from 'src/utils';
-import { MOCK_CHAT_LIST } from 'src/mocks';
 import { Component } from 'src/modules';
 
 import template from './chats.hbs';
@@ -9,47 +8,69 @@ import { ChatListItemComponent, TChatListItemTmpProps, MessagesComponent } from 
 import { TChatsComponentState } from './chats.types';
 import './parts';
 import './chats.scss';
+import { ChatsApi } from '../../api/chats-api';
+import { ChatsHeaderComponent } from '../../components/chats-header/chats-header';
+import store, { StoreEvents } from '../../store';
+import { TResChat } from '../../common-types';
+import { TStore } from '../../store/store.types';
 
 registerHelper('CG_chats', (options) => createTmpClassName(options, 'chats'));
 
-const MOCK_REQUEST_DELAY = 1000;
-
-const INITIAL_STATE: TChatsComponentState = { isLoading: false };
+const INITIAL_STATE: TChatsComponentState = { isLoading: false, chats: [] };
 
 export class ChatsComponent extends Component<TChatsComponentState> {
   readonly chatListId: string;
   readonly messagesId: string;
+  readonly chatsHeaderId: string;
 
   private _meta: {
     chatComponents: ChatListItemComponent[];
-    activeChatComponentId: null | string;
+    activeChatComponentId: null | number;
     messagesComponent: null | MessagesComponent;
-    messagesData: TChatListItemTmpProps[];
   };
 
   constructor(parentElemSelector: string) {
-    super(INITIAL_STATE, parentElemSelector);
+    super(INITIAL_STATE, parentElemSelector, (state) => ({
+      chats: state.chats,
+    }));
 
     this.chatListId = 'CHATS_LIST';
     this.messagesId = 'CHATS_MESSAGES';
+    this.chatsHeaderId = 'CHATS_HEADER';
 
     this.onChatClick = this.onChatClick.bind(this);
 
     this._meta = {
-      messagesData: [],
       chatComponents: [],
       activeChatComponentId: null,
       messagesComponent: null,
+    };
+
+    store.on(StoreEvents.Updated, () => {
+
+      // при обновлении получаем новое состояние
+      const newState = this.mapState(store.getState());
+
+      // если что-то из используемых данных поменялось, обновляем компонент
+      if (JSON.stringify(newState.chats) !== JSON.stringify(this.state.chats)) {
+        this.setState({...newState});
+      }
+    });
+
+  }
+
+  mapState(state: TStore) {
+    return {
+      chats: state.chats,
     };
   }
 
   getChats() {
     this.setState({ isLoading: true });
-    // симуляция запроса
-    setTimeout(() => {
-      this._meta.messagesData = MOCK_CHAT_LIST;
+    ChatsApi.getChats().then((res: any) => {
       this.setState({ isLoading: false });
-    }, MOCK_REQUEST_DELAY);
+      store.set('chats', JSON.parse(res.response));
+    });
   }
 
   componentDidMount() {
@@ -57,25 +78,26 @@ export class ChatsComponent extends Component<TChatsComponentState> {
   }
 
   componentDidUpdate() {
-    this.showChatList(this._meta.messagesData);
+    this.showChatList();
     this.showMessages();
+    this.showChatsHeader();
   }
 
   onChatClick(_event: Event, chatComponent: Component<TChatListItemTmpProps>) {
-    if (chatComponent.id === this._meta.activeChatComponentId) {
+    if (chatComponent.state.id === this._meta.activeChatComponentId) {
       return;
     }
 
     if (this._meta.activeChatComponentId) {
       const prevActiveComponent = this._meta.chatComponents.find(
-        (chat) => chat.id === this._meta.activeChatComponentId
+        (chat) => chat.state.id === this._meta.activeChatComponentId
       );
       if (prevActiveComponent) {
         prevActiveComponent.setState({ isActive: false });
       }
     }
 
-    this._meta.activeChatComponentId = chatComponent.id;
+    this._meta.activeChatComponentId = chatComponent.state.id;
     chatComponent.setState({ isActive: true });
 
     if (this._meta.messagesComponent) {
@@ -85,26 +107,33 @@ export class ChatsComponent extends Component<TChatsComponentState> {
     }
   }
 
-  showChatList(list: TChatListItemTmpProps[]) {
+  showChatList() {
     const listParentElemSelector = `#${this.chatListId}`;
-    list.forEach((chat) => {
+    this._meta.chatComponents = [];
+    this.state.chats?.forEach((chat: TResChat) => {
       const ChatListItem = new ChatListItemComponent(listParentElemSelector, chat, {
         onclick: this.onChatClick,
       });
       this._meta.chatComponents.push(ChatListItem);
     });
+
     renderArrayOfComponentsDOM(this._meta.chatComponents, listParentElemSelector);
   }
 
   showMessages() {
     const Messages = new MessagesComponent(`#${this.messagesId}`);
+
     this._meta.messagesComponent = Messages;
     renderComponentDOM(Messages);
   }
 
+  showChatsHeader() {
+    const ChatsHeader = new ChatsHeaderComponent(`#${this.chatsHeaderId}`);
+    renderComponentDOM(ChatsHeader);
+  }
+
   componentUnmount() {
     this._meta.chatComponents = [];
-    this._meta.messagesData = [];
     this._meta.messagesComponent = null;
   }
 
@@ -113,6 +142,7 @@ export class ChatsComponent extends Component<TChatsComponentState> {
       listId: this.chatListId,
       messagesId: this.messagesId,
       isLoading: !!this.state.isLoading,
+      chatsHeaderId: this.chatsHeaderId,
     });
   }
 }

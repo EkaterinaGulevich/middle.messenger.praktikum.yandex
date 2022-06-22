@@ -2,6 +2,7 @@ import { EventBus } from './event-bus';
 import { makePropsProxy } from './make-props-proxy';
 import { TJsonObject } from 'src/common-types';
 import { debounce, cloneDeepJsonObject, createId, parseTmp } from 'src/utils';
+import { TStore } from '../store/store.types';
 
 export abstract class Component<T extends TJsonObject> {
   state: T;
@@ -20,16 +21,21 @@ export abstract class Component<T extends TJsonObject> {
     FLOW_CU: 'flow:component-unmount',
     FLOW_RENDER: 'flow:render',
   };
+  mapStateToProps?: (_storage: TStore) => Partial<T>;
 
   /**
    * @constructor
    * @param {TJsonObject} initialState - Свойста компонента, при изменении которых компонент будет обновляться.
    * @param {string} parentElemSelector - Селектор родительского элемента, куда будет рендерится компонент.
+   * @param {function} mapStateToProps - Получает глобальный стор и возвращает в state нужные из него свойства.
    */
-  protected constructor(initialState: T, parentElemSelector: string) {
-    const eventBus = new EventBus();
+  protected constructor(
+    initialState: T,
+    parentElemSelector: string,
+    mapStateToProps?: (_storage: TStore) => Partial<T>
+  ) {
     this.parentElemSelector = parentElemSelector;
-    this.eventBus = eventBus;
+    this.eventBus = new EventBus();
     this.lastState = cloneDeepJsonObject(initialState);
 
     this.id = createId();
@@ -45,6 +51,8 @@ export abstract class Component<T extends TJsonObject> {
       callbackOnSet: debounce(callbackOnSet, 100),
     });
 
+    this.mapStateToProps = mapStateToProps;
+
     this._componentDidMount = this._componentDidMount.bind(this);
     this._componentDidUpdate = this._componentDidUpdate.bind(this);
     this._componentWillUpdate = this._componentWillUpdate.bind(this);
@@ -52,16 +60,17 @@ export abstract class Component<T extends TJsonObject> {
     this._render = this._render.bind(this);
     this.createElement = this.createElement.bind(this);
 
-    this._registerEvents(eventBus);
+    this._registerEvents();
   }
 
-  private _registerEvents(eventBus: EventBus) {
-    eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount);
-    eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate);
-    eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUpdate);
-    eventBus.on(Component.EVENTS.FLOW_CU, this._componentUnmount);
-    eventBus.on(Component.EVENTS.FLOW_RENDER, this._render);
+  private _registerEvents() {
+    this.eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount);
+    this.eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate);
+    this.eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUpdate);
+    this.eventBus.on(Component.EVENTS.FLOW_CU, this._componentUnmount);
+    this.eventBus.on(Component.EVENTS.FLOW_RENDER, this._render);
   }
+
 
   dispatchComponentDidMount() {
     this.mounted = true;
@@ -168,9 +177,9 @@ export abstract class Component<T extends TJsonObject> {
     } else {
       const existingComponent = root.querySelector(this.selector);
       if (!existingComponent) {
-        throw new Error(`Component rerendering: Not found mounted component in DOM in ${this.parentElemSelector}`);
+        // throw new Error(`Component rerendering: Not found mounted component in DOM in ${this.parentElemSelector}`);
       }
-      existingComponent.replaceWith(this._element || '');
+      existingComponent?.replaceWith(this._element || '');
       this.dispatchComponentDidUpdate();
     }
   }

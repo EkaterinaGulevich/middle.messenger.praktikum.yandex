@@ -9,6 +9,7 @@ export type TInputTmpProps = {
   name: string;
   error?: string | null;
   value?: string;
+  withoutLabel?: boolean;
 };
 
 export type TInputComponentState = TInputTmpProps;

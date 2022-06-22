@@ -10,11 +10,19 @@ import {
   TChatListItemTmpProps,
 } from './chat-list-item.types';
 import './chat-list-item.scss';
+import { TMessageTmpProps } from '../../../../components/message/message.types';
+import { getMonth } from '../../../../utils/get-month';
 
 registerHelper('CG_chat-list-item', (options) => createTmpClassName(options, 'chat-list-item'));
 registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<TChatListItemTmpProps, 'isActive'> }) => {
   const { isActive } = params.hash;
   return `${isActive ? 'is-active' : ''}`;
+});
+
+registerHelper('getDate', (params: { hash: Pick<TMessageTmpProps, 'time'> }) => {
+  const { time } = params.hash;
+  const date = new Date(time);
+  return date.getHours() + ':' + date.getMinutes();
 });
 
 export class ChatListItemComponent extends Component<TChatListItemComponentState> {
@@ -53,6 +61,11 @@ export class ChatListItemComponent extends Component<TChatListItemComponentState
   }
 
   render() {
-    return template(this.state);
+    let date = '';
+    if (this.state.last_message?.time) {
+      const time = new Date(this.state.last_message.time);
+      date = time.getDay() + ' ' + getMonth(time.getMonth());
+    }
+    return template({ ...this.state, date });
   }
 }

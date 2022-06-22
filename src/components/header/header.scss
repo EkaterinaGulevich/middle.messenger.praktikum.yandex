@@ -1,0 +1,46 @@
+@import 'src/styles/colors';
+@import 'src/styles/animations';
+
+.header {
+  //display: flex;
+  //border-bottom: 1px solid $smokyWhite;
+  //align-items: center;
+  //background: rgb($black, 0.4);
+  //position: relative;
+  //
+  //&__settings-btn {
+  //  .button {
+  //    background-color: rgb($black, 0.4);
+  //  }
+  //}
+  //
+  //.input-wrapper.search-input {
+  //  display: flex;
+  //  justify-content: center;
+  //}
+  //
+  //&__settings-list {
+  //  position: absolute;
+  //  width: 100%;
+  //  border-bottom: 1px solid $white;
+  //  border-top: 1px solid $white;
+  //  z-index: 2;
+  //  background-color: $grayBlue;
+  //  font-size: 14px;
+  //}
+  //
+  //&__settings-item {
+  //  padding: 12px 8px;
+  //  border-bottom: 1px solid $smokyWhite;
+  //  background-color: rgb($black, 0.7);
+  //
+  //  &:last-child {
+  //    border: none;
+  //  }
+  //
+  //  &:hover {
+  //    background: rgb($smokyWhite, 0.1);
+  //    cursor: pointer;
+  //  }
+  //}
+}

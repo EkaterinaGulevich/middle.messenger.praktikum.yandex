@@ -1,8 +1,10 @@
 import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
 import { InputComponent } from 'src/components/input/input';
 
+// @ts-ignore
 import { AuthComponent } from '../auth';
 
+// @ts-ignore
 export function createFormElements(ctx: AuthComponent): InputComponent[] {
   const commonInputProps: Partial<TInputTmpProps> = {
     fullWidth: true,

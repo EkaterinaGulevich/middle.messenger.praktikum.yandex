@@ -1,0 +1,26 @@
+<div class='{{CG_header}}'>
+
+  ШАПКА
+
+  <div class='{{CG_chats-header elem='settings-btn'}}'>
+    {{> button id=settingsBtnId value='' withIcon='settings' variant='pseudo' className=(CG_messages elem='btn-clip') }}
+    {{#if isSettingsOpen}}
+      <div class='{{CG_chats-header elem='settings-list'}}'>
+        <div class='{{CG_chats-header elem='settings-item'}}' id={{profileBtnId}}>
+          Профиль
+        </div>
+        <div class='{{CG_chats-header elem='settings-item'}}' >
+          Полезные ссылки
+        </div>
+        <div class='{{CG_chats-header elem='settings-item'}}' id={{logoutBtnId}}>
+          Выйти
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+  <div id={{searchInputId}} class='{{chats-header elem='search-input'}}'>
+    <!--  блок для инпута поиска -->
+  </div>
+
+</div>

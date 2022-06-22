@@ -6,24 +6,27 @@
   }}'
 >
   <div class='{{CG_chat-list-item elem='avatar'}}'>
-    {{> avatar src=companion.avatarSrc alt='avatar' size='small' }}
+    {{> avatar src=avatar alt='avatar' size='small' }}
   </div>
   <div class='{{CG_chat-list-item elem='block'}}'>
     <div class='{{CG_chat-list-item elem='title'}}'>
-      <div class='{{CG_chat-list-item elem='name'}}'>{{companion.name}}</div>
-      <div class='{{CG_chat-list-item elem='time'}}'>{{lastMessage.time}}</div>
+      <div class='{{CG_chat-list-item elem='name'}}'>{{title}}</div>
+      <div class='{{CG_chat-list-item elem='time'}}'>{{date}}</div>
     </div>
     <div class='{{CG_chat-list-item elem='subtitle'}}'>
       <div
         class='{{CG_chat-list-item elem='message'}}'
       >
-        {{#if lastMessage.fromMe}}
+<!--        TODO ДОБАВИТЬ ФЛАГ FROM ME-->
+        {{#if last_message.fromMe}}
           <span class='{{CG_chat-list-item elem='from-me'}}'>Вы: </span>
         {{/if}}
-        {{lastMessage.text}}</div>
-      <div
-        class='{{CG_chat-list-item elem='count'}}'
-      >{{unreadMessagesCount}}</div>
+        {{last_message.content}}</div>
+        {{#if unread_count}}
+              <div
+                class='{{CG_chat-list-item elem='count'}}'
+              >{{unread_count}}</div>
+          {{/if}}
     </div>
   </div>
 </div>

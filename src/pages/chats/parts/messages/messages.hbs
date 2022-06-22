@@ -13,8 +13,8 @@
     </div>
     <div class='{{CG_messages elem='new-message-wrapper'}}'>
       {{> button id='btn-edit-profile' value='' withIcon='clip' variant='pseudo' className=(CG_messages elem='btn-clip') disabled=true }}
-      {{> textarea placeholder='Сообщение' name='message'}}
-      {{> button id='btn-edit-profile' value='' withIcon='send' variant='pseudo' className=(CG_messages elem='btn-send') disabled=true }}
+      {{> textarea id=textareaId placeholder='Сообщение' name='message'}}
+      {{> button id='send-message-btn' value='' withIcon='send' variant='pseudo' className=(CG_messages elem='btn-send')}}
     </div>
   {{/if}}
 

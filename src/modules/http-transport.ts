@@ -1,4 +1,7 @@
 // todo: Пока нигде не используется, покрою типами, когда начну пользоваться
+// todo ^
+
+import { browserRouter } from './router';
 
 const METHODS = {
   GET: 'GET',
@@ -7,6 +10,7 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
+// todo вынести
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 function queryStringify(data) {
@@ -20,28 +24,36 @@ function queryStringify(data) {
 }
 
 export class HTTPTransport {
+  private baseUrl = '';
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  getFullUrl(path: string) {
+    return this.baseUrl + path;
+  }
   get = (url: string, options = {}) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+    return this.request(this.getFullUrl(url), { ...options, method: METHODS.GET }, options.timeout);
   };
 
   post = (url: string, options = {}) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+    return this.request(this.getFullUrl(url), { ...options, method: METHODS.POST }, options.timeout);
   };
 
   put = (url: string, options = {}) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+    return this.request(this.getFullUrl(url), { ...options, method: METHODS.PUT }, options.timeout);
   };
 
   delete = (url: string, options = {}) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+    return this.request(this.getFullUrl(url), { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
   request = (url: string, options = {}, timeout = 5000) => {
@@ -67,7 +79,34 @@ export class HTTPTransport {
         xhr.setRequestHeader(key, headers[key]);
       });
 
+      /// //
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.withCredentials = true;
+      xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+      /// //
+
       xhr.onload = function () {
+        let reason = '';
+        if (xhr.responseText ) {
+          try {
+            reason = JSON.parse(xhr.responseText)?.reason;
+
+          } catch (e) {
+           //
+          }
+        }
+
+        if (reason === 'Login or password is incorrect') {
+          alert('Неверный логин или пароль');
+          throw xhr;
+        } else if (reason === 'Login already exists') {
+          alert('Пользователь с введенным логин уже существует. Пожалуйста, введите другой логин');
+          throw xhr;
+        } else if (xhr.status === 401 && window.location.pathname !== '/auth') {
+          browserRouter.go('/auth');
+          window.location.reload();
+        }
+
         resolve(xhr);
       };
 
@@ -80,7 +119,8 @@ export class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        delete data.repeat_password;
+        xhr.send(JSON.stringify(data));
       }
     });
   };

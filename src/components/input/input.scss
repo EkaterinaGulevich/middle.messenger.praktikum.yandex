@@ -29,6 +29,11 @@
     &--full-width {
       width: 100%;
     }
+
+    &--without-label {
+      padding: 4px;
+      height: 24px;
+    }
   }
 
   .input-label {

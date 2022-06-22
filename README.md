@@ -38,3 +38,20 @@ $ npm run dev
 * [Чеклист](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1%20sprint/index1spr.html)
 * [Задание](https://code.s3.yandex.net/frontend-developer/middleFrontend/roadmaps/sprint1/print_map_sprint1.pdf)
 * [Ссылка на pull request Sprint 2](https://github.com/EkaterinaGulevich/middle.messenger.praktikum.yandex/pull/4)
+
+
+
+TODO:
+- моб. версия
+- все задания из практикума 3-ого спринта + решить что из 4-ого спринта
+- задачи из гитхаба
+- ресайз чатов
+- вертикальное выравнивание форм регистр авториз и т.д.
+- настройки шрифта и цвета ????
+- страница для справочника юриста
+- переход по страницам по ссылкам
+- todo-шки
+- доделать по дизайну
+- сделать нормальную валидацию
+- подключить, что посоветовали в слаке
+- страницы должны называться как в ТЗ

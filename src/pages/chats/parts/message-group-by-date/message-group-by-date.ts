@@ -17,6 +17,9 @@ export class MessageGroupByDateComponent extends Component<TMessageGroupByDateCo
   }
 
   render() {
-    return template(this.state);
+    return template({
+      date: this.state.date,
+      messages: [...this.state.messages].reverse(),
+    });
   }
 }

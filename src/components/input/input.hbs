@@ -4,13 +4,15 @@
       id='{{id}}'
       name='{{name}}'
       type='{{type}}'
-      class='{{CG_input modifiers=(CG_input-modifiers fullWidth=fullWidth)}}'
-      placeholder=' '
+      class='{{CG_input modifiers=(CG_input-modifiers fullWidth=fullWidth withoutLabel=withoutLabel)}}'
+      placeholder={{#if withoutLabel}}{{placeholder}}{{else}}' '{{/if}}
       onfocus='this.removeAttribute("readonly")'
       value='{{value}}'
       readonly
     />
-    <label for='{{id}}' class='{{CG_input block='input-label'}}'>{{placeholder}}</label>
+    {{#if withoutLabel}}{{else}}
+      <label for='{{id}}' class='{{CG_input block='input-label'}}'>{{placeholder}}</label>
+    {{/if}}
   </div>
   {{#if error}}
     <div class='{{CG_input block='input-error'}}'>{{error}}</div>

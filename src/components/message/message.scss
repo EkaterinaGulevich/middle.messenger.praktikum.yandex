@@ -67,4 +67,21 @@
       background-image: url('../../../static/icons/check.svg');
     }
   }
+
+  &__text {
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: $smokyWhite;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus {
+        text-decoration: underline;
+        outline: none;
+      }
+    }
+  }
 }

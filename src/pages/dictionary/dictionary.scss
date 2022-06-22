@@ -1,0 +1,46 @@
+@import 'src/styles/colors';
+
+.dictionary_page {
+
+  padding: 80px 120px 0;
+
+  &__group {
+    margin-top: 60px
+  }
+
+  &__group-name {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: $white;
+  }
+
+  &__list {
+    border: 1px solid white;
+    border-radius: 2px;
+    padding: 0 10px;
+  }
+
+  &__row {
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    border-bottom: 1px solid $grey;
+  }
+
+  &__link-path {
+    width: 50%;
+    min-width: 50%;
+    max-width: 50%;
+
+    .link {
+      font-size: 16px;
+    }
+  }
+
+  &__link-name {
+    font-size: 14px;
+    color: $grey;
+  }
+
+}

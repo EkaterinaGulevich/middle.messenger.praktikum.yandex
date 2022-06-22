@@ -1,13 +1,15 @@
 import { registerHelper } from 'handlebars';
 
 import { createTmpClassName, validateFormField, renderArrayOfComponentsDOM, getFormData } from 'src/utils';
-import { Component, browserRouter } from 'src/modules';
+import { Component } from 'src/modules';
 import { InputComponent } from 'src/components/input/input';
 
 import template from './auth.hbs';
 import { TAuthComponentState } from './auth.types';
 import { createFormElements } from './helpers/create-form-elements';
 import './auth.scss';
+import { AuthApi } from '../../api';
+import { browserRouter } from '../../modules';
 
 registerHelper('CG_auth', (options) => createTmpClassName(options, 'auth'));
 
@@ -22,7 +24,7 @@ export class AuthComponent extends Component<TAuthComponentState> {
   formElements: InputComponent[];
 
   constructor(parentElemSelector: string) {
-    super(INITIAL_STATE, parentElemSelector);
+    super(INITIAL_STATE, parentElemSelector, () => ({}));
 
     this.authBtnId = 'AUTH_BTN';
     this.formId = 'FORM';
@@ -45,8 +47,6 @@ export class AuthComponent extends Component<TAuthComponentState> {
   }
 
   onAuth() {
-    console.log(getFormData('auth'));
-
     let isError = false;
     this.formElements.forEach((input) => {
       const error = validateFormField(input.state.name, input.value);
@@ -57,7 +57,10 @@ export class AuthComponent extends Component<TAuthComponentState> {
     });
 
     if (!isError) {
-      browserRouter.go('/chats')
+      // @ts-ignore
+      AuthApi.signin({ data: getFormData('auth') }).then(() => {
+        browserRouter.go('/chats');
+      });
     }
   }
 

@@ -1,0 +1,28 @@
+<main class="{{CG_dictionary_page}}">
+  {{> link href=backPathname value=backMessage }}
+
+
+
+  {{#each links}}
+
+    <div class="{{CG_dictionary_page elem='group'}}">
+      <div class="{{CG_dictionary_page elem='group-name'}}">{{this.title}}</div>
+      <div class="{{CG_dictionary_page elem='list'}}">
+
+    {{#each this.list}}
+
+        <div class="{{CG_dictionary_page elem='row'}}">
+          <div class="{{CG_dictionary_page elem='link-path'}}">
+            {{> link href=this.link value=this.link }}
+          </div>
+          <div class="{{CG_dictionary_page elem='link-name'}}">{{this.name}}</div>
+        </div>
+
+    {{/each}}
+      </div>
+    </div>
+
+  {{/each}}
+
+
+</main>

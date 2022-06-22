@@ -1,6 +1,6 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName, getFormData, renderArrayOfComponentsDOM, validateFormField  } from 'src/utils';
+import { createTmpClassName, getFormData, renderArrayOfComponentsDOM, validateFormField } from 'src/utils';
 import { browserRouter, Component } from 'src/modules';
 import { InputComponent } from 'src/components/input/input';
 
@@ -8,6 +8,7 @@ import template from './registration.hbs';
 import { TRegistrationComponentState } from './registration.types';
 import './registration.scss';
 import { createFormElements } from './helpers/create-form-elements';
+import { AuthApi } from '../../api';
 
 registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
 
@@ -62,7 +63,10 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
     });
 
     if (!isError) {
-      browserRouter.go('/auth');
+      // @ts-ignore
+      AuthApi.signup({ data: getFormData('registration') }).then(() => {
+        browserRouter.go('/chats');
+      });
     }
   }
 

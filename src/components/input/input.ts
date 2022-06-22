@@ -11,9 +11,9 @@ registerPartial('input', template);
 
 registerHelper('CG_input', (options) => createTmpClassName(options, 'input'));
 
-registerHelper('CG_input-modifiers', (params: { hash: Pick<TInputTmpProps, 'fullWidth'> }) => {
-  const { fullWidth } = params.hash;
-  return `${fullWidth ? ' full-width' : ''}`;
+registerHelper('CG_input-modifiers', (params: { hash: Pick<TInputTmpProps, 'fullWidth' | 'withoutLabel'> }) => {
+  const { fullWidth, withoutLabel } = params.hash;
+  return `${fullWidth ? ' full-width' : ''} ${withoutLabel ? 'without-label' : ''}`;
 });
 
 export const InputTpl = template;

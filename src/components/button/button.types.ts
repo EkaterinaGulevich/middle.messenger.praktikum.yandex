@@ -5,5 +5,5 @@ export type TButtonTmpProps = {
   className?: string;
   fullWidth?: boolean;
   disabled?: boolean;
-  withIcon?: 'clip' | 'send';
+  withIcon?: 'clip' | 'send' | 'settings';
 };

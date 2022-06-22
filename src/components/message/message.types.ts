@@ -4,4 +4,5 @@ export type TMessageTmpProps = {
   className?: string;
   fromMe?: boolean;
   isRead?: boolean;
+  user_id: number;
 };
