@@ -12,6 +12,7 @@ import {
 import './chat-list-item.scss';
 import { TMessageTmpProps } from '../../../../components/message/message.types';
 import { getMonth } from '../../../../utils/get-month';
+import { ChatsApi } from '../../../../api/chats-api';
 
 registerHelper('CG_chat-list-item', (options) => createTmpClassName(options, 'chat-list-item'));
 registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<TChatListItemTmpProps, 'isActive'> }) => {
@@ -54,6 +55,10 @@ export class ChatListItemComponent extends Component<TChatListItemComponentState
 
   componentDidMount() {
     this.addEventListeners();
+    ChatsApi.getCompanion(this.state.id).then((companion) => {
+      // @ts-ignore
+      this.setState({companion});
+    });
   }
 
   componentDidUpdate() {
@@ -64,8 +69,26 @@ export class ChatListItemComponent extends Component<TChatListItemComponentState
     let date = '';
     if (this.state.last_message?.time) {
       const time = new Date(this.state.last_message.time);
-      date = time.getDay() + ' ' + getMonth(time.getMonth());
+      date = time.getDate() + ' ' + getMonth(time.getMonth());
     }
-    return template({ ...this.state, date });
+
+    const todayTime = new Date();
+    const todayDay = todayTime.getDate() + ' ' + getMonth(todayTime.getMonth());
+
+    if (todayDay === date) {
+      date = 'Сегодня';
+    }
+
+    // @ts-ignore
+    const title = this.state.companion ? [this.state.companion.first_name, this.state.companion.second_name].join(' ') : '';
+    // @ts-ignore
+    const avatar = this.state.companion?.avatar || null
+
+    return template({
+      ...this.state,
+      date,
+      title,
+      avatar
+    });
   }
 }

@@ -47,16 +47,14 @@ export class ChatsComponent extends Component<TChatsComponentState> {
     };
 
     store.on(StoreEvents.Updated, () => {
-
       // при обновлении получаем новое состояние
       const newState = this.mapState(store.getState());
 
       // если что-то из используемых данных поменялось, обновляем компонент
       if (JSON.stringify(newState.chats) !== JSON.stringify(this.state.chats)) {
-        this.setState({...newState});
+        this.setState({ ...newState });
       }
     });
-
   }
 
   mapState(state: TStore) {

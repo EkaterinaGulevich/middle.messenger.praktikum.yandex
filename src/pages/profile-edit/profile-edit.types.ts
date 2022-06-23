@@ -2,6 +2,7 @@ export type TProfileEditTmpProps = {
   saveBtnId: string;
   cancelBtnId: string;
   formId: string;
+  id: string;
 };
 
 export type TProfileEditComponentState = {

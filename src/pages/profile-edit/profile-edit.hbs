@@ -1,12 +1,13 @@
 <main class='{{CG_profile-edit}}'>
+  <input id='upload_file' type='file' name='avatar' />
   <div class="{{CG_profile-edit elem='avatar-wrapper'}}">
-    {{> avatar src='' alt='avatar' }}
+    {{> avatar id=id src=avatar alt='avatar' }}
   </div>
-  <form id={{formId}} class="{{CG_profile-edit elem='form'}}">
+  <form id={{formId}} class="{{CG_profile-edit elem='form'}}" name="edit">
         <!--   inputs     -->
   </form>
   <div class="{{CG_profile-edit elem='buttons'}}">
-    {{> button id=saveBtnId value='Сохранить' disabled=true className=(CG_profile-view elem='button') }}
     {{> button id=cancelBtnId value='Отмена' variant='secondary' className=(CG_profile-view elem='button') }}
+    {{> button id=saveBtnId value='Сохранить' className=(CG_profile-view elem='button') }}
   </div>
 </main>

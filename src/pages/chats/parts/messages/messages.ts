@@ -12,6 +12,7 @@ import { ChatsApi } from '../../../../api/chats-api';
 import { AuthApi } from '../../../../api';
 import store, { StoreEvents } from '../../../../store';
 import { TStore } from '../../../../store/store.types';
+import { UserApi } from '../../../../api/user-api';
 
 registerHelper('CG_messages', (options) => createTmpClassName(options, 'messages'));
 
@@ -38,25 +39,23 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
     this.textareaId = 'TEXTAREA_MESSAGE_ID';
 
     // store.on(StoreEvents.Updated, () => {
-      // @ts-ignore
-      // if (this.lastMesTime !== messageData[0]?.time) {
-      //   // @ts-ignore
-      //   this.lasMesTime = messageData[0]?.time;
-      //   this.showMessageGroupList([]);
-        // this.setState(this.mapState(store.getState()));
-      // }
+    // @ts-ignore
+    // if (this.lastMesTime !== messageData[0]?.time) {
+    //   // @ts-ignore
+    //   this.lasMesTime = messageData[0]?.time;
+    //   this.showMessageGroupList([]);
+    // this.setState(this.mapState(store.getState()));
+    // }
 
     // });
 
     store.on(StoreEvents.Updated, () => {
-
       // при обновлении получаем новое состояние
       const newState = this.mapState(store.getState());
 
       // если что-то из используемых данных поменялось, обновляем компонент
       if (JSON.stringify(newState.listMessages) !== JSON.stringify(this.state.listMessages)) {
-        this.setState({...newState});
-
+        this.setState({ ...newState });
       }
     });
   }
@@ -68,7 +67,7 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
   }
 
   onSendBtnClick() {
-    console.log('CLICKED BTN SEND')
+    console.log('CLICKED BTN SEND');
     // @ts-ignore
     const value = document.querySelector(`#${this.textareaId}`)?.value;
 
@@ -119,6 +118,7 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
     this.setState({ isLoading: true });
     const user: any = await AuthApi.getUser();
     const userId = JSON.parse(user.response).id;
+
     store.set('userId', userId);
     ChatsApi.token(this.state.selectedChat || 0).then((res: any) => {
       const token = JSON.parse(res.response).token;
@@ -126,13 +126,13 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
       this.socket = socket;
 
       socket.addEventListener('open', () => {
-        //@ts-ignore
+        // @ts-ignore
         if (this.timer) {
-          //@ts-ignore
+          // @ts-ignore
           clearInterval(this.timer);
         }
 
-       //@ts-ignore
+        // @ts-ignore
         this.timer = setInterval(() => {
           socket.send(
             JSON.stringify({
@@ -140,9 +140,8 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
               type: 'get old',
             })
           );
-        }, 1000)
+        }, 1000);
         console.log('Соединение установлено');
-
       });
 
       socket.addEventListener('close', (event) => {
@@ -159,7 +158,24 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
         console.log('Получены данные', event);
         const messageData = JSON.parse(event.data);
         if (Array.isArray(messageData)) {
-          store.set('listMessages', [{ date: 'Сегодня', messages: messageData }]);
+          console.log({ ____messageData: messageData });
+
+          const groups: any = [];
+          messageData.forEach((mes: any) => {
+            const group = groups.find((g: any) => g.date.toLocaleString().slice(0, 10) === mes.time.toLocaleString().slice(0, 10));
+            if (group) {
+              group.messages.push(mes);
+            } else {
+              groups.push({
+                date: mes.time,
+                messages: [mes],
+              });
+            }
+          });
+
+          console.log({groups})
+          // store.set('listMessages', [{ date: 'Сегодня', messages: messageData }]);
+          store.set('listMessages', [...groups].reverse());
           // @ts-ignore
           console.log(store.getState().listMessages);
         }
@@ -173,9 +189,8 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
           // this.showMessageGroupList([]);
         }
         if (this.state.isLoading) {
-          this.setState({ isLoading: false })
+          this.setState({ isLoading: false });
         }
-
       });
       socket.addEventListener('error', (event: any) => {
         console.log('Ошибка', event.message);
@@ -188,7 +203,6 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
     this.addEvents();
 
     if (this.state.selectedChat) {
-
       if (!this.state.isLoading) {
         // if (!this.state.isLoading && this.state.listMessages.length) {
         this.showMessageGroupList([]);
@@ -203,6 +217,12 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
       if (this.state.selectedChat !== prevState.selectedChat) {
         this.socket?.close();
         this.createSocket();
+
+        ChatsApi.getCompanion(this.state.selectedChat).then(companion => {
+          //@ts-ignore
+          this.componion = companion;
+        })
+
       }
 
       if (!this.state.isLoading) {
@@ -215,7 +235,6 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
   showMessageGroupList(_list: TMessageGroupByDateTmpProps[]) {
     // @ts-ignore
 
-
     const storeData = store.getState().listMessages || [];
 
     const components: MessageGroupByDateComponent[] = [];
@@ -225,11 +244,9 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
 
     // (store.getState().listMessages || [])?.forEach((messageGroup: any) => {
     storeData.forEach((messageGroup: any) => {
-      console.log({ messageGroup });
       const MessageGroup = new MessageGroupByDateComponent(listParentElemSelector, messageGroup);
       components.push(MessageGroup);
     });
-    console.warn(components.length);
 
     renderArrayOfComponentsDOM(components, listParentElemSelector);
 
@@ -248,6 +265,8 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
       messageGroupsId,
       isLoading: !!isLoading,
       textareaId: this.textareaId,
+      //@ts-ignore
+      companion: this.componion
     });
   }
 }

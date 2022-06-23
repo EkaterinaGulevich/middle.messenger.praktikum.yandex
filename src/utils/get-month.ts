@@ -4,7 +4,7 @@ export const getMonth = (month: number): string => {
     case 1: return 'фев.'
     case 2: return 'мар.'
     case 3: return 'апр.'
-    case 4: return 'май'
+    case 4: return 'мая'
     case 5: return 'июн.'
     case 6: return 'июл.'
     case 7: return 'авг.'

@@ -5,11 +5,12 @@ import { createTmpClassName } from 'src/utils';
 import template from './profile-view.hbs';
 import './profile-view.scss';
 import { browserRouter, Component } from '../../modules';
-import { TJsonObject } from '../../common-types';
+import { AuthApi } from '../../api'
+import { TProfileViewTmpProps } from './profile-view.types'
 
 registerHelper('CG_profile-view', (options) => createTmpClassName(options, 'profile-view'));
 
-export class ProfileViewComponent extends Component<TJsonObject> {
+export class ProfileViewComponent extends Component<TProfileViewTmpProps> {
   readonly editProfileBtnId: string;
   readonly editPasswordBtnId: string;
 
@@ -28,8 +29,18 @@ export class ProfileViewComponent extends Component<TJsonObject> {
     editProfileBtn.addEventListener('click', this.onEditProfileClick);
   }
 
+  componentDidUpdate() {
+    this.registerEvents();
+
+  }
+
   componentDidMount() {
     this.registerEvents();
+
+    AuthApi.getUser().then((res: any) => {
+      const data = JSON.parse(res.response);
+      this.setState(data)
+    });
   }
 
   onEditProfileClick() {
@@ -40,6 +51,13 @@ export class ProfileViewComponent extends Component<TJsonObject> {
     return template({
       editProfileBtnId: this.editProfileBtnId,
       editPasswordBtnId: this.editPasswordBtnId,
+      email: this.state.email,
+      login: this.state.login,
+      first_name: this.state.first_name,
+      second_name: this.state.second_name,
+      phone: this.state.phone,
+      //@ts-ignore
+      src: this.state.avatar
     });
   }
 }

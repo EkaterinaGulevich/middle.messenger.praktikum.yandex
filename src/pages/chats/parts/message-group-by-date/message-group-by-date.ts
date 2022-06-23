@@ -17,8 +17,16 @@ export class MessageGroupByDateComponent extends Component<TMessageGroupByDateCo
   }
 
   render() {
+    let date = new Date(this.state.date).toLocaleString().slice(0,10);
+
+
+    const todayTime = new Date();
+    const todayDay = todayTime.toLocaleString().slice(0,10)
+    if (todayDay === date) {
+      date = 'Сегодня';
+    }
     return template({
-      date: this.state.date,
+      date: date,
       messages: [...this.state.messages].reverse(),
     });
   }

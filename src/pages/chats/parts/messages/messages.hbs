@@ -7,6 +7,24 @@
   {{else}}
     {{#if isLoading}}
       {{> loader }}
+    {{else}}
+      <div class='{{CG_messages elem='user-header'}}'>
+        <div class='{{CG_messages elem='avatar'}}'>
+          {{> avatar src=companion.avatar alt='avatar' size='small' }}
+        </div>
+        <div class='{{CG_messages elem='companion-name'}}'>
+          {{companion.first_name}} {{companion.second_name}}
+        </div>
+        <div class='{{CG_messages elem='companion-contacts'}}'>
+          <div>Контакты:</div>
+          <div class='{{CG_messages elem='companion-email'}}'>
+            email: {{companion.email}}
+          </div>
+          <div class='{{CG_messages elem='companion-phone'}}'>
+            телефон: {{companion.phone}}
+          </div>
+        </div>
+      </div>
     {{/if}}
     <div id={{messageGroupsId}} class='{{CG_messages elem='message-list'}}'>
         <!-- блок для массива компонентов "группа сообщений по дате" -->

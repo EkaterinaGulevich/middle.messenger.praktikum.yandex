@@ -87,12 +87,11 @@ export class HTTPTransport {
 
       xhr.onload = function () {
         let reason = '';
-        if (xhr.responseText ) {
+        if (xhr.responseText) {
           try {
             reason = JSON.parse(xhr.responseText)?.reason;
-
           } catch (e) {
-           //
+            //
           }
         }
 

@@ -1,3 +1,7 @@
+.back-link {
+  margin-top: 20px;
+}
+
 .profile-view {
   display: flex;
   flex-direction: column;
@@ -22,11 +26,13 @@
   &__buttons {
     margin-top: 60px;
     display: flex;
-    justify-content: space-between;
+    //justify-content: space-between;
+    justify-content: center;
     width: 100%;
   }
 
   &__button {
     width: calc(50% - 10px);
+    //width: 100%;
   }
 }
