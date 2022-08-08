@@ -9,6 +9,24 @@
   flex-direction: column;
   justify-content: end;
 
+  &__user-header {
+    min-height: 60px;
+    max-height: 60px;
+    background: rgb($black, 0.6);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    align-items: center;
+    box-shadow: 0 20px 40px -22px $black;
+    overflow: hidden;
+  }
+
+  &__companion-name {
+    margin-right: auto;
+    margin-left: 10px;
+  }
+
   &__no-selected-chat {
     display: flex;
     height: 100%;
@@ -18,9 +36,12 @@
   }
 
   &__message-list {
-    @include animationAppear(0.5s);
     max-height: 100%;
     overflow: auto;
+    margin-top: auto;
+    &--with-animation {
+      @include animationAppear(1s);
+    }
   }
 
   &__new-message-wrapper {

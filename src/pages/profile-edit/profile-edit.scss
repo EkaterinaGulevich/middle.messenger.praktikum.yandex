@@ -1,3 +1,5 @@
+@import 'src/styles/colors';
+
 .profile-edit {
   display: flex;
   flex-direction: column;
@@ -7,8 +9,25 @@
   width: 400px;
   margin: 0 auto;
 
+  #upload_file {
+    display: none;
+  }
+
   &__avatar-wrapper {
     margin-bottom: 60px;
+    position: relative;
+
+    .avatar:hover:before {
+      content: 'Изменить аватар';
+      background: rgb($black, 0.5);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      cursor: pointer;
+      position: absolute;
+    }
   }
 
   &__buttons {

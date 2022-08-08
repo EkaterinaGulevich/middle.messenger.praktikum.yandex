@@ -1,21 +1,20 @@
+import { RegistrationComponent } from '../registration';
+import { TRegistrationFormInputs } from '../registration.types';
 import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
 import { InputComponent } from 'src/components/input/input';
 
-import { RegistrationComponent } from '../registration';
-
-export function createFormElements(ctx: RegistrationComponent): InputComponent[] {
-  const PARENT_SELECTOR = `#${ctx.formId}`;
+export function createFormElements(ctx: RegistrationComponent): TRegistrationFormInputs {
   const commonInputProps: Partial<TInputTmpProps> = {
     fullWidth: true,
     className: 'registration-input',
     type: 'text',
   };
+
   const callbacks: TInputComponentCallbacks = {
-    blur: ctx.onBlur,
+    onblur: ctx.onBlur,
   };
 
   const emailInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'email',
@@ -25,7 +24,6 @@ export function createFormElements(ctx: RegistrationComponent): InputComponent[]
   );
 
   const loginInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'login',
@@ -35,27 +33,24 @@ export function createFormElements(ctx: RegistrationComponent): InputComponent[]
   );
 
   const firstNameInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
-      name: 'first_name',
+      name: 'firstName',
       placeholder: 'Имя',
     },
     callbacks
   );
 
   const secondNameInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
-      name: 'second_name',
+      name: 'secondName',
       placeholder: 'Фамилия',
     },
     callbacks
   );
 
-  const phoneNameInput = new InputComponent(
-    PARENT_SELECTOR,
+  const phoneInput = new InputComponent(
     {
       ...commonInputProps,
       name: 'phone',
@@ -65,7 +60,6 @@ export function createFormElements(ctx: RegistrationComponent): InputComponent[]
   );
 
   const passwordInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'password',
@@ -76,15 +70,14 @@ export function createFormElements(ctx: RegistrationComponent): InputComponent[]
   );
 
   const repeatPasswordInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
-      name: 'repeat_password',
+      name: 'repeatPassword',
       placeholder: 'Пароль (еще раз)',
       type: 'password',
     },
     callbacks
   );
 
-  return [emailInput, loginInput, firstNameInput, secondNameInput, phoneNameInput, passwordInput, repeatPasswordInput];
+  return { emailInput, loginInput, firstNameInput, secondNameInput, phoneInput, passwordInput, repeatPasswordInput };
 }

@@ -1,13 +1,26 @@
-import { TMessageGroupByDateTmpProps } from '../message-group-by-date/message-group-by-date.types';
+import { TGroupOfMessage } from 'src/types'
 
 export type TMessagesTmpProps = {
-  isNotSelectedChat: boolean;
-  messageGroupsId: string;
+  isSelectedChat: boolean;
   isLoading: boolean;
+  clipButton: string;
+  sendButton: string;
+  messageGroups: string[];
+  messageGroupsWrapperId: string;
+  messageGroupsWrapperModifiers: string;
+  messageTextarea: string;
+  companion?: {
+    name: string;
+    avatar: string;
+  };
 };
 
 export type TMessagesComponentState = {
-  isLoading?: boolean;
-  selectedChat: null | string;
-  messageGroups: TMessageGroupByDateTmpProps[];
+  isLoading: boolean;
+  selectedChatId: null | number;
+  groupsOfMessages: TGroupOfMessage[];
+  companion?: {
+    name: string;
+    avatar: string;
+  };
 };

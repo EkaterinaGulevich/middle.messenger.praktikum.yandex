@@ -1,6 +1,7 @@
 export type TAuthTmpProps = {
-  formId: string;
-  authBtnId: string;
+  loginInputComponent: string;
+  passwordInputComponent: string;
+  signInButtonComponent: string;
 };
 
 export type TAuthComponentState = {

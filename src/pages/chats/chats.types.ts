@@ -1,6 +1,7 @@
 export type TChatsTmpProps = {
-  listId: string;
-  messagesId: string;
+  chatListComponent: string;
+  messagesComponent: string;
+  chatsHeaderComponent: string;
   isLoading: boolean;
 };
 

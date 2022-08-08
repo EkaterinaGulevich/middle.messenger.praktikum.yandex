@@ -1,13 +1,30 @@
+import { InputComponent } from 'src/components/input/input';
+
 export type TProfileEditTmpProps = {
-  saveBtnId: string;
-  cancelBtnId: string;
-  formId: string;
+  avatarId: string;
+  avatar: string;
+  emailInput: string;
+  loginInput: string;
+  firstNameInput: string;
+  secondNameInput: string;
+  phoneNameInput: string;
+  cancelButton: string;
+  saveButton: string;
 };
 
 export type TProfileEditComponentState = {
   email: string;
   login: string;
-  first_name: string;
-  second_name: string;
+  firstName: string;
+  secondName: string;
   phone: string;
+  avatar: string;
+};
+
+export type TFormInputComponents = {
+  emailInput: InputComponent;
+  loginInput: InputComponent;
+  firstNameInput: InputComponent;
+  secondNameInput: InputComponent;
+  phoneNameInput: InputComponent;
 };

@@ -1,5 +1,5 @@
 import { cloneDeepJsonObject } from 'src/utils';
-import { TJsonValue, TJsonObject } from 'src/common-types';
+import { TJsonObject, TJsonValue } from 'src/types';
 
 const isPrivateProp = (prop: string) => prop.startsWith('_');
 

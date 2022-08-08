@@ -1,3 +1,6 @@
+// TODO: сделать наименования ошибок более конкретными для пользователя
+// TODO: перенести в хэлперы и разделить поля для каждой из форм
+// TODO: добавить валидацию для поля Повторить пароль
 export const validateFormField = (fieldName: string, value: string): null | string => {
   let error: null | string = null;
   switch (fieldName) {
@@ -15,8 +18,8 @@ export const validateFormField = (fieldName: string, value: string): null | stri
       }
       break;
     }
-    case 'first_name':
-    case 'second_name': {
+    case 'firstName':
+    case 'secondName': {
       if (!/^[A-ZА-Я][a-zа-я-]+$/.test(value)) {
         // латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр,
         // нет спецсимволов (допустим только дефис)

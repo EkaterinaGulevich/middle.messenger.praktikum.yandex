@@ -1,16 +1,20 @@
 <main class="{{CG_profile-view}}">
   <div class="{{CG_profile-view elem='avatar-wrapper'}}">
-    {{> avatar src='' alt='avatar' }}
+    {{> avatar src=avatar alt='avatar' }}
   </div>
   <div class="{{CG_profile-view elem='rows'}}">
-    {{> static-input label='Почта' value='email@gmail.com' }}
-    {{> static-input label='Логин' value='meteor' }}
-    {{> static-input label='Имя' value='Екатерина' }}
-    {{> static-input label='Фамилия' value='Гулевич' }}
-    {{> static-input label='Телефон' value='+7 (111) 111 11 11' }}
+    {{> static-input label='Почта' value=email }}
+    {{> static-input label='Логин' value=login }}
+    {{> static-input label='Имя' value=firstName }}
+    {{> static-input label='Фамилия' value=secondName }}
+    {{> static-input label='Телефон' value=phone }}
   </div>
   <div class="{{CG_profile-view elem='buttons'}}">
-    {{> button id=editProfileBtnId value='Изменить данные' className=(CG_profile-view elem='button') }}
-    {{> button id=editPasswordBtnId value='Изменить пароль' disabled=true className=(CG_profile-view elem='button') }}
+    {{{editProfileButton}}}
+    {{{editPasswordButton}}}
+  </div>
+  <div class="{{CG_profile-view elem='back-link'}}">
+    {{> link href='/chats' value='Вернуться к чатам' }}
   </div>
 </main>
+

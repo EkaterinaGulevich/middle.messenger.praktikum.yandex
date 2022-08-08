@@ -1,10 +1,14 @@
 <button
   class="{{CG_button
     modifiers=(CG_button-modifiers withIcon=withIcon fullWidth=fullWidth variant=variant) className=className}}"
+
   {{#if disabled}}
-  disabled
+    disabled
   {{/if}}
-  id={{id}}
+
+  {{#if id}}
+    id={{id}}
+  {{/if}}
 >
   {{value}}
 </button>

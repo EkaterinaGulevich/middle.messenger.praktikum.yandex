@@ -1,18 +1,18 @@
-import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
-import { InputComponent } from 'src/components/input/input';
-
 import { AuthComponent } from '../auth';
+import { InputComponent } from 'src/components/input/input';
+import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
 
-export function createFormElements(ctx: AuthComponent): InputComponent[] {
+export function createFormElements(ctx: AuthComponent): { loginInput: InputComponent; passwordInput: InputComponent } {
   const commonInputProps: Partial<TInputTmpProps> = {
     fullWidth: true,
     className: 'auth-input',
   };
+
   const callbacks: TInputComponentCallbacks = {
-    blur: ctx.onBlur,
+    onblur: ctx.onBlur,
   };
+
   const loginInput = new InputComponent(
-    `#${ctx.formId}`,
     {
       ...commonInputProps,
       name: 'login',
@@ -21,8 +21,8 @@ export function createFormElements(ctx: AuthComponent): InputComponent[] {
     },
     callbacks
   );
+
   const passwordInput = new InputComponent(
-    `#${ctx.formId}`,
     {
       ...commonInputProps,
       name: 'password',
@@ -32,5 +32,5 @@ export function createFormElements(ctx: AuthComponent): InputComponent[] {
     callbacks
   );
 
-  return [loginInput, passwordInput];
+  return { loginInput, passwordInput };
 }

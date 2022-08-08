@@ -1,0 +1,19 @@
+<div class='{{CG_chats-header}}'>
+  <div class='{{CG_chats-header elem='menu-btn' modifiers=menuBtnModifiers}}'>
+    {{{menuButton}}}
+    {{#if isSettingsOpen}}
+      <div class='{{CG_chats-header elem='settings-list'}}'>
+        <div class='{{CG_chats-header elem='settings-item'}}' id={{profileBtnId}}>
+          Профиль
+        </div>
+        <div class='{{CG_chats-header elem='settings-item'}}' id={{addContactBtnId}}>
+          Добавить контакт
+        </div>
+        <div class='{{CG_chats-header elem='settings-item' modifiers='logout'}}' id={{logoutBtnId}}>
+          Выйти
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  {{{searchInputComponent}}}
+</div>
