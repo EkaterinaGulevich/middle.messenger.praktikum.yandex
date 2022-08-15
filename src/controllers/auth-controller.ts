@@ -3,6 +3,7 @@ import { AuthApi } from 'src/api';
 import { store } from 'src/store';
 import { STORE_ITEM } from 'src/consts/local-storage-keys';
 
+// TODO: для всех запросов во всех контроллерах добавить catch c обработкой ошибок
 class Controller {
   signUp(data: TSignUpRequest) {
     return AuthApi.signUp(data);

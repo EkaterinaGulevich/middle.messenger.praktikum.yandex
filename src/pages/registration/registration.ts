@@ -90,6 +90,8 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
         })
         .catch((error) => {
           if (error.reason === LOGIN_ALREADY_EXISTS) {
+            // TODO: выводить в уведомлении
+            // eslint-disable-next-line
             alert('Пользователь с введенным логином уже существует. Пожалуйста, введите придумайте другой логин');
           }
         });

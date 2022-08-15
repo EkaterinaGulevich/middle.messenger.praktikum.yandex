@@ -17,7 +17,6 @@ export type TChatResponseBackend = {
   };
 };
 
-
 export type TChatResponse = {
   id: number;
   title: string;

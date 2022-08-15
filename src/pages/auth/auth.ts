@@ -68,6 +68,8 @@ export class AuthComponent extends Component<TAuthComponentState> {
         })
         .catch((error) => {
           if (error.reason === LOGIN_OR_PASSWORD_INCORRECT) {
+            // TODO: выводить в уведомлении
+            // eslint-disable-next-line
             alert('Неверный логин или пароль');
           }
         });

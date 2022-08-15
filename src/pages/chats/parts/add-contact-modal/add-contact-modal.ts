@@ -4,7 +4,7 @@ import { createTmpClassName } from 'src/utils';
 import { Component } from 'src/modules';
 import { ButtonComponent } from 'src/components/button/button';
 import { ChatsController } from 'src/controllers';
-import { InputComponent } from 'src/components/input/input'
+import { InputComponent } from 'src/components/input/input';
 
 import template from './add-contact-modal.hbs';
 import { TAddContactModalCallbacks, TAddContactModalComponentState } from './add-contact-modal.types';

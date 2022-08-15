@@ -1,10 +1,11 @@
 import { renderComponentDOM } from 'src/utils';
-import { TRoutPathname } from 'src/consts/routes';
+import { TRoutePathname } from 'src/consts/routes';
 import { Component } from 'src/modules';
 import { TJsonObject } from 'src/types';
 
+// TODO убрать дублирование типа в src/consts/routes.ts
 type TRoute = {
-  pathname: TRoutPathname | null;
+  pathname: TRoutePathname | null;
   component: Component<TJsonObject>;
 };
 
@@ -14,7 +15,7 @@ class Router {
   private defaultComponent: Component<TJsonObject> | null = null;
   private currentRoute: TRoute | null = null;
 
-  use(pathname: TRoutPathname, component: Component<TJsonObject>) {
+  use(pathname: TRoutePathname, component: Component<TJsonObject>) {
     const route: TRoute = { pathname, component: component };
     this.routes.push(route);
     return this;
@@ -51,7 +52,7 @@ class Router {
     renderComponentDOM(route.component);
   }
 
-  go(pathname: TRoutPathname) {
+  go(pathname: TRoutePathname) {
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }

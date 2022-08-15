@@ -1,4 +1,4 @@
-import { TGroupOfMessage } from 'src/types'
+import { TGroupOfMessage } from 'src/types';
 
 export type TMessagesTmpProps = {
   isSelectedChat: boolean;

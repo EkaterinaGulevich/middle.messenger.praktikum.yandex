@@ -19,6 +19,8 @@ registerHelper('getTime', (params: { hash: Pick<TMessageTmpProps, 'time'> }) => 
 registerHelper('transformLink', (params: { hash: Pick<TMessageTmpProps, 'text'> }) => {
   const { text } = params.hash;
   return text.replace(
+    // TODO: вынести в константы говорящим названием
+    // eslint-disable-next-line
     /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
     ($1) => `<a href=${$1}>${$1}</a>`
   );

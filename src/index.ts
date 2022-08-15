@@ -13,6 +13,8 @@ root.id = ROOT_SELECTOR.replace('#', '');
 const modal = document.createElement('div');
 modal.id = MODAL_SELECTOR.replace('#', '');
 
+// TODO для всех querySelector записывать тип через generic и проверять на null (проверить во всем проекте)
+// document.querySelector('body') as HTMLBodyElement -> document.querySelector<HTMLBodyElement>('body');
 const body = document.querySelector('body') as HTMLBodyElement;
 body.appendChild(root);
 body.appendChild(modal);

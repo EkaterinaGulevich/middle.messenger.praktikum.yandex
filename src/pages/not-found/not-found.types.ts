@@ -1,5 +1,5 @@
-import { TRoutPathname } from 'src/consts/routes';
+import { TRoutePathname } from 'src/consts/routes';
 
 export type TNotFoundTmpProps = {
-  backPathname: TRoutPathname;
+  backPathname: TRoutePathname;
 };

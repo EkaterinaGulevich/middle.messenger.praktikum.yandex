@@ -4,6 +4,7 @@ import { TSignUpRequest, TSignInRequest, TUserResponse, TSignUpRequestBackend, T
 
 const authAPIInstance = new HTTPTransport(`${BASE_URL}/auth`);
 
+// TODO: пройтись по проекту и проверить, что название файлов соответствует названию класса
 class Api {
   signUp(data: TSignUpRequest) {
     const requestData: TSignUpRequestBackend = {

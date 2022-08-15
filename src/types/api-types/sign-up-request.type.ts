@@ -7,7 +7,6 @@ export type TSignUpRequestBackend = {
   phone: string;
 };
 
-
 export type TSignUpRequest = {
   firstName: string;
   secondName: string;

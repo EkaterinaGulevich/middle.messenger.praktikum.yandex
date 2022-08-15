@@ -1,6 +1,7 @@
 export type TMessageResponseBackend = {
   chat_id: number;
   content: string;
+  // eslint-disable-next-line
   file: any; // TODO: описать тип, когда будет использоваться
   id: number;
   is_read: boolean;

@@ -5,12 +5,12 @@ import { ProfileViewComponent } from 'src/pages/profile-view/profile-view';
 import { ProfileEditComponent } from 'src/pages/profile-edit/profile-edit';
 
 import { Component } from 'src/modules/component';
-import { TJsonObject } from 'src/types/'
+import { TJsonObject } from 'src/types/';
 
-export type TRoutPathname = '/' | '/chats' | '/auth' | '/registration' | '/profile' | '/edit-profile';
+export type TRoutePathname = '/' | '/chats' | '/auth' | '/registration' | '/profile' | '/edit-profile';
 
 type TRout = {
-  pathname: TRoutPathname;
+  pathname: TRoutePathname;
   component: Component<TJsonObject>;
 };
 

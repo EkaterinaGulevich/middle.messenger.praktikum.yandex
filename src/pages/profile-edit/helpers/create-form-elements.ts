@@ -1,7 +1,7 @@
 import { ProfileEditComponent } from '../profile-edit';
 import { TFormInputComponents } from 'src/pages/profile-edit/profile-edit.types';
-import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types'
-import { InputComponent } from 'src/components/input/input'
+import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
+import { InputComponent } from 'src/components/input/input';
 
 export function createFormElements(ctx: ProfileEditComponent): TFormInputComponents {
   const commonInputProps: Partial<TInputTmpProps> = {

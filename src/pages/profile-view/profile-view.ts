@@ -4,7 +4,7 @@ import { createClassName, createTmpClassName } from 'src/utils';
 import { router, Component } from 'src/modules';
 import { AuthController } from 'src/controllers';
 import { ButtonComponent } from 'src/components/button/button';
-import { RESOURSES_URL } from 'src/consts/common'
+import { RESOURSES_URL } from 'src/consts/common';
 
 import { TProfileViewComponentState } from './profile-view.types';
 import template from './profile-view.hbs';

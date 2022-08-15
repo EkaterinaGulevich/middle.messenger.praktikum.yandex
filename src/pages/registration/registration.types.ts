@@ -8,7 +8,7 @@ export type TRegistrationTmpProps = {
   phoneInput: string;
   passwordInput: string;
   repeatPasswordInput: string;
-  signUpButton: string
+  signUpButton: string;
 };
 
 export type TRegistrationComponentState = {

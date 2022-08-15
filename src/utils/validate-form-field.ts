@@ -28,6 +28,8 @@ export const validateFormField = (fieldName: string, value: string): null | stri
       break;
     }
     case 'email': {
+      // TODO disable eslint
+      // eslint-disable-next-line
       if (!/^[A-Za-z-_\.\d]+@[A-Za-z]+\.[A-Za-z]+$/.test(value)) {
         // латиница, может включать цифры и спецсимволы вроде дефиса,
         // обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы

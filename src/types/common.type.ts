@@ -18,10 +18,7 @@ export type Paths<T, D extends number = 10> = [D] extends [never]
     }[keyof T]
   : '';
 
-export type TypeFromPath<
-  T extends TJsonObject,
-  Path extends string
-> = {
+export type TypeFromPath<T extends TJsonObject, Path extends string> = {
   [K in Path]: K extends keyof T
     ? T[K]
     : K extends `${infer P}.${infer S}`
@@ -30,5 +27,3 @@ export type TypeFromPath<
       : never
     : never;
 }[Path];
-
-

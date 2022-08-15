@@ -10,7 +10,7 @@ export const groupMessageByDate = (
   messages.forEach((mes) => {
     const group = groups.find((g) => g.date === getRelativeDate(mes.time));
     if (group) {
-      if (group.messages.find(m => m.time === mes.time && m.content === mes.content) === undefined) {
+      if (group.messages.find((m) => m.time === mes.time && m.content === mes.content) === undefined) {
         group.messages.push(mes);
       }
     } else {
