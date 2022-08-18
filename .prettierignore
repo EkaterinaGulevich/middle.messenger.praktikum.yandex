@@ -1,1 +1,6 @@
 *.hbs
+/node_modules
+/dist
+/.nyc_output
+/coverage
+server.js
