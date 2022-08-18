@@ -1,56 +1,122 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName, renderArrayOfComponentsDOM, validateFormField } from 'src/utils';
-import { Component } from 'src/modules';
+import { createTmpClassName, validateFormField, getFormData, createClassName } from 'src/utils';
+import { router, Component } from 'src/modules';
+import { AuthController, UserController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';
+import { RESOURSES_URL } from 'src/consts/common';
 
 import template from './profile-edit.hbs';
-import { TProfileEditComponentState } from './profile-edit.types';
+import { TFormInputComponents, TProfileEditComponentState } from './profile-edit.types';
 import { createFormElements } from './helpers/create-form-elements';
 import './profile-edit.scss';
+import { ButtonComponent } from 'src/components/button/button';
 
-registerHelper('CG_profile-edit', (options) => createTmpClassName(options, 'profile-edit'));
+const BASE_CLASS_NAME = 'profile-edit';
+
+registerHelper('CG_profile-edit', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
 const INITIAL_STATE: TProfileEditComponentState = {
-  email: 'email@gmail.com',
-  login: 'meteor',
-  first_name: 'Екатерина',
-  second_name: 'Гулевич',
-  phone: '+71111111111',
+  email: '',
+  login: '',
+  firstName: '',
+  secondName: '',
+  phone: '',
+  avatar: '',
 };
 
 export class ProfileEditComponent extends Component<TProfileEditComponentState> {
-  formElements: InputComponent[];
+  childComponents: TFormInputComponents & {
+    cancelButton: ButtonComponent;
+    saveButton: ButtonComponent;
+  };
 
-  readonly saveBtnId: string;
-  readonly cancelBtnId: string;
-  readonly formId: string;
+  readonly avatarId: string;
 
-  constructor(parentElemSelector: string) {
-    super(INITIAL_STATE, parentElemSelector);
+  constructor() {
+    super(INITIAL_STATE);
 
-    this.saveBtnId = 'SAVE_BTN';
-    this.cancelBtnId = 'CANCEL_BTN';
-    this.formId = 'EDIT_FORM';
+    this.avatarId = 'AVATAR_ID';
 
-    this.formElements = createFormElements(this);
+    this.onSave = this.onSave.bind(this);
+
+    this.childComponents = {
+      ...createFormElements(this),
+      saveButton: new ButtonComponent(
+        {
+          value: 'Сохранить',
+          className: createClassName(BASE_CLASS_NAME, 'button'),
+        },
+        {
+          onclick: this.onSave,
+        }
+      ),
+      cancelButton: new ButtonComponent(
+        {
+          value: 'Отмена',
+          variant: 'secondary',
+          className: createClassName(BASE_CLASS_NAME, 'button'),
+        },
+        {
+          onclick: this.onCancel,
+        }
+      ),
+    };
   }
 
   registerEvents() {
-    const cancelBtn = document.querySelector(`#${this.cancelBtnId}`);
-    if (!cancelBtn) {
-      throw Error(`Not found HTMLElement with id=${this.cancelBtnId} in DOM`);
-    }
-    cancelBtn.addEventListener('click', this.onCancel);
+    const uploadInput = document.querySelector('#upload_file') as HTMLInputElement;
+
+    const avatar = document.querySelector(`#${this.avatarId}`);
+    avatar?.addEventListener('click', () => {
+      uploadInput.click();
+    });
+
+    uploadInput.addEventListener('change', (_e) => {
+      const uploadedAvatar = document.querySelector('input[name="avatar"]') as HTMLInputElement;
+
+      const file = uploadedAvatar?.files?.[0];
+      if (file) {
+        UserController.changeAvatar(file).then((user) => {
+          this.setState(user);
+        });
+      }
+    });
   }
 
   componentDidMount() {
-    renderArrayOfComponentsDOM(this.formElements, `#${this.formId}`);
-    this.registerEvents();
+    AuthController.getUser().then((user) => {
+      this.setState(user);
+      this.childComponents.emailInput.value = user.email;
+      this.childComponents.loginInput.value = user.login;
+      this.childComponents.firstNameInput.value = user.firstName;
+      this.childComponents.secondNameInput.value = user.secondName;
+      this.childComponents.phoneNameInput.value = user.phone;
+    });
   }
 
   onCancel() {
-    window.location.pathname = '/chats';
+    router.back();
+  }
+
+  onSave() {
+    let isError = false;
+    const { emailInput, loginInput, firstNameInput, secondNameInput, phoneNameInput } = this.childComponents;
+
+    [emailInput, loginInput, firstNameInput, secondNameInput, phoneNameInput].forEach((input) => {
+      const error = validateFormField(input.state.name, input.value);
+      input.setState({ error });
+      if (error) {
+        isError = true;
+      }
+    });
+
+    if (!isError) {
+      const { firstName, email, secondName, login, phone } = getFormData('edit');
+      UserController.changeProfile({ firstName, email, secondName, login, phone }).then(() => {
+        router.go('/profile');
+      });
+    }
   }
 
   onBlur(event: Event, component: InputComponent) {
@@ -61,11 +127,15 @@ export class ProfileEditComponent extends Component<TProfileEditComponentState> 
 
   render() {
     return template({
-      saveBtnId: this.saveBtnId,
-      cancelBtnId: this.cancelBtnId,
-      formId: this.formId,
+      avatarId: this.avatarId,
+      avatar: this.state.avatar ? `${RESOURSES_URL}${this.state.avatar}` : '',
+      emailInput: this.childComponents.emailInput.elementHtml,
+      loginInput: this.childComponents.loginInput.elementHtml,
+      firstNameInput: this.childComponents.firstNameInput.elementHtml,
+      secondNameInput: this.childComponents.secondNameInput.elementHtml,
+      phoneNameInput: this.childComponents.phoneNameInput.elementHtml,
+      cancelButton: this.childComponents.cancelButton.elementHtml,
+      saveButton: this.childComponents.saveButton.elementHtml,
     });
   }
 }
-
-export const createProfileEdit = (parentSelector: string) => new ProfileEditComponent(parentSelector);

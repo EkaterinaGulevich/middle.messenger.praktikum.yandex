@@ -1,41 +1,26 @@
-import { renderComponentDOM } from 'src/utils';
+import { router } from 'src/modules';
+import { NotFoundPageComponent } from 'src/pages/not-found/not-found';
+import { routes } from 'src/consts/routes';
 
-import { createChats } from './pages/chats/chats';
-import { createAuth } from './pages/auth/auth';
-import { createRegistration } from './pages/registration/registration';
-import { createProfileView } from './pages/profile-view/profile-view';
-import { createProfileEdit } from './pages/profile-edit/profile-edit';
+import 'src/partials';
 
-import { NotFoundPageTpl } from './pages/not-found/not-found';
-import './components';
 import './style.scss';
+import { MODAL_SELECTOR, ROOT_SELECTOR } from 'src/consts/common';
 
-const currentPathname = window.location.pathname;
-const ROOT_SELECTOR = '#root';
-const root = document.getElementById('root');
+const root = document.createElement('div');
+root.id = ROOT_SELECTOR.replace('#', '');
 
-if (!root) {
-  throw Error('Not found HTMLElement with id="root" in DOM');
-}
+const modal = document.createElement('div');
+modal.id = MODAL_SELECTOR.replace('#', '');
 
-switch (currentPathname) {
-  case '/':
-  case '/chats':
-    renderComponentDOM(createChats(ROOT_SELECTOR));
-    break;
-  case '/auth':
-    renderComponentDOM(createAuth(ROOT_SELECTOR));
-    break;
-  case '/registration':
-    renderComponentDOM(createRegistration(ROOT_SELECTOR));
-    break;
-  case '/profile':
-    renderComponentDOM(createProfileView(ROOT_SELECTOR));
-    break;
-  case '/edit-profile':
-    renderComponentDOM(createProfileEdit(ROOT_SELECTOR));
-    break;
-  default:
-    root.innerHTML = NotFoundPageTpl();
-    break;
-}
+// TODO для всех querySelector записывать тип через generic и проверять на null (проверить во всем проекте)
+// document.querySelector('body') as HTMLBodyElement -> document.querySelector<HTMLBodyElement>('body');
+const body = document.querySelector('body') as HTMLBodyElement;
+body.appendChild(root);
+body.appendChild(modal);
+
+routes.forEach(({ pathname, component }) => {
+  router.use(pathname, component);
+});
+
+router.useDefault(new NotFoundPageComponent()).start();

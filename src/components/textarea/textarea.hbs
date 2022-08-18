@@ -1,7 +1,12 @@
 <textarea
+  {{#if id}}
+    id='{{id}}'
+  {{/if}}
+
   class='{{CG_textarea className=className}}'
   placeholder={{placeholder}}
   rows='1'
+  autofocus='autofocus'
   autocomplete='off'
   autocapitalize='off'
   name={{name}}

@@ -1,3 +1,6 @@
+// TODO: сделать наименования ошибок более конкретными для пользователя
+// TODO: перенести в хэлперы и разделить поля для каждой из форм
+// TODO: добавить валидацию для поля Повторить пароль
 export const validateFormField = (fieldName: string, value: string): null | string => {
   let error: null | string = null;
   switch (fieldName) {
@@ -15,8 +18,8 @@ export const validateFormField = (fieldName: string, value: string): null | stri
       }
       break;
     }
-    case 'first_name':
-    case 'second_name': {
+    case 'firstName':
+    case 'secondName': {
       if (!/^[A-ZА-Я][a-zа-я-]+$/.test(value)) {
         // латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр,
         // нет спецсимволов (допустим только дефис)
@@ -25,6 +28,8 @@ export const validateFormField = (fieldName: string, value: string): null | stri
       break;
     }
     case 'email': {
+      // TODO disable eslint
+      // eslint-disable-next-line
       if (!/^[A-Za-z-_\.\d]+@[A-Za-z]+\.[A-Za-z]+$/.test(value)) {
         // латиница, может включать цифры и спецсимволы вроде дефиса,
         // обязательно должна быть «собака» (@) и точка после неё, но перед точкой обязательно должны быть буквы

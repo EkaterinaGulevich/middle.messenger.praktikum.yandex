@@ -1,0 +1,2 @@
+export const SOCKET_WAS_CLOSED_CODE = 1000;
+export const SOCKET_CONNECTION_BREAK_CODE = 1006;

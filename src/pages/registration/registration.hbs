@@ -1,10 +1,16 @@
 <main class="{{CG_registration }}">
   <div class="{{CG_registration elem='wrapper'}}">
     <h1 class="{{CG_registration elem='title'}}">Регистрация</h1>
-    <form id={{formId}} class="{{CG_registration elem='inputs-wrapper'}}" name="registration">
-        <!--   form inputs     -->
+    <form class="{{CG_registration elem='inputs-wrapper'}}" name="registration">
+      {{{emailInput}}}
+      {{{loginInput}}}
+      {{{firstNameInput}}}
+      {{{secondNameInput}}}
+      {{{phoneInput}}}
+      {{{passwordInput}}}
+      {{{repeatPasswordInput}}}
     </form>
-    {{> button id=registrationBtnId value='Зарегистрироваться' fullWidth=true}}
+    {{{signUpButton}}}
     {{> link href='/auth' value='Есть аккаунт?' className=(CG_registration elem='link') }}
   </div>
 </main>

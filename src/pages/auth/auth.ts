@@ -1,8 +1,12 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName, validateFormField, renderArrayOfComponentsDOM, getFormData } from 'src/utils';
-import { Component } from 'src/modules';
+import { createTmpClassName, validateFormField, getFormData } from 'src/utils';
+import { Component, router } from 'src/modules';
+import { AuthController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';
+import { ButtonComponent } from 'src/components/button/button';
+import { LOGIN_OR_PASSWORD_INCORRECT } from 'src/consts/api-errors';
+import { store } from 'src/store';
 
 import template from './auth.hbs';
 import { TAuthComponentState } from './auth.types';
@@ -17,38 +21,38 @@ const INITIAL_STATE: TAuthComponentState = {
 };
 
 export class AuthComponent extends Component<TAuthComponentState> {
-  readonly authBtnId: string;
-  readonly formId: string;
-  formElements: InputComponent[];
+  readonly childComponents: { loginInput: InputComponent; passwordInput: InputComponent; signInBtn: ButtonComponent };
 
-  constructor(parentElemSelector: string) {
-    super(INITIAL_STATE, parentElemSelector);
-
-    this.authBtnId = 'AUTH_BTN';
-    this.formId = 'FORM';
-    this.formElements = createFormElements(this);
+  constructor() {
+    super(INITIAL_STATE);
 
     this.onAuth = this.onAuth.bind(this);
-  }
 
-  registerEvents() {
-    const authBtn = document.querySelector(`#${this.authBtnId}`);
-    if (!authBtn) {
-      throw Error(`Not found HTMLElement with id=${this.authBtnId} in DOM`);
-    }
-    authBtn.addEventListener('click', this.onAuth);
+    this.childComponents = {
+      ...createFormElements(this),
+      signInBtn: new ButtonComponent(
+        {
+          value: 'Авторизоваться',
+          fullWidth: true,
+        },
+        {
+          onclick: this.onAuth,
+        }
+      ),
+    };
   }
 
   componentDidMount() {
-    renderArrayOfComponentsDOM(this.formElements, `#${this.formId}`);
-    this.registerEvents();
+    const currentUser = store.getState().currentUser;
+    if (currentUser) {
+      AuthController.logout();
+    }
   }
 
   onAuth() {
-    console.log(getFormData('auth'));
-
     let isError = false;
-    this.formElements.forEach((input) => {
+    const { loginInput, passwordInput } = this.childComponents;
+    [loginInput, passwordInput].forEach((input) => {
       const error = validateFormField(input.state.name, input.value);
       input.setState({ error });
       if (error) {
@@ -57,7 +61,18 @@ export class AuthComponent extends Component<TAuthComponentState> {
     });
 
     if (!isError) {
-      window.location.pathname = '/chats';
+      const { login = '', password = '' } = getFormData('auth');
+      AuthController.signIn({ login, password })
+        .then(() => {
+          router.go('/chats');
+        })
+        .catch((error) => {
+          if (error.reason === LOGIN_OR_PASSWORD_INCORRECT) {
+            // TODO: выводить в уведомлении
+            // eslint-disable-next-line
+            alert('Неверный логин или пароль');
+          }
+        });
     }
   }
 
@@ -69,10 +84,9 @@ export class AuthComponent extends Component<TAuthComponentState> {
 
   render() {
     return template({
-      authBtnId: this.authBtnId,
-      formId: this.formId,
+      loginInputComponent: this.childComponents.loginInput.elementHtml,
+      passwordInputComponent: this.childComponents.passwordInput.elementHtml,
+      signInButtonComponent: this.childComponents.signInBtn.elementHtml,
     });
   }
 }
-
-export const createAuth = (parentSelector: string) => new AuthComponent(parentSelector);

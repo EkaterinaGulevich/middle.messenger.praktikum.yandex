@@ -1,69 +1,100 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName, getFormData } from 'src/utils';
+import { createTmpClassName, getFormData, validateFormField } from 'src/utils';
+import { router } from 'src/modules';
+import { InputComponent } from 'src/components/input/input';
+import { AuthController } from 'src/controllers';
+import { Component } from 'src/modules/component';
+import { store } from 'src/store';
 
-import template from './registration.hbs';
-import { TRegistrationComponentState } from './registration.types';
-import './registration.scss';
-import { Component } from '../../modules';
-import { InputComponent } from '../../components/input/input';
-import { renderArrayOfComponentsDOM, validateFormField } from '../../utils';
+import { TRegistrationComponentState, TRegistrationFormInputs } from './registration.types';
 import { createFormElements } from './helpers/create-form-elements';
+import template from './registration.hbs';
+import './registration.scss';
+import { ButtonComponent } from 'src/components/button/button';
+import { LOGIN_ALREADY_EXISTS } from 'src/consts/api-errors';
 
 registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
 
 const INITIAL_STATE: TRegistrationComponentState = {
   email: '',
   login: '',
-  first_name: '',
-  second_name: '',
+  firstName: '',
+  secondName: '',
   phone: '',
   password: '',
-  repeat_password: '',
+  repeatPassword: '',
 };
 
 export class RegistrationComponent extends Component<TRegistrationComponentState> {
-  readonly registrationBtnId: string;
-  readonly formId: string;
-  formElements: InputComponent[];
+  readonly childComponents: TRegistrationFormInputs & { signUpButton: ButtonComponent };
 
-  constructor(parentElemSelector: string) {
-    super(INITIAL_STATE, parentElemSelector);
-
-    this.registrationBtnId = 'REGISTRATION_BTN';
-    this.formId = 'FORM';
-    this.formElements = createFormElements(this);
+  constructor() {
+    super(INITIAL_STATE);
 
     this.onRegistration = this.onRegistration.bind(this);
-  }
 
-  registerEvents() {
-    const registrationBtn = document.querySelector(`#${this.registrationBtnId}`);
-    if (!registrationBtn) {
-      throw Error(`Not found HTMLElement with id=${this.registrationBtnId} in DOM`);
-    }
-    registrationBtn.addEventListener('click', this.onRegistration);
+    this.childComponents = {
+      ...createFormElements(this),
+      signUpButton: new ButtonComponent(
+        { value: 'Зарегистрироваться', fullWidth: true },
+        {
+          onclick: this.onRegistration,
+        }
+      ),
+    };
   }
 
   componentDidMount() {
-    renderArrayOfComponentsDOM(this.formElements, `#${this.formId}`);
-    this.registerEvents();
+    const currentUser = store.getState().currentUser;
+    if (currentUser) {
+      AuthController.logout();
+    }
   }
 
   onRegistration() {
-    console.log(getFormData('registration'));
     let isError = false;
 
-    this.formElements.forEach((input) => {
-      const error = validateFormField(input.state.name, input.value);
-      input.setState({ error });
-      if (error) {
-        isError = true;
+    const { loginInput, firstNameInput, secondNameInput, phoneInput, passwordInput, repeatPasswordInput, emailInput } =
+      this.childComponents;
+
+    [loginInput, firstNameInput, secondNameInput, phoneInput, passwordInput, repeatPasswordInput, emailInput].forEach(
+      (input) => {
+        const error = validateFormField(input.state.name, input.value);
+        input.setState({ error });
+        if (error) {
+          isError = true;
+        }
       }
-    });
+    );
 
     if (!isError) {
-      window.location.pathname = '/auth';
+      const {
+        login = '',
+        password = '',
+        email = '',
+        firstName = '',
+        secondName = '',
+        phone = '',
+      } = getFormData('registration');
+      AuthController.signUp({
+        login,
+        password,
+        email,
+        firstName,
+        secondName,
+        phone,
+      })
+        .then(() => {
+          router.go('/chats');
+        })
+        .catch((error) => {
+          if (error.reason === LOGIN_ALREADY_EXISTS) {
+            // TODO: выводить в уведомлении
+            // eslint-disable-next-line
+            alert('Пользователь с введенным логином уже существует. Пожалуйста, введите придумайте другой логин');
+          }
+        });
     }
   }
 
@@ -75,10 +106,14 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
 
   render() {
     return template({
-      registrationBtnId: this.registrationBtnId,
-      formId: this.formId,
+      emailInput: this.childComponents.emailInput.elementHtml,
+      loginInput: this.childComponents.loginInput.elementHtml,
+      firstNameInput: this.childComponents.firstNameInput.elementHtml,
+      secondNameInput: this.childComponents.secondNameInput.elementHtml,
+      phoneInput: this.childComponents.phoneInput.elementHtml,
+      passwordInput: this.childComponents.passwordInput.elementHtml,
+      repeatPasswordInput: this.childComponents.repeatPasswordInput.elementHtml,
+      signUpButton: this.childComponents.signUpButton.elementHtml,
     });
   }
 }
-
-export const createRegistration = (parentSelector: string) => new RegistrationComponent(parentSelector);

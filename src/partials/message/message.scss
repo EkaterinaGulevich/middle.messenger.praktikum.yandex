@@ -1,0 +1,88 @@
+@import 'src/styles/colors';
+@import 'src/styles/animations';
+
+.message {
+  $borderRadius: 10px;
+
+  max-width: 50%;
+  width: fit-content;
+  padding: 14px;
+  color: $white;
+  font-size: 14px;
+  line-height: 20px;
+  position: relative;
+  margin-bottom: 10px;
+
+  background: rgb($white, 0.15);
+  border-radius: 0 $borderRadius $borderRadius $borderRadius;
+
+  &__info,
+  &__info-pseudo {
+    font-size: 12px;
+    line-height: 12px;
+    padding-left: 10px;
+  }
+
+  &__info-pseudo {
+    opacity: 0;
+  }
+
+  &__info {
+    display: block;
+    text-align: right;
+    float: right;
+    color: $smokyWhite;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 12px;
+  }
+
+  &__check-icons {
+    margin-left: 4px;
+    $size: 16px;
+    width: $size;
+    height: $size;
+    display: inline-block;
+    vertical-align: bottom;
+    background-image: url('../../../static/icons/checks.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: $size;
+  }
+
+  &--is-from-me {
+    background: rgb($black, 0.35);
+    border-radius: $borderRadius $borderRadius 0 $borderRadius;
+    margin-left: auto;
+  }
+
+  &:not(&--is-from-me) {
+    .message__check-icons {
+      display: none;
+    }
+  }
+
+  &--is-not-read {
+    .message__check-icons {
+      background-image: url('../../../static/icons/check.svg');
+    }
+  }
+
+  &__text {
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: $smokyWhite;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus {
+        text-decoration: underline;
+        outline: none;
+      }
+    }
+  }
+}

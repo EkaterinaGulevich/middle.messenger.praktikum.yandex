@@ -1,14 +1,13 @@
 <main class='{{CG_chats}}'>
   <div  class='{{CG_chats elem='chat-list'}}'>
+    {{{chatsHeaderComponent}}}
     {{#if isLoading}}
-      {{> loader }}
+      {{> loader  }}
+    {{else}}
+      {{{chatListComponent}}}
     {{/if}}
-
-    <div id={{listId}}>
-      <!-- блок для массива компонентов "чат" -->
-    </div>
   </div>
-  <div id={{messagesId}} class='{{CG_chats elem='messages'}}'>
-    <!-- блок для компонента "сообщения" -->
-  </div>
+{{{messagesComponent}}}
 </main>
+
+

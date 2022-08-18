@@ -1,0 +1,64 @@
+@import 'src/styles/colors';
+@import 'src/styles/animations';
+@import 'src/styles/common';
+
+.chats-header {
+  display: flex;
+  border-bottom: 1px solid $smokyWhite;
+  align-items: center;
+  background: rgb($black, 0.4);
+  position: relative;
+
+  &__menu-btn {
+    .button {
+      background-color: transparent;
+      box-shadow: 10px 2px 40px -12px;
+    }
+
+    &:hover,
+    &--is-open {
+      .button {
+        background-color: $anthracite;
+      }
+    }
+  }
+
+  .search-input {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+  }
+
+  &__settings-list {
+    position: absolute;
+    top: calc(#{$chatsHeaderHeight} + 1px);
+    width: 80%;
+    border-right: 1px solid $white;
+    border-bottom: 1px solid $white;
+    z-index: 2;
+    background-color: $grayBlue;
+    font-size: 14px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__settings-item {
+    padding: 12px 8px;
+    border-bottom: 1px solid $smokyWhite;
+    background-color: rgb($black, 0.1);
+
+    &--logout {
+      color: $lightRed;
+    }
+
+    &:last-child {
+      border: none;
+    }
+
+    &:hover {
+      background-color: $anthracite;
+
+      cursor: pointer;
+    }
+  }
+}

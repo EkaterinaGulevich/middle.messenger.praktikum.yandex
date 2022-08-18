@@ -1,0 +1,13 @@
+<div class='{{CG_message modifiers=(CG_message-modifiers isFromMe=isFromMe isRead=isRead) className=className}}'>
+  <div class='{{CG_message elem='text'}}'>
+    {{{transformLink text=text}}}
+    <span class='{{CG_message elem='info-pseudo'}}'>{{getTime time=time}}
+      <div class='{{CG_message elem='check-icons'}}'></div>
+    </span>
+  </div>
+  <div class='{{CG_message elem='info'}}'>
+    {{getTime time=time}}
+    <div class='{{CG_message elem='check-icons'}}'></div>
+  </div>
+
+</div>

@@ -1,3 +1,4 @@
+/** Получает элемент в виде строки и возвращает Element с переданным для него id */
 export const parseTmp = (template: string, id: string) => {
   const node = new DOMParser().parseFromString(template, 'text/html').body.firstChild;
   if (!node) {
@@ -11,5 +12,5 @@ export const parseTmp = (template: string, id: string) => {
 
   element.setAttribute('component_id', id);
 
-  return node;
+  return element;
 };

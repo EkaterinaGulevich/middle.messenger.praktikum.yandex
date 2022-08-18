@@ -1,22 +1,19 @@
+import { ProfileEditComponent } from '../profile-edit';
+import { TFormInputComponents } from 'src/pages/profile-edit/profile-edit.types';
 import { TInputComponentCallbacks, TInputTmpProps } from 'src/components/input/input.types';
 import { InputComponent } from 'src/components/input/input';
 
-import { ProfileEditComponent } from '../profile-edit';
-
-export function createFormElements(ctx: ProfileEditComponent): InputComponent[] {
-  const PARENT_SELECTOR = `#${ctx.formId}`;
-
+export function createFormElements(ctx: ProfileEditComponent): TFormInputComponents {
   const commonInputProps: Partial<TInputTmpProps> = {
     fullWidth: true,
     className: 'profile-edit-input',
     type: 'text',
   };
   const callbacks: TInputComponentCallbacks = {
-    blur: ctx.onBlur,
+    onblur: ctx.onBlur,
   };
 
   const emailInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'email',
@@ -27,7 +24,6 @@ export function createFormElements(ctx: ProfileEditComponent): InputComponent[] 
   );
 
   const loginInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'login',
@@ -38,29 +34,26 @@ export function createFormElements(ctx: ProfileEditComponent): InputComponent[] 
   );
 
   const firstNameInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
-      name: 'first_name',
+      name: 'firstName',
       placeholder: 'Имя',
-      value: ctx.state.first_name,
+      value: ctx.state.firstName,
     },
     callbacks
   );
 
   const secondNameInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
-      name: 'second_name',
+      name: 'secondName',
       placeholder: 'Фамилия',
-      value: ctx.state.second_name,
+      value: ctx.state.secondName,
     },
     callbacks
   );
 
   const phoneNameInput = new InputComponent(
-    PARENT_SELECTOR,
     {
       ...commonInputProps,
       name: 'phone',
@@ -70,5 +63,5 @@ export function createFormElements(ctx: ProfileEditComponent): InputComponent[] 
     callbacks
   );
 
-  return [emailInput, loginInput, firstNameInput, secondNameInput, phoneNameInput];
+  return { emailInput, loginInput, firstNameInput, secondNameInput, phoneNameInput };
 }

@@ -1,47 +1,65 @@
 import { registerHelper } from 'handlebars';
 
-import { createTmpClassName } from 'src/utils';
+import { createClassName, createTmpClassName } from 'src/utils';
+import { router, Component } from 'src/modules';
+import { AuthController } from 'src/controllers';
+import { ButtonComponent } from 'src/components/button/button';
+import { RESOURSES_URL } from 'src/consts/common';
 
+import { TProfileViewComponentState } from './profile-view.types';
 import template from './profile-view.hbs';
 import './profile-view.scss';
-import { Component } from '../../modules';
-import { TJsonObject } from '../../common-types';
 
-registerHelper('CG_profile-view', (options) => createTmpClassName(options, 'profile-view'));
+const BASE_CLASS_NAME = 'profile-view';
 
-export class ProfileViewComponent extends Component<TJsonObject> {
-  readonly editProfileBtnId: string;
-  readonly editPasswordBtnId: string;
+registerHelper('CG_profile-view', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
-  constructor(parentElemSelector: string) {
-    super({}, parentElemSelector);
+const initialState: TProfileViewComponentState = {};
 
-    this.editProfileBtnId = 'EDIT_PROFILE_BTN';
-    this.editPasswordBtnId = 'EDIT_PASSWORD_BTN';
-  }
+export class ProfileViewComponent extends Component<TProfileViewComponentState> {
+  readonly childComponents: { editProfileButton: ButtonComponent; editPasswordButton: ButtonComponent };
 
-  registerEvents() {
-    const editProfileBtn = document.querySelector(`#${this.editProfileBtnId}`);
-    if (!editProfileBtn) {
-      throw Error(`Not found HTMLElement with id=${this.editProfileBtnId} in DOM`);
-    }
-    editProfileBtn.addEventListener('click', this.onEditProfileClick);
+  constructor() {
+    super(initialState);
+    this.childComponents = {
+      editProfileButton: new ButtonComponent(
+        {
+          value: 'Изменить данные',
+          className: createClassName(BASE_CLASS_NAME, 'button'),
+        },
+        {
+          onclick: this.onEditProfileClick,
+        }
+      ),
+      editPasswordButton: new ButtonComponent({
+        value: 'Изменить пароль',
+        // TODO: добавить функционал для изменения пароля
+        disabled: true,
+        className: createClassName(BASE_CLASS_NAME, 'button'),
+      }),
+    };
   }
 
   componentDidMount() {
-    this.registerEvents();
+    AuthController.getUser().then((user) => {
+      this.setState(user);
+    });
   }
 
   onEditProfileClick() {
-    window.location.pathname = '/edit-profile';
+    router.go('/edit-profile');
   }
 
   render() {
     return template({
-      editProfileBtnId: this.editProfileBtnId,
-      editPasswordBtnId: this.editPasswordBtnId,
+      email: this.state.email,
+      login: this.state.login,
+      firstName: this.state.firstName,
+      secondName: this.state.secondName,
+      phone: this.state.phone,
+      avatar: this.state.avatar ? `${RESOURSES_URL}${this.state.avatar}` : '',
+      editProfileButton: this.childComponents.editProfileButton.elementHtml,
+      editPasswordButton: this.childComponents.editPasswordButton.elementHtml,
     });
   }
 }
-
-export const createProfileView = (parentSelector: string) => new ProfileViewComponent(parentSelector);

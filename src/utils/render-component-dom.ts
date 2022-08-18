@@ -1,7 +1,13 @@
-import { Component } from 'src/modules';
-import { TJsonObject } from '../common-types';
+import { Component } from 'src/modules/component';
+import { TJsonObject } from 'src/types';
+import { ROOT_SELECTOR } from 'src/consts/common';
 
 /** Используется для рендера у компонентов, наследуемых от {@link Component} */
 export function renderComponentDOM(component: Component<TJsonObject>) {
-  component.eventBus.emit(Component.EVENTS.FLOW_RENDER);
+  component.createElement();
+
+  if (component.element) {
+    document.querySelector(ROOT_SELECTOR)?.replaceChildren(component.element);
+    component.dispatchComponentDidMount();
+  }
 }
