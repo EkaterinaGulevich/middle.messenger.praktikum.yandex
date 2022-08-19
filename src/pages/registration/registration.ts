@@ -1,4 +1,4 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, getFormData, validateFormField } from 'src/utils';
 import { router } from 'src/modules';
@@ -14,7 +14,7 @@ import './registration.scss';
 import { ButtonComponent } from 'src/components/button/button';
 import { LOGIN_ALREADY_EXISTS } from 'src/consts/api-errors';
 
-registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
+Handlebars.registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
 
 const INITIAL_STATE: TRegistrationComponentState = {
   email: '',

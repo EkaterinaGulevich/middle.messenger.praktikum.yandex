@@ -2,7 +2,7 @@
   <div  class='{{CG_chats elem='chat-list'}}'>
     {{{chatsHeaderComponent}}}
     {{#if isLoading}}
-      {{> loader  }}
+      {{#> loader  }}{{/loader}}
     {{else}}
       {{{chatListComponent}}}
     {{/if}}

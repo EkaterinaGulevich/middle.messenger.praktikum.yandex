@@ -1,4 +1,4 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, getRelativeDate } from 'src/utils';
 import { Component } from 'src/modules';
@@ -12,11 +12,14 @@ import {
 } from 'src/pages/chats/parts';
 import './chat-list-item.scss';
 
-registerHelper('CG_chat-list-item', (options) => createTmpClassName(options, 'chat-list-item'));
-registerHelper('CG_chat-list-item-modifiers', (params: { hash: Pick<TChatListItemTmpProps, 'isActive'> }) => {
-  const { isActive } = params.hash;
-  return `${isActive ? 'is-active' : ''}`;
-});
+Handlebars.registerHelper('CG_chat-list-item', (options) => createTmpClassName(options, 'chat-list-item'));
+Handlebars.registerHelper(
+  'CG_chat-list-item-modifiers',
+  (params: { hash: Pick<TChatListItemTmpProps, 'isActive'> }) => {
+    const { isActive } = params.hash;
+    return `${isActive ? 'is-active' : ''}`;
+  }
+);
 
 export class ChatListItemComponent extends Component<TChatListItemComponentState> {
   callbacks: TChatListItemComponentCallbacks;

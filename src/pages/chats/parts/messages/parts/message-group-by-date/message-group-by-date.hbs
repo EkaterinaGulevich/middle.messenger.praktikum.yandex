@@ -1,6 +1,6 @@
 <div class='{{CG_message-group-by-date}}'>
   <div class='{{CG_message-group-by-date elem='date'}}'>{{date}}</div>
   {{#each messages}}
-   {{> message time=this.time text=this.content isFromMe=this.isFromMe isRead=this.isRead className=(CG_message-group-by-date elem='message') }}
+   {{#> message time=this.time text=this.content isFromMe=this.isFromMe isRead=this.isRead className=(CG_message-group-by-date elem='message') }}{{/message}}
   {{/each}}
 </div>

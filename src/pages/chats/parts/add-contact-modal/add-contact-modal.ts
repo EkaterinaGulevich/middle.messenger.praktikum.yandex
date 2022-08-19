@@ -1,4 +1,4 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
 import { Component } from 'src/modules';
@@ -10,7 +10,7 @@ import template from './add-contact-modal.hbs';
 import { TAddContactModalCallbacks, TAddContactModalComponentState } from './add-contact-modal.types';
 import './add-contact-modal.scss';
 
-registerHelper('CG_modal', (options) => createTmpClassName(options, 'modal'));
+Handlebars.registerHelper('CG_modal', (options) => createTmpClassName(options, 'modal'));
 
 const INITIAL_STATE: TAddContactModalComponentState = {};
 

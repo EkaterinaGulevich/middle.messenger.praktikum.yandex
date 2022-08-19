@@ -1,4 +1,4 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 import { createTmpClassName } from 'src/utils';
 import { Component } from 'src/modules';
 import { TJsonObject } from 'src/types';
@@ -6,7 +6,7 @@ import { TJsonObject } from 'src/types';
 import template from './not-found.hbs';
 import './not-found.scss';
 
-registerHelper('CG_not_found_page', (options) => createTmpClassName(options, 'not_found_page'));
+Handlebars.registerHelper('CG_not_found_page', (options) => createTmpClassName(options, 'not_found_page'));
 
 export class NotFoundPageComponent extends Component<TJsonObject> {
   constructor() {

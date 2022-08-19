@@ -2,7 +2,6 @@
 
 Веб-приложение для обмена мгновенными сообщениями.
 
-> Проект находится в разработке. Ожидаемая дата релиза 1-ой версии - сентябрь 2022.
 
 > Пока не адаптировано под мобильную версию.
 
@@ -28,10 +27,10 @@ $ npm run dev
 * `/auth` - авторизация
 * `/registration` - регистрация
 * `/profile` - просмотр профиля
-* `/edit-profile` - редактирование профиля (заглушка)
-* `/` и `/chats` - чаты (заглушка)
+* `/edit-profile` - редактирование профиля
+* `/` и `/chats` - чаты
 * other - 404
 
 ## Полезные ссылки
 * [Прототип в Figma](https://www.figma.com/file/JbTi3UC2k7B7QVvXOsYiwI/%D0%9C%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80?node-id=0%3A1)
-* [Демо](https://messenger-gulevich.netlify.app/auth)
+* [Демо (Netlify)](https://messenger-gulevich.netlify.app/auth)

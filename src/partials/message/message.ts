@@ -1,22 +1,21 @@
-import { registerHelper, registerPartial } from 'handlebars';
-
+import Handlebars from 'handlebars';
 import { createTmpClassName } from 'src/utils';
 
 import template from './message.hbs';
 import './message.scss';
 import { TMessageTmpProps } from './message.types';
 
-registerPartial('message', template);
+Handlebars.registerPartial('message', template);
 
-registerHelper('CG_message', (options) => createTmpClassName(options, 'message'));
+Handlebars.registerHelper('CG_message', (options) => createTmpClassName(options, 'message'));
 
-registerHelper('getTime', (params: { hash: Pick<TMessageTmpProps, 'time'> }) => {
+Handlebars.registerHelper('getTime', (params: { hash: Pick<TMessageTmpProps, 'time'> }) => {
   const { time } = params.hash;
   const date = new Date(time);
   return date.toLocaleString().slice(12, 17);
 });
 
-registerHelper('transformLink', (params: { hash: Pick<TMessageTmpProps, 'text'> }) => {
+Handlebars.registerHelper('transformLink', (params: { hash: Pick<TMessageTmpProps, 'text'> }) => {
   const { text } = params.hash;
   return text.replace(
     // TODO: вынести в константы говорящим названием
@@ -26,9 +25,7 @@ registerHelper('transformLink', (params: { hash: Pick<TMessageTmpProps, 'text'> 
   );
 });
 
-registerHelper('CG_message-modifiers', (params: { hash: Pick<TMessageTmpProps, 'isFromMe' | 'isRead'> }) => {
+Handlebars.registerHelper('CG_message-modifiers', (params: { hash: Pick<TMessageTmpProps, 'isFromMe' | 'isRead'> }) => {
   const { isFromMe, isRead } = params.hash;
   return `${isFromMe ? 'is-from-me' : ''} ${isRead ? 'is-read' : 'is-not-read'}`;
 });
-
-export const MessageTpl = template;

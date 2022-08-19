@@ -1,4 +1,4 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, validateFormField, getFormData } from 'src/utils';
 import { Component, router } from 'src/modules';
@@ -13,7 +13,7 @@ import { TAuthComponentState } from './auth.types';
 import { createFormElements } from './helpers/create-form-elements';
 import './auth.scss';
 
-registerHelper('CG_auth', (options) => createTmpClassName(options, 'auth'));
+Handlebars.registerHelper('CG_auth', (options) => createTmpClassName(options, 'auth'));
 
 const INITIAL_STATE: TAuthComponentState = {
   login: '',
