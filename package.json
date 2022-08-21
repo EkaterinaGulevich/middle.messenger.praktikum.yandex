@@ -24,7 +24,7 @@
     "dev:webpack": "webpack serve",
     "build:webpack": "webpack",
     "start:webpack": "npm run build:webpack && npm run serve",
-    "\n# EXPRESS SCRIPTS:": "",
+    "\n# EXPRESS:": "",
     "serve": "node ./server.js"
   },
   "engines": {
