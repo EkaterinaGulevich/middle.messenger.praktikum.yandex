@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "\n# CHECKING CODE SCRIPTS:": "",
+    "\n# FORMATTING CODE SCRIPTS:": "",
     "prepare": "husky install",
     "lint": "eslint src",
     "lint:fix": "npm run lint -- --fix",
@@ -11,12 +11,12 @@
     "prettier:fix": "npm run prettier -- --write",
     "stylelint": "stylelint \"**/*.css\"",
     "format": "npm run prettier:fix && npm run lint:fix && npm run stylelint",
-    "tsc": "tsc",
-    "check-and-fix-code": "npm run format && npm run tsc",
     "\n# TESTING CODE SCRIPTS:": "",
+    "tsc": "tsc",
     "test": "mocha",
     "test:coverage:text": "nyc npm run test",
     "test:coverage:html": "nyc --reporter=html npm run test && open-cli coverage/index.html",
+    "check-and-test-code": "npm run format && npm run tsc",
     "\n# PARCEL SCRIPTS:": "",
     "dev:parcel": "parcel --no-cache index.html",
     "build:parcel": "parcel build index.html",
@@ -27,6 +27,9 @@
     "start:webpack": "npm run build:webpack && npm run serve",
     "\n# EXPRESS:": "",
     "serve": "node ./server.js"
+  },
+  "lint-staged": {
+    "src/*": "npm run format"
   },
   "engines": {
     "node": ">=12.0"
@@ -63,6 +66,7 @@
     "handlebars-loader": "^1.7.2",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "open-cli": "^7.0.1",

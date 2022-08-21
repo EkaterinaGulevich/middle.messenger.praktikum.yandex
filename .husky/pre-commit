@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run check-and-fix-code
+npx lint-staged
+npm run check-and-test-code
