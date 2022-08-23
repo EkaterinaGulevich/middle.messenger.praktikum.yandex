@@ -33,7 +33,7 @@ export class HTTPTransport {
     url: string,
     options: TRequestOptions & { method: 'GET' | 'POST' | 'PUT' | 'DELETE' }
   ): Promise<XMLHttpRequest> => {
-    const { headers = {}, method, data, timeout = 500 } = options;
+    const { headers = {}, method, data, timeout = 5000 } = options;
     const dataIsFile = data instanceof File;
 
     return new Promise((resolve, reject) => {
