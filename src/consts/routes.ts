@@ -4,7 +4,7 @@ import { RegistrationComponent } from 'src/pages/registration/registration';
 import { ProfileViewComponent } from 'src/pages/profile-view/profile-view';
 import { ProfileEditComponent } from 'src/pages/profile-edit/profile-edit';
 
-import { Component } from 'src/modules/component';
+import { Component } from 'src/core/component';
 import { TJsonObject } from 'src/types/';
 
 export type TRoutePathname = '/' | '/chats' | '/auth' | '/registration' | '/profile' | '/edit-profile';

@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import { TMessageGroupByDateComponentState } from './message-group-by-date.types';
 import template from './message-group-by-date.hbs';

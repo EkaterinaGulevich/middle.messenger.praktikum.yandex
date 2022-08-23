@@ -1,10 +1,9 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName, getFormData, validateFormField } from 'src/utils';
-import { router } from 'src/modules';
+import { router, Component } from 'src/core';
 import { InputComponent } from 'src/components/input/input';
 import { AuthController } from 'src/controllers';
-import { Component } from 'src/modules/component';
 import { store } from 'src/store';
 
 import { TRegistrationComponentState, TRegistrationFormInputs } from './registration.types';

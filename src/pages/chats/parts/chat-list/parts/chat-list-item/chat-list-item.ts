@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName, getRelativeDate } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { RESOURSES_URL } from 'src/consts/common';
 
 import template from './chat-list-item.hbs';

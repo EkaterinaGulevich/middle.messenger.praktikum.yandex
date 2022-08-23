@@ -1,4 +1,4 @@
-import { Component } from 'src/modules/component';
+import { Component } from 'src/core';
 import { TJsonObject } from 'src/types';
 import { ROOT_SELECTOR } from 'src/consts/common';
 

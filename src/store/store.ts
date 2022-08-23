@@ -1,4 +1,4 @@
-import { EventBus } from 'src//modules';
+import { EventBus } from 'src/core';
 import { set } from 'src/utils';
 import { STORE_ITEM } from 'src/consts/local-storage-keys';
 

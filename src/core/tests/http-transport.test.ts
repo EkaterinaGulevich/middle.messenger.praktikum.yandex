@@ -1,7 +1,7 @@
 import { assert, expect } from 'chai';
 import { newMockXhr } from 'mock-xmlhttprequest';
 
-import { HTTPTransport } from 'src/modules';
+import { HTTPTransport } from 'src/core';
 
 const MockXhr = newMockXhr();
 MockXhr.onSend = (request) => {

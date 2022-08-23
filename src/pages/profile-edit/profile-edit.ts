@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName, validateFormField, getFormData, createClassName } from 'src/utils';
-import { router, Component } from 'src/modules';
+import { router, Component } from 'src/core';
 import { AuthController, UserController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';
 import { RESOURSES_URL } from 'src/consts/common';
@@ -65,7 +65,7 @@ export class ProfileEditComponent extends Component<TProfileEditComponentState> 
   }
 
   registerEvents() {
-    const uploadInput = document.querySelector('#upload_file') as HTMLInputElement;
+    const uploadInput = document.querySelector('#upload-file') as HTMLInputElement;
 
     const avatar = document.querySelector(`#${this.avatarId}`);
     avatar?.addEventListener('click', () => {

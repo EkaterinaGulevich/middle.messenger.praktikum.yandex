@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import template from './input.hbs';
 import { TInputComponentCallbacks, TInputComponentState, TInputEvents, TInputTmpProps } from './input.types';

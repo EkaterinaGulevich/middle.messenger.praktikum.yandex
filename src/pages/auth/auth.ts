@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName, validateFormField, getFormData } from 'src/utils';
-import { Component, router } from 'src/modules';
+import { Component, router } from 'src/core';
 import { AuthController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';
 import { ButtonComponent } from 'src/components/button/button';

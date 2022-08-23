@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { router } from '../router';
 
 import { JSDOM } from 'jsdom';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 const jsdom = new JSDOM(
   `<html>

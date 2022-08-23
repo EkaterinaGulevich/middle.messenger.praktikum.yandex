@@ -4,7 +4,7 @@ import { createTmpClassName } from 'src/utils';
 
 import template from './textarea.hbs';
 import './textarea.scss';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { TTextareaComponentCallbacks, TTextareaComponentState } from 'src/components/textarea/textarea.types';
 import { TInputEvents } from 'src/components/input/input.types';
 

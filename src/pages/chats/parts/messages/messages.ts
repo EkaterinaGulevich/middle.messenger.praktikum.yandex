@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createClassName, createTmpClassName, groupMessageByDate } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { ButtonComponent, TextareaComponent } from 'src/components';
 import { ChatsController } from 'src/controllers';
 import { TMessageResponse, TNewMessageResponse, isDataMessageResponse } from 'src/types';

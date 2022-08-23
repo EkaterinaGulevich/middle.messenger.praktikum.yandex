@@ -1,6 +1,6 @@
 import { queryStringify } from 'src/utils';
 import { TRequestOptions } from 'src/types';
-import { router } from 'src/modules';
+import { router } from 'src/core/index';
 
 export class HTTPTransport {
   private readonly baseUrl: string;

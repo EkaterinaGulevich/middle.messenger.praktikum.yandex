@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { ButtonComponent } from 'src/components/button/button';
 import { ChatsController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';

@@ -1,6 +1,6 @@
 import { renderComponentDOM } from 'src/utils';
 import { TRoutePathname } from 'src/consts/routes';
-import { Component } from 'src/modules';
+import { Component } from 'src/core/index';
 import { TJsonObject } from 'src/types';
 
 // TODO убрать дублирование типа в src/consts/routes.ts

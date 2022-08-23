@@ -3,7 +3,7 @@ import spies from 'chai-spies';
 
 chai.use(spies);
 
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 type CheckComponentState = { name: string; age: number };
 

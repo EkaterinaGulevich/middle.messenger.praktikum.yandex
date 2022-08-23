@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import template from './button.hbs';
 import { TButtonComponentCallbacks, TButtonComponentState, TButtonEvents, TButtonTmpProps } from './button.types';

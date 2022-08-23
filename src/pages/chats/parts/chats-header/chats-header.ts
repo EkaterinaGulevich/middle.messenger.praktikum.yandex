@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 import { createTmpClassName, debounce, renderModalDOM } from 'src/utils';
-import { router, Component } from 'src/modules';
+import { router, Component } from 'src/core';
 import { ButtonComponent } from 'src/components/button/button';
 import { InputComponent } from 'src/components/input/input';
 import { AuthController } from 'src/controllers';

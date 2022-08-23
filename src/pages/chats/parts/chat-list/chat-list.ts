@@ -1,4 +1,4 @@
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { ChatsController } from 'src/controllers';
 import { TIMER_TO_UPDATE } from 'src/consts/common';
 import { ChatListItemComponent } from 'src/pages/chats/parts';
