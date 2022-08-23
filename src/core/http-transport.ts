@@ -52,7 +52,11 @@ export class HTTPTransport {
       xhr.withCredentials = true;
 
       xhr.onload = () => {
-        if (xhr.status === 401 && window.location.pathname !== '/auth') {
+        if (
+          xhr.status === 401 &&
+          window.location.pathname !== '/auth' &&
+          window.location.pathname !== '/registration'
+        ) {
           router.go('/auth');
         } else if (xhr.status >= 400) {
           try {
