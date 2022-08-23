@@ -26,7 +26,10 @@ const INITIAL_STATE: TRegistrationComponentState = {
 };
 
 export class RegistrationComponent extends Component<TRegistrationComponentState> {
-  readonly childComponents: TRegistrationFormInputs & { signUpButton: ButtonComponent };
+  readonly childComponents: TRegistrationFormInputs & {
+    signUpButton: ButtonComponent;
+    goToAuthButton: ButtonComponent;
+  };
 
   constructor() {
     super(INITIAL_STATE);
@@ -41,6 +44,16 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
           onclick: this.onRegistration,
         }
       ),
+      goToAuthButton: new ButtonComponent(
+        {
+          value: 'Есть аккаунт?',
+          fullWidth: true,
+          variant: 'link',
+        },
+        {
+          onclick: this.onAuth,
+        }
+      ),
     };
   }
 
@@ -49,6 +62,10 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
     if (currentUser) {
       AuthController.logout();
     }
+  }
+
+  onAuth() {
+    router.go('/auth');
   }
 
   onRegistration() {
@@ -113,6 +130,7 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
       passwordInput: this.childComponents.passwordInput.elementHtml,
       repeatPasswordInput: this.childComponents.repeatPasswordInput.elementHtml,
       signUpButton: this.childComponents.signUpButton.elementHtml,
+      goToAuthButton: this.childComponents.goToAuthButton.elementHtml,
     });
   }
 }

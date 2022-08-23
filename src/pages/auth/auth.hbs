@@ -1,11 +1,11 @@
-<main class="{{CG_auth}}">
-  <div class="{{CG_auth elem='wrapper'}}">
-    <h1 class="{{CG_auth elem='title'}}">Вход</h1>
-    <form class="{{CG_auth elem='inputs-wrapper'}}" name="auth">
+<main class='{{CG_auth}}'>
+  <div class='{{CG_auth elem='wrapper'}}'>
+    <h1 class='{{CG_auth elem='title'}}'>Вход</h1>
+    <form class='{{CG_auth elem='inputs-wrapper'}}' name='auth'>
       {{{loginInputComponent}}}
       {{{passwordInputComponent}}}
     </form>
     {{{signInButtonComponent}}}
-    {{#> link href='/registration' value='Нет аккаунта?' className=(CG_auth elem='link') }}{{/link}}
+    {{{goToRegistrationButtonComponent}}}
   </div>
 </main>

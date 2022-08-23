@@ -3,7 +3,7 @@ import { ButtonComponent } from 'src/components/button/button';
 export type TButtonTmpProps = {
   id?: string;
   value: string;
-  variant?: 'primary' | 'secondary' | 'pseudo';
+  variant?: 'primary' | 'secondary' | 'pseudo' | 'link';
   className?: string;
   fullWidth?: boolean;
   disabled?: boolean;

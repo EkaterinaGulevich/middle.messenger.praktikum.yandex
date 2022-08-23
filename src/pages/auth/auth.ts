@@ -21,7 +21,12 @@ const INITIAL_STATE: TAuthComponentState = {
 };
 
 export class AuthComponent extends Component<TAuthComponentState> {
-  readonly childComponents: { loginInput: InputComponent; passwordInput: InputComponent; signInBtn: ButtonComponent };
+  readonly childComponents: {
+    loginInput: InputComponent;
+    passwordInput: InputComponent;
+    signInBtn: ButtonComponent;
+    goToRegistrationButtonComponent: ButtonComponent;
+  };
 
   constructor() {
     super(INITIAL_STATE);
@@ -39,6 +44,16 @@ export class AuthComponent extends Component<TAuthComponentState> {
           onclick: this.onAuth,
         }
       ),
+      goToRegistrationButtonComponent: new ButtonComponent(
+        {
+          value: 'Нет аккаунта?',
+          fullWidth: true,
+          variant: 'link',
+        },
+        {
+          onclick: this.onRegistration,
+        }
+      ),
     };
   }
 
@@ -47,6 +62,10 @@ export class AuthComponent extends Component<TAuthComponentState> {
     if (currentUser) {
       AuthController.logout();
     }
+  }
+
+  onRegistration() {
+    router.go('/registration');
   }
 
   onAuth() {
@@ -87,6 +106,7 @@ export class AuthComponent extends Component<TAuthComponentState> {
       loginInputComponent: this.childComponents.loginInput.elementHtml,
       passwordInputComponent: this.childComponents.passwordInput.elementHtml,
       signInButtonComponent: this.childComponents.signInBtn.elementHtml,
+      goToRegistrationButtonComponent: this.childComponents.goToRegistrationButtonComponent.elementHtml,
     });
   }
 }
