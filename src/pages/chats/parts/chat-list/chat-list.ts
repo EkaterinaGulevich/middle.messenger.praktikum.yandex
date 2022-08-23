@@ -16,7 +16,7 @@ export class ChatListComponent extends Component<TChatListComponentState> {
 
   private _meta: {
     activeChatComponent: null | ChatListItemComponent;
-    timerId?: number;
+    timerId?: ReturnType<typeof setInterval>;
   };
 
   constructor(initialState: TChatListComponentState, callbacks: TChatListComponentCallbacks) {
