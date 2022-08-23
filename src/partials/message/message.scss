@@ -69,6 +69,11 @@
     }
   }
 
+  &__save-spaces {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
   &__text {
     a {
       cursor: pointer;

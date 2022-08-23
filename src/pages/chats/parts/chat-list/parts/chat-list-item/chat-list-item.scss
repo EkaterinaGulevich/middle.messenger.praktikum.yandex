@@ -67,10 +67,11 @@
 
   &__message {
     color: $grey;
+    word-break: break-all;
     font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: box;
+    display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
