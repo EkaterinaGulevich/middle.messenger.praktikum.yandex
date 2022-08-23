@@ -27,7 +27,8 @@
     "build:webpack": "webpack",
     "start:webpack": "npm run build:webpack && npm run serve",
     "\n# EXPRESS:": "",
-    "serve": "node ./server.js"
+    "serve": "node ./server.js",
+    "start": "npm run build:webpack && npm run serve"
   },
   "lint-staged": {
     "src/**/*.{scss}": "npm run stylelint:fix",
