@@ -18,6 +18,22 @@
 ## Демо
 Приложение развернуто на [Heroku](https://messenger-gulevich.herokuapp.com) и [Netlify](https://messenger-gulevich.netlify.app).
 
+## Используемые технологии
+
+### Dependencies
+Шаблонизатор: `handlebars`
+
+### DevDependencies
+Сборка: `webpack`, `parcel`
+
+Форматирование и линтинг: `eslint`, `stylelint`, `prettier`
+
+Типизация: `typescript`
+
+Тестирование: `mocha`, `chai`
+
+Стили: `sass`
+
 ## Локальный запуск
 
 ### Запуск проекта
@@ -79,7 +95,11 @@
 ## Полезные ссылки
 
 - [Прототип в Figma](https://www.figma.com/file/JbTi3UC2k7B7QVvXOsYiwI/%D0%9C%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80?node-id=0%3A1)
-
+- [Общее ТЗ](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1Modulw/index1%D0%9C.html)
+  - [ТЗ 1 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1%20sprint/index1spr.html)
+  - [ТЗ 2 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/2%20sprint/index2spr.html)
+  - [ТЗ 3 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/3%20sprint/index3spr.html)
+  - [ТЗ 4 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/4%20sprint/index.html)
 
 ## Обратная связь
 
