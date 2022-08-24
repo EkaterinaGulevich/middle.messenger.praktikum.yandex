@@ -21,9 +21,10 @@ export const makePropsProxy = <T extends TJsonObject>({
   callbackOnSet,
 }: TMakePropsProxyProps<T>): T => {
   return new Proxy<T>(props, {
-    get(target, prop: string) {
-      if (isPrivateProp(prop)) {
-        throwPrivatePropError(prop);
+    get(target, prop: string | symbol) {
+      const strProp = prop.toString();
+      if (isPrivateProp(strProp)) {
+        throwPrivatePropError(strProp);
       }
 
       /** TODO:
@@ -36,7 +37,7 @@ export const makePropsProxy = <T extends TJsonObject>({
        * return typeof value === 'function' ? value.bind(target) : value;
        */
 
-      return target[prop];
+      return target[strProp];
     },
 
     set(_target, prop: string, value: TJsonValue): boolean {

@@ -1,4 +1,4 @@
-import { Component } from 'src/modules/component';
+import { Component } from 'src/core';
 import { MODAL_SELECTOR } from 'src/consts/common';
 import { TJsonObject } from 'src/types';
 

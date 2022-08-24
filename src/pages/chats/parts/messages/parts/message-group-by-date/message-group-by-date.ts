@@ -1,13 +1,15 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import { TMessageGroupByDateComponentState } from './message-group-by-date.types';
 import template from './message-group-by-date.hbs';
 import './message-group-by-date.scss';
 
-registerHelper('CG_message-group-by-date', (options) => createTmpClassName(options, 'message-group-by-date'));
+Handlebars.registerHelper('CG_message-group-by-date', (options) =>
+  createTmpClassName(options, 'message-group-by-date')
+);
 
 export class MessageGroupByDateComponent extends Component<TMessageGroupByDateComponentState> {
   constructor(initialState: TMessageGroupByDateComponentState) {

@@ -37,6 +37,20 @@
     background-color: transparent;
   }
 
+  &--link {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      background: none;
+      text-decoration: underline;
+    }
+  }
+
   &:hover {
     cursor: pointer;
   }

@@ -1,7 +1,7 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createClassName, createTmpClassName } from 'src/utils';
-import { router, Component } from 'src/modules';
+import { router, Component } from 'src/core';
 import { AuthController } from 'src/controllers';
 import { ButtonComponent } from 'src/components/button/button';
 import { RESOURSES_URL } from 'src/consts/common';
@@ -12,7 +12,7 @@ import './profile-view.scss';
 
 const BASE_CLASS_NAME = 'profile-view';
 
-registerHelper('CG_profile-view', (options) => createTmpClassName(options, BASE_CLASS_NAME));
+Handlebars.registerHelper('CG_profile-view', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
 const initialState: TProfileViewComponentState = {};
 

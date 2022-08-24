@@ -1,10 +1,9 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, getFormData, validateFormField } from 'src/utils';
-import { router } from 'src/modules';
+import { router, Component } from 'src/core';
 import { InputComponent } from 'src/components/input/input';
 import { AuthController } from 'src/controllers';
-import { Component } from 'src/modules/component';
 import { store } from 'src/store';
 
 import { TRegistrationComponentState, TRegistrationFormInputs } from './registration.types';
@@ -14,7 +13,7 @@ import './registration.scss';
 import { ButtonComponent } from 'src/components/button/button';
 import { LOGIN_ALREADY_EXISTS } from 'src/consts/api-errors';
 
-registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
+Handlebars.registerHelper('CG_registration', (options) => createTmpClassName(options, 'registration'));
 
 const INITIAL_STATE: TRegistrationComponentState = {
   email: '',
@@ -27,7 +26,10 @@ const INITIAL_STATE: TRegistrationComponentState = {
 };
 
 export class RegistrationComponent extends Component<TRegistrationComponentState> {
-  readonly childComponents: TRegistrationFormInputs & { signUpButton: ButtonComponent };
+  readonly childComponents: TRegistrationFormInputs & {
+    signUpButton: ButtonComponent;
+    goToAuthButton: ButtonComponent;
+  };
 
   constructor() {
     super(INITIAL_STATE);
@@ -42,6 +44,16 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
           onclick: this.onRegistration,
         }
       ),
+      goToAuthButton: new ButtonComponent(
+        {
+          value: 'Есть аккаунт?',
+          fullWidth: true,
+          variant: 'link',
+        },
+        {
+          onclick: this.onAuth,
+        }
+      ),
     };
   }
 
@@ -50,6 +62,10 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
     if (currentUser) {
       AuthController.logout();
     }
+  }
+
+  onAuth() {
+    router.go('/auth');
   }
 
   onRegistration() {
@@ -114,6 +130,7 @@ export class RegistrationComponent extends Component<TRegistrationComponentState
       passwordInput: this.childComponents.passwordInput.elementHtml,
       repeatPasswordInput: this.childComponents.repeatPasswordInput.elementHtml,
       signUpButton: this.childComponents.signUpButton.elementHtml,
+      goToAuthButton: this.childComponents.goToAuthButton.elementHtml,
     });
   }
 }

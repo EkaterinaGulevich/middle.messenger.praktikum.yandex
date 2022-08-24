@@ -1,18 +1,21 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import template from './input.hbs';
 import { TInputComponentCallbacks, TInputComponentState, TInputEvents, TInputTmpProps } from './input.types';
 import './input.scss';
 
-registerHelper('CG_input', (options) => createTmpClassName(options, 'input'));
+Handlebars.registerHelper('CG_input', (options) => createTmpClassName(options, 'input'));
 
-registerHelper('CG_input-modifiers', (params: { hash: Pick<TInputTmpProps, 'fullWidth' | 'withoutLabel'> }) => {
-  const { fullWidth, withoutLabel } = params.hash;
-  return `${fullWidth ? ' full-width' : ''} ${withoutLabel ? 'without-label' : ''}`;
-});
+Handlebars.registerHelper(
+  'CG_input-modifiers',
+  (params: { hash: Pick<TInputTmpProps, 'fullWidth' | 'withoutLabel'> }) => {
+    const { fullWidth, withoutLabel } = params.hash;
+    return `${fullWidth ? ' full-width' : ''} ${withoutLabel ? 'without-label' : ''}`;
+  }
+);
 
 export class InputComponent extends Component<TInputComponentState> {
   callbacks: TInputComponentCallbacks;

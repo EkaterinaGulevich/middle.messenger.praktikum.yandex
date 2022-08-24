@@ -1,10 +1,10 @@
 <div class='{{CG_messages}}'>
   {{#if isSelectedChat}}
     {{#if isLoading}}
-      {{> loader }}
+      {{#> loader  }}{{/loader}}
     {{else}}
       <div class='{{CG_messages elem='user-header'}}'>
-        {{> avatar src=companion.avatar alt='avatar' size='small' }}
+        {{#> avatar src=companion.avatar alt='avatar' size='small' }}{{/avatar}}
         <div class='{{CG_messages elem='companion-name'}}'>
           {{companion.name}}
         </div>

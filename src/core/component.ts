@@ -212,7 +212,7 @@ export abstract class Component<T extends TJsonObject> {
   }
 
   get elementHtml() {
-    return this.createElement().outerHTML;
+    return this.createElement()?.outerHTML;
   }
 
   private _render() {

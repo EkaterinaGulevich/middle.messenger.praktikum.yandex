@@ -1,4 +1,4 @@
-import { HTTPTransport } from 'src/modules';
+import { HTTPTransport } from 'src/core';
 import { BASE_URL } from 'src/consts/common';
 import { TChangeProfileRequest, TChangeProfileRequestBackend, TUserResponse, TUserResponseBackend } from 'src/types';
 

@@ -12,7 +12,6 @@
   line-height: 20px;
   position: relative;
   margin-bottom: 10px;
-
   background: rgb($white, 0.15);
   border-radius: 0 $borderRadius $borderRadius $borderRadius;
 
@@ -38,9 +37,10 @@
     margin: 12px;
   }
 
-  &__check-icons {
-    margin-left: 4px;
+  .check-icons {
     $size: 16px;
+
+    margin-left: 4px;
     width: $size;
     height: $size;
     display: inline-block;
@@ -57,16 +57,21 @@
     margin-left: auto;
   }
 
+  &--is-not-read {
+    .check-icons {
+      background-image: url('../../../static/icons/check.svg');
+    }
+  }
+
   &:not(&--is-from-me) {
-    .message__check-icons {
+    .check-icons {
       display: none;
     }
   }
 
-  &--is-not-read {
-    .message__check-icons {
-      background-image: url('../../../static/icons/check.svg');
-    }
+  &__save-spaces {
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 
   &__text {

@@ -9,6 +9,7 @@ export type TRegistrationTmpProps = {
   passwordInput: string;
   repeatPasswordInput: string;
   signUpButton: string;
+  goToAuthButton: string;
 };
 
 export type TRegistrationComponentState = {

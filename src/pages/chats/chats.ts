@@ -1,7 +1,7 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { ChatsController } from 'src/controllers';
 
 import template from './chats.hbs';
@@ -9,7 +9,7 @@ import { ChatListComponent, MessagesComponent, ChatsHeaderComponent, ChatListIte
 import { TChatsComponentState } from './chats.types';
 import './chats.scss';
 
-registerHelper('CG_chats', (options) => createTmpClassName(options, 'chats'));
+Handlebars.registerHelper('CG_chats', (options) => createTmpClassName(options, 'chats'));
 
 const INITIAL_STATE: TChatsComponentState = { isLoading: true };
 

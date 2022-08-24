@@ -1,4 +1,4 @@
-import { HTTPTransport } from 'src/modules';
+import { HTTPTransport } from 'src/core';
 import { BASE_URL } from '../consts/common';
 import { TChatResponse, TChatResponseBackend, TUserResponse, TUserResponseBackend } from 'src/types';
 

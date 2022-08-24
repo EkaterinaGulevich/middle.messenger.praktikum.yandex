@@ -1,7 +1,7 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, debounce, renderModalDOM } from 'src/utils';
-import { router, Component } from 'src/modules';
+import { router, Component } from 'src/core';
 import { ButtonComponent } from 'src/components/button/button';
 import { InputComponent } from 'src/components/input/input';
 import { AuthController } from 'src/controllers';
@@ -13,7 +13,7 @@ import template from './chats-header.hbs';
 import './chats-header.scss';
 
 const BASE_CLASS_NAME = 'chats-header';
-registerHelper('CG_chats-header', (options) => createTmpClassName(options, BASE_CLASS_NAME));
+Handlebars.registerHelper('CG_chats-header', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
 const INITIAL_STATE: TChatsHeaderComponentState = {
   isSettingsOpen: false,

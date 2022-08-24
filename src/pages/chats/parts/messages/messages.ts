@@ -1,7 +1,7 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createClassName, createTmpClassName, groupMessageByDate } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 import { ButtonComponent, TextareaComponent } from 'src/components';
 import { ChatsController } from 'src/controllers';
 import { TMessageResponse, TNewMessageResponse, isDataMessageResponse } from 'src/types';
@@ -15,7 +15,7 @@ import './messages.scss';
 
 const BASE_CLASS_NAME = 'messages';
 
-registerHelper('CG_messages', (options) => createTmpClassName(options, BASE_CLASS_NAME));
+Handlebars.registerHelper('CG_messages', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
 const INITIAL_STATE: TMessagesComponentState = {
   isLoading: false,

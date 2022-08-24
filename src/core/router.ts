@@ -1,6 +1,6 @@
 import { renderComponentDOM } from 'src/utils';
 import { TRoutePathname } from 'src/consts/routes';
-import { Component } from 'src/modules';
+import { Component } from 'src/core/index';
 import { TJsonObject } from 'src/types';
 
 // TODO убрать дублирование типа в src/consts/routes.ts
@@ -27,8 +27,10 @@ class Router {
   }
 
   start() {
-    window.onpopstate = () => {
-      this._onRoute(window.location.pathname);
+    window.onpopstate = (event: PopStateEvent) => {
+      const target = event.currentTarget as Window;
+      const { pathname } = target.location as Location;
+      this._onRoute(pathname);
     };
     this._onRoute(window.location.pathname);
   }

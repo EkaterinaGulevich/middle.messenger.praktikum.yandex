@@ -1,6 +1,6 @@
 import { queryStringify } from 'src/utils';
 import { TRequestOptions } from 'src/types';
-import { router } from 'src/modules';
+import { router } from 'src/core/index';
 
 export class HTTPTransport {
   private readonly baseUrl: string;
@@ -33,7 +33,7 @@ export class HTTPTransport {
     url: string,
     options: TRequestOptions & { method: 'GET' | 'POST' | 'PUT' | 'DELETE' }
   ): Promise<XMLHttpRequest> => {
-    const { headers = {}, method, data, timeout = 500 } = options;
+    const { headers = {}, method, data, timeout = 5000 } = options;
     const dataIsFile = data instanceof File;
 
     return new Promise((resolve, reject) => {
@@ -52,7 +52,11 @@ export class HTTPTransport {
       xhr.withCredentials = true;
 
       xhr.onload = () => {
-        if (xhr.status === 401 && window.location.pathname !== '/auth') {
+        if (
+          xhr.status === 401 &&
+          window.location.pathname !== '/auth' &&
+          window.location.pathname !== '/registration'
+        ) {
           router.go('/auth');
         } else if (xhr.status >= 400) {
           try {

@@ -1,7 +1,6 @@
-import { router } from 'src/modules';
+import { router } from 'src/core';
 import { NotFoundPageComponent } from 'src/pages/not-found/not-found';
 import { routes } from 'src/consts/routes';
-
 import 'src/partials';
 
 import './style.scss';

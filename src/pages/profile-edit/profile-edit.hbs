@@ -1,8 +1,8 @@
 <main class='{{CG_profile-edit}}'>
-  <input id='upload_file' type='file' name='avatar' />
+  <input id='upload-file' type='file' name='avatar' />
   <div class="{{CG_profile-edit elem='avatar-wrapper'}}">
 {{!-- TODO вынести "avatar" в компоненты и передавать колбэк на измение аватара, а не навешивать id --}}
-    {{> avatar id=avatarId src=avatar alt='avatar' }}
+    {{#> avatar id=avatarId src=avatar alt='avatar' }}{{/avatar}}
   </div>
   <form class="{{CG_profile-edit elem='form'}}" name="edit">
     {{{emailInput}}}

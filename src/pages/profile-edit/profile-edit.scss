@@ -9,7 +9,7 @@
   width: 400px;
   margin: 0 auto;
 
-  #upload_file {
+  #upload-file {
     display: none;
   }
 
@@ -17,7 +17,7 @@
     margin-bottom: 60px;
     position: relative;
 
-    .avatar:hover:before {
+    .avatar:hover::before {
       content: 'Изменить аватар';
       background: rgb($black, 0.5);
       height: 100%;

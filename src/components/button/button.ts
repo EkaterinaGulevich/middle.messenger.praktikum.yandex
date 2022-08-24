@@ -1,14 +1,14 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName } from 'src/utils';
-import { Component } from 'src/modules';
+import { Component } from 'src/core';
 
 import template from './button.hbs';
 import { TButtonComponentCallbacks, TButtonComponentState, TButtonEvents, TButtonTmpProps } from './button.types';
 import './button.scss';
 
-registerHelper('CG_button', (options) => createTmpClassName(options, 'button'));
-registerHelper(
+Handlebars.registerHelper('CG_button', (options) => createTmpClassName(options, 'button'));
+Handlebars.registerHelper(
   'CG_button-modifiers',
   (params: { hash: Pick<TButtonTmpProps, 'variant' | 'fullWidth' | 'withIcon'> }) => {
     const { variant, fullWidth, withIcon } = params.hash;

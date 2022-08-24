@@ -1,7 +1,7 @@
-import { registerHelper } from 'handlebars';
+import Handlebars from 'handlebars';
 
 import { createTmpClassName, validateFormField, getFormData, createClassName } from 'src/utils';
-import { router, Component } from 'src/modules';
+import { router, Component } from 'src/core';
 import { AuthController, UserController } from 'src/controllers';
 import { InputComponent } from 'src/components/input/input';
 import { RESOURSES_URL } from 'src/consts/common';
@@ -14,7 +14,7 @@ import { ButtonComponent } from 'src/components/button/button';
 
 const BASE_CLASS_NAME = 'profile-edit';
 
-registerHelper('CG_profile-edit', (options) => createTmpClassName(options, BASE_CLASS_NAME));
+Handlebars.registerHelper('CG_profile-edit', (options) => createTmpClassName(options, BASE_CLASS_NAME));
 
 const INITIAL_STATE: TProfileEditComponentState = {
   email: '',
@@ -65,7 +65,7 @@ export class ProfileEditComponent extends Component<TProfileEditComponentState> 
   }
 
   registerEvents() {
-    const uploadInput = document.querySelector('#upload_file') as HTMLInputElement;
+    const uploadInput = document.querySelector('#upload-file') as HTMLInputElement;
 
     const avatar = document.querySelector(`#${this.avatarId}`);
     avatar?.addEventListener('click', () => {
