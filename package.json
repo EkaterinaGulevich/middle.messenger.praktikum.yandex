@@ -19,7 +19,7 @@
     "test:coverage:html": "nyc --reporter=html npm run test && open-cli coverage/index.html",
     "check-and-test-code": "npm run tsc && npm run test",
     "\n# PARCEL SCRIPTS:": "",
-    "dev:parcel": "parcel --no-cache index.html",
+    "dev:parcel": "parcel --no-cache index.html --open",
     "build:parcel": "parcel build index.html",
     "start:parcel": "npm run build:parcel && npm run serve",
     "\n# WEBPACK SCRIPTS:": "",
@@ -27,8 +27,7 @@
     "build:webpack": "webpack",
     "start:webpack": "npm run build:webpack && npm run serve",
     "\n# EXPRESS:": "",
-    "serve": "node ./server.js",
-    "start": "npm run build:webpack && npm run serve"
+    "serve": "node ./server.js"
   },
   "lint-staged": {
     "src/**/*.{scss}": "npm run stylelint:fix",
@@ -38,7 +37,7 @@
     ]
   },
   "engines": {
-    "node": ">=12.0"
+    "node": ">=16"
   },
   "targets": {
     "browserModern": {
@@ -71,6 +70,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.2.1",
+    "eslint-webpack-plugin": "3.2.0",
     "express": "4.17.3",
     "handlebars-loader": "1.7.2",
     "html-webpack-plugin": "5.5.0",
@@ -92,7 +92,7 @@
     "stylelint": "14.11.0",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-standard": "25.0.0",
-    "stylelint-scss": "^4.3.0",
+    "stylelint-scss": "4.3.0",
     "ts-loader": "9.3.1",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",

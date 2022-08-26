@@ -65,7 +65,7 @@
     ```shell
     npm install && npm run start:webpack
     ```
-2. Открыть страницу в бразузере http://localhost:3000/
+2. Открыть страницу в браузере http://localhost:3000/
 
 
 ### Запуск проекта для разработки
@@ -81,7 +81,14 @@
    npm install && npm run dev:webpack
    ```
 
-2. Затем открыть страницу в бразузере http://localhost:1234/
+> При запуске сборки с помощью `Webpack` в консоль выводятся ошибки `Eslint`,
+> но при сборке с помощью `Parcel` пока это невозможно. (Ошибки `Typescript` выводятся 
+> и для `Webpack` и для `Parcel`)
+> 
+> Планируется подождать, когда пофиксят возможность использовать `Parcel` c `Eslint@^8`.
+> Следить можно здесь: https://github.com/parcel-bundler/parcel/issues/8063
+
+2. Затем открыть страницу в браузере http://localhost:1234/
 
 ### Запуск проекта через Docker
 
@@ -92,7 +99,7 @@
       ```shell
    docker run -p 3001:3000 -d <your_name>
    ```
-2. Затем открыть страницу в бразузере http://localhost:3001/
+2. Затем открыть страницу в браузере http://localhost:3001/
 
 ## Роутинг проекта
 
@@ -110,6 +117,7 @@
 ## Полезные ссылки
 
 - [Прототип в Figma](https://www.figma.com/file/JbTi3UC2k7B7QVvXOsYiwI/%D0%9C%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80?node-id=0%3A1)
+- [Swagger](https://ya-praktikum.tech/api/v2/swagger/)
 - [Общее ТЗ](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1Modulw/index1%D0%9C.html)
   - [ТЗ 1 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/1%20sprint/index1spr.html)
   - [ТЗ 2 спринт](https://code.s3.yandex.net/frontend-developer/middle%20frontend/2%20sprint/index2spr.html)
