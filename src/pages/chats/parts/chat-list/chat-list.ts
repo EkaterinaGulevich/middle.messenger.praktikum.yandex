@@ -51,7 +51,8 @@ export class ChatListComponent extends Component<TChatListComponentState> {
   }
 
   shouldComponentUpdate(prevState: TChatListComponentState, nextState: TChatListComponentState): boolean {
-    return isChatListChanged(prevState.chats, nextState.chats);
+    const isFilterChanged = prevState.chatFilter !== nextState.chatFilter;
+    return isChatListChanged(prevState.chats, nextState.chats) || isFilterChanged;
   }
 
   componentDidMount() {
