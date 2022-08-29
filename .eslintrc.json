@@ -10,6 +10,7 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "no-debugger": "warn",
     "lines-between-class-members": "off",
     "class-methods-use-this": ["off"],
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsForRegex": ["^_"] }],

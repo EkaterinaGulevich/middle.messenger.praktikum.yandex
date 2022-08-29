@@ -2,10 +2,11 @@ import { Component } from 'src/core';
 import { ChatsController } from 'src/controllers';
 import { TIMER_TO_UPDATE } from 'src/consts/common';
 import { ChatListItemComponent } from 'src/pages/chats/parts';
+import { Store, store, TStore } from 'src/store';
 
 import template from './chat-list.hbs';
 import { TChatListComponentCallbacks, TChatListComponentState } from './chat-list.types';
-import { Store, store, TStore } from 'src/store';
+import { isChatListChanged } from './helpers/is-chat-list-changed';
 
 export class ChatListComponent extends Component<TChatListComponentState> {
   callbacks: TChatListComponentCallbacks;
@@ -47,6 +48,10 @@ export class ChatListComponent extends Component<TChatListComponentState> {
         chats,
       });
     });
+  }
+
+  shouldComponentUpdate(prevState: TChatListComponentState, nextState: TChatListComponentState): boolean {
+    return isChatListChanged(prevState.chats, nextState.chats);
   }
 
   componentDidMount() {

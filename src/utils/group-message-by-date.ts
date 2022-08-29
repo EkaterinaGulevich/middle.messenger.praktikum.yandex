@@ -13,6 +13,11 @@ export const groupMessageByDate = (
       if (group.messages.find((m) => m.time === mes.time && m.content === mes.content) === undefined) {
         group.messages.push(mes);
       }
+    } else if (getRelativeDate(mes.time) === 'Сегодня') {
+      groups.unshift({
+        date: getRelativeDate(mes.time),
+        messages: [mes],
+      });
     } else {
       groups.push({
         date: getRelativeDate(mes.time),
