@@ -12,15 +12,33 @@ Handlebars.registerHelper('CG_textarea', (options) => createTmpClassName(options
 
 export class TextareaComponent extends Component<TTextareaComponentState> {
   callbacks: TTextareaComponentCallbacks;
+  readonly _meta: {
+    value: string;
+  };
 
   constructor(initialState: TTextareaComponentState, callbacks?: TTextareaComponentCallbacks) {
     super(initialState);
 
     this.callbacks = callbacks || {};
+    this._meta = {
+      value: '',
+    };
+  }
+
+  componentDidUpdate() {
+    const textareaElem = this.elementInDOM as HTMLTextAreaElement;
+    textareaElem.value = this._meta.value;
+
+    textareaElem.focus();
   }
 
   registerEvents() {
     const textareaElem = this.elementInDOM as HTMLTextAreaElement;
+
+    textareaElem.addEventListener('change', (event) => {
+      const target = event.target as HTMLTextAreaElement;
+      this._meta.value = target.value;
+    });
 
     (
       Object.entries(this.callbacks) as [TInputEvents, (_event: Event, _component: TextareaComponent) => void][]
