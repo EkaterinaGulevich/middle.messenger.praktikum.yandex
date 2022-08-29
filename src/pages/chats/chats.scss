@@ -8,10 +8,10 @@
   &__chat-list {
     width: 280px;
     min-width: 280px;
-    border-right: 1px solid $smokyWhite;
     height: 100%;
     background: $grayBlue;
     overflow: auto;
+    box-shadow: 2px 0 6px rgba($white, 0.1);
   }
 
   .loader-wrapper {

@@ -39,6 +39,7 @@
     max-height: 100%;
     overflow: auto;
     margin-top: auto;
+    padding: 0 4px 0 0;
 
     &--with-animation {
       @include animationAppear(1s);
