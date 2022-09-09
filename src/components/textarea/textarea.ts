@@ -25,6 +25,10 @@ export class TextareaComponent extends Component<TTextareaComponentState> {
     };
   }
 
+  clearValue() {
+    this._meta.value = '';
+  }
+
   componentDidUpdate() {
     const textareaElem = this.elementInDOM as HTMLTextAreaElement;
     textareaElem.value = this._meta.value;

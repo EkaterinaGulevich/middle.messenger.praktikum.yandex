@@ -113,6 +113,8 @@ export class MessagesComponent extends Component<TMessagesComponentState> {
         type: 'message',
       })
     );
+
+    this.childComponents.messageTextarea.clearValue();
   }
 
   onSocketOpened(socket: WebSocket) {
